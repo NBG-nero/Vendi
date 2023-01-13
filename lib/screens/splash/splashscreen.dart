@@ -6,15 +6,16 @@ class Splashscreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    
     return Scaffold(
-      backgroundColor:Colors.blue.shade50,
+        backgroundColor: Colors.blue.shade50,
         body: Center(
             child: Text(
-      "VENDI",
-      style: TextStyle(
-          fontSize: 100.sp,
-          fontStyle: FontStyle.italic,
-          color: Colors.amber[600]),
-    )));
+          "VENDI",
+          style: TextStyle(
+              fontSize: 100.sp,
+              fontStyle: FontStyle.italic,
+              color: Colors.amber[600]),
+        )));
   }
 }
