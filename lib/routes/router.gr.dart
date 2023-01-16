@@ -27,7 +27,13 @@ class AppRouter extends _i2.RootStackRouter {
         routeData: routeData,
         child: const _i1.Splashscreen(),
       );
-    }
+    },
+    Homescreen.name: (routeData) {
+      return _i2.MaterialPageX<dynamic>(
+        routeData: routeData,
+        child: const _i1.Homescreen(),
+      );
+    },
   };
 
   @override
@@ -35,7 +41,11 @@ class AppRouter extends _i2.RootStackRouter {
         _i2.RouteConfig(
           Splashscreen.name,
           path: '/',
-        )
+        ),
+        _i2.RouteConfig(
+          Homescreen.name,
+          path: '/Homescreen',
+        ),
       ];
 }
 
@@ -49,4 +59,16 @@ class Splashscreen extends _i2.PageRouteInfo<void> {
         );
 
   static const String name = 'Splashscreen';
+}
+
+/// generated route for
+/// [_i1.Homescreen]
+class Homescreen extends _i2.PageRouteInfo<void> {
+  const Homescreen()
+      : super(
+          Homescreen.name,
+          path: '/Homescreen',
+        );
+
+  static const String name = 'Homescreen';
 }

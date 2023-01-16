@@ -1,7 +1,10 @@
+import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:stacked/stacked.dart';
 import 'package:vendi/screens/splash/splash_view_model.dart';
+
+import '../../routes/router.gr.dart';
 
 class Splashscreen extends StatelessWidget {
   const Splashscreen({super.key});
@@ -12,8 +15,9 @@ class Splashscreen extends StatelessWidget {
         viewModelBuilder: () => SplashViewModel(),
         onModelReady: (s) {
           s.setInitialised(true);
-          Future.delayed(const Duration(seconds: 5), (() { 
-            
+          Future.delayed(const Duration(seconds: 5), (() {
+            AutoRouter.of(context).pushAndPopUntil(const Homescreen(),
+                predicate: (route) => false);
           }));
         },
         builder: (context, model, child) {
