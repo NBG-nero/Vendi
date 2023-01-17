@@ -16,8 +16,15 @@ class Splashscreen extends StatelessWidget {
         onModelReady: (s) {
           s.setInitialised(true);
           Future.delayed(const Duration(seconds: 5), (() {
-            AutoRouter.of(context).pushAndPopUntil(const Homescreen(),
-                predicate: (route) => false);
+            // bool? isLoggedIn = s.prefs?.getBool('loggedin') ;
+            // isLoggedIn! ?
+            // AutoRouter.of(context).pushAndPopUntil(const Homescreen(),
+            //     predicate: (route) => false) :
+
+            AutoRouter.of(context).pushAndPopUntil(const Onboarding(),
+                predicate: (route) => false) 
+                
+                ;
           }));
         },
         builder: (context, model, child) {

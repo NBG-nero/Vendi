@@ -5,7 +5,9 @@ import '../screens/screens.dart';
   replaceInRouteName: 'Page, Route',
   routes: <AutoRoute>[
     AutoRoute(page: Splashscreen, initial: true),
-    AutoRoute(page: Homescreen)
+    AutoRoute(page: Homescreen),
+    AutoRoute(page: Onboarding)
+
   ],
 )
 class $AppRouter {}

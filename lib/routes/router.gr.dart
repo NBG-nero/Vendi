@@ -34,6 +34,12 @@ class AppRouter extends _i2.RootStackRouter {
         child: const _i1.Homescreen(),
       );
     },
+    Onboarding.name: (routeData) {
+      return _i2.MaterialPageX<dynamic>(
+        routeData: routeData,
+        child: const _i1.Onboarding(),
+      );
+    },
   };
 
   @override
@@ -45,6 +51,10 @@ class AppRouter extends _i2.RootStackRouter {
         _i2.RouteConfig(
           Homescreen.name,
           path: '/Homescreen',
+        ),
+        _i2.RouteConfig(
+          Onboarding.name,
+          path: '/Onboarding',
         ),
       ];
 }
@@ -71,4 +81,16 @@ class Homescreen extends _i2.PageRouteInfo<void> {
         );
 
   static const String name = 'Homescreen';
+}
+
+/// generated route for
+/// [_i1.Onboarding]
+class Onboarding extends _i2.PageRouteInfo<void> {
+  const Onboarding()
+      : super(
+          Onboarding.name,
+          path: '/Onboarding',
+        );
+
+  static const String name = 'Onboarding';
 }
