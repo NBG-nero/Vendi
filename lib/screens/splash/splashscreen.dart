@@ -30,7 +30,7 @@ class Splashscreen extends StatelessWidget {
         },
         builder: (context, model, child) {
           return Scaffold(
-              backgroundColor: VendiColors.primaryColor,
+              backgroundColor: VendiColors.masterColor,
               body: Center(
                   child: Text(
                 "VENDI",

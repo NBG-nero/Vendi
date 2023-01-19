@@ -5,7 +5,9 @@ class VendiColors {
 
   static Color primaryColor = const Color.fromARGB(255, 227, 242, 253);
   static Color secondaryColor = const Color.fromARGB(255, 144, 202, 249);
-  static Color tertiaryColor = const  Color.fromARGB(255, 255, 179, 0);
+  static Color tertiaryColor = const Color.fromARGB(255, 255, 179, 0);
+  static Color masterColor = const Color.fromARGB(255, 47, 46, 65);
+
   static Map<int, Color> colorMap = {
     50: const Color.fromARGB(255, 227, 242, 253),
     100: const Color.fromARGB(255, 187, 222, 251),

@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
-
-import 'package:flutter_svg/flutter_svg.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 import 'package:vendi/widgets/widgets.dart';
 
@@ -16,16 +15,21 @@ class _OnboardingState extends State<Onboarding> {
   Widget build(BuildContext context) {
     return Scaffold(
       body: PageView(onPageChanged: (val) {}, children: [
-        const OnboardWidget(
+        OnboardWidget(
+          boardText: "Welcome\nTo Vendi",
+          textSize: 28.sp,
+          boardText2:"+10 Million Products\n+100 categories\n+20 Brands" ,
+          textSize2: 22.sp,
           boardImage: "assets/images/2.svg",
         ),
-        const OnboardWidget(
+        OnboardWidget(
+          boardText: "",
           boardImage: "assets/images/3.svg",
         ),
-        const OnboardWidget(
+        OnboardWidget(
           boardImage: "assets/images/4.svg",
         ),
-        const OnboardWidget(
+        OnboardWidget(
           boardImage: "assets/images/1.svg",
         )
       ]),
