@@ -14,25 +14,45 @@ class _OnboardingState extends State<Onboarding> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: PageView(onPageChanged: (val) {}, children: [
-        OnboardWidget(
-          boardText: "Welcome\nTo Vendi",
-          textSize: 28.sp,
-          boardText2:"+10 Million Products\n+100 categories\n+20 Brands" ,
-          textSize2: 22.sp,
-          boardImage: "assets/images/2.svg",
-        ),
-        OnboardWidget(
-          boardText: "",
-          boardImage: "assets/images/3.svg",
-        ),
-        OnboardWidget(
-          boardImage: "assets/images/4.svg",
-        ),
-        OnboardWidget(
-          boardImage: "assets/images/1.svg",
-        )
-      ]),
+      body: Stack(
+        children: [
+          PageView(onPageChanged: (val) {}, children: [
+            Align(alignment:Alignment.bottomCenter, 
+            child: 
+            Column( 
+              mainAxisSize:MainAxisSize.min, 
+              children:[ 
+                Text("SKIP TO THE APP >",style: TextStyle(fontSize:18.sp,color:VendiColors.secondaryColor)),
+                
+              ]
+            )),
+            OnboardWidget(
+              boardText: "Welcome\nTo Vendi",
+              textSize: 28.sp,
+              boardText2:"+10 Million Products\n+100 categories\n+20 Brands" ,
+              textSize2: 22.sp,
+              boardImage: "assets/images/2.svg",
+            ),
+            OnboardWidget(
+              boardText: "7 - 14 Days Return",
+              textSize: 30.sp,
+              boardText2: "Satistfaction Guaranteed",
+              textSize2: 20.sp,
+              boardImage: "assets/images/3.svg",
+            ),
+            OnboardWidget(
+              boardText:"Find your Favourite Products",
+              textSize:30.sp,
+              boardImage: "assets/images/4.svg",
+            ),
+            OnboardWidget(
+              boardText:"Experience & Enjoy\nSmart Shopping",
+              textSize:30.sp,
+              boardImage: "assets/images/1.svg",
+            )
+          ]),
+        ],
+      ),
     );
   }
 }

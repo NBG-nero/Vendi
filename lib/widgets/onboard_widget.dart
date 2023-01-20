@@ -44,7 +44,7 @@ class OnboardWidget extends StatelessWidget {
                 textAlign: TextAlign.center,
                 style: TextStyle(
                     fontWeight: FontWeight.bold,
-                    color: Colors.grey,
+                    color: Colors.yellow,
                     fontSize: textSize2)),
             SizedBox(height: 20.h),
             SizedBox(
