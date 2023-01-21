@@ -3,6 +3,9 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 import 'package:vendi/widgets/widgets.dart';
 
+import '../../utilities/constants/constants.dart';
+import '../../utilities/margins/margins.dart';
+
 class Onboarding extends StatefulWidget {
   const Onboarding({super.key});
 
@@ -17,19 +20,10 @@ class _OnboardingState extends State<Onboarding> {
       body: Stack(
         children: [
           PageView(onPageChanged: (val) {}, children: [
-            Align(alignment:Alignment.bottomCenter, 
-            child: 
-            Column( 
-              mainAxisSize:MainAxisSize.min, 
-              children:[ 
-                Text("SKIP TO THE APP >",style: TextStyle(fontSize:18.sp,color:VendiColors.secondaryColor)),
-                
-              ]
-            )),
             OnboardWidget(
               boardText: "Welcome\nTo Vendi",
               textSize: 28.sp,
-              boardText2:"+10 Million Products\n+100 categories\n+20 Brands" ,
+              boardText2: "+10 Million Products\n+100 categories\n+20 Brands",
               textSize2: 22.sp,
               boardImage: "assets/images/2.svg",
             ),
@@ -41,16 +35,31 @@ class _OnboardingState extends State<Onboarding> {
               boardImage: "assets/images/3.svg",
             ),
             OnboardWidget(
-              boardText:"Find your Favourite Products",
-              textSize:30.sp,
+              boardText: "Find your Favourite Products",
+              textSize: 30.sp,
               boardImage: "assets/images/4.svg",
             ),
             OnboardWidget(
-              boardText:"Experience & Enjoy\nSmart Shopping",
-              textSize:30.sp,
+              boardText: "Experience & Enjoy\nSmart Shopping",
+              textSize: 30.sp,
               boardImage: "assets/images/1.svg",
-            )
+            ),
           ]),
+          Align(
+              alignment: Alignment.bottomCenter,
+              child: Column(
+                mainAxisSize: MainAxisSize.min,
+                children: [
+                  TextButton(
+                    onPressed: () {},
+                    child: Text("SKIP TO THE APP >",
+                        style: TextStyle(
+                            fontSize: 18.sp,
+                            color: VendiColors.secondaryColor)),
+                  ),
+                  YMargin(10.h)
+                ],
+              )),
         ],
       ),
     );

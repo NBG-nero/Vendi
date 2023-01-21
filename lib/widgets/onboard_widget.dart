@@ -6,6 +6,9 @@ import 'package:flutter_svg/flutter_svg.dart';
 
 import 'package:vendi/utilities/constants/constants.dart';
 
+import '../utilities/margins/margins.dart';
+
+
 class OnboardWidget extends StatelessWidget {
   final String? boardImage;
   final Widget? boardWidget;
@@ -39,14 +42,14 @@ class OnboardWidget extends StatelessWidget {
                     fontWeight: FontWeight.bold,
                     color: VendiColors.masterColor,
                     fontSize: textSize)),
-                    SizedBox(height: 10.h,),
+                    YMargin(10.h,),
             Text(boardText2 ?? "",
                 textAlign: TextAlign.center,
                 style: TextStyle(
                     fontWeight: FontWeight.bold,
-                    color: Colors.yellow,
+                    color: Colors.grey,
                     fontSize: textSize2)),
-            SizedBox(height: 20.h),
+          YMargin(20.h),
             SizedBox(
                 height: 300.h,
                 width: 300.w,
