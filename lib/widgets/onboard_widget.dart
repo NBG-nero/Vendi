@@ -29,32 +29,49 @@ class OnboardWidget extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Container(
-        color: VendiColors.primaryColor,
-        child: Column(
-          mainAxisSize: MainAxisSize.min,
-          mainAxisAlignment: MainAxisAlignment.center,
-          crossAxisAlignment: CrossAxisAlignment.center,
-          children: [
-            Text(boardText ?? "",
-                textAlign: TextAlign.center,
-                style: TextStyle(
-                    fontWeight: FontWeight.bold,
-                    color: VendiColors.masterColor,
-                    fontSize: textSize)),
-                    YMargin(10.h,),
-            Text(boardText2 ?? "",
-                textAlign: TextAlign.center,
-                style: TextStyle(
-                    fontWeight: FontWeight.bold,
-                    color: Colors.grey,
-                    fontSize: textSize2)),
-          YMargin(20.h),
-            SizedBox(
-                height: 300.h,
-                width: 300.w,
-                child: SvgPicture.asset(boardImage!)),
-          ],
-        ));
+    return Stack(
+      children: [
+        Container(
+            color: VendiColors.primaryColor,
+            child: Column(
+              mainAxisSize: MainAxisSize.min,
+              mainAxisAlignment: MainAxisAlignment.center,
+              crossAxisAlignment: CrossAxisAlignment.center,
+              children: [
+                Text(boardText ?? "",
+                    textAlign: TextAlign.center,
+                    style: TextStyle(
+                        fontWeight: FontWeight.bold,
+                        color: VendiColors.masterColor,
+                        fontSize: textSize)),
+                        YMargin(10.h,),
+                Text(boardText2 ?? "",
+                    textAlign: TextAlign.center,
+                    style: TextStyle(
+                        fontWeight: FontWeight.bold,
+                        color: Colors.grey,
+                        fontSize: textSize2)),
+              YMargin(20.h),
+                SizedBox(
+                    height: 300.h,
+                    width: 300.w,
+                    child: SvgPicture.asset(boardImage!)),
+              ],
+            )),
+            Align( 
+              alignment:Alignment.bottomCenter, 
+              child:Container( 
+                width: MediaQuery.of(context).size.width, 
+                height:100.h, 
+                decoration:BoxDecoration( 
+                  color: VendiColors.exColor, 
+                  borderRadius: const BorderRadius.only(  
+                    topLeft:Radius.circular(80),topRight: Radius.circular(80),
+                  )
+                ),
+              ), 
+            ),
+      ],
+    );
   }
 }
