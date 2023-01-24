@@ -8,7 +8,6 @@ import 'package:vendi/utilities/constants/constants.dart';
 
 import '../utilities/margins/margins.dart';
 
-
 class OnboardWidget extends StatelessWidget {
   final String? boardImage;
   final Widget? boardWidget;
@@ -29,9 +28,13 @@ class OnboardWidget extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final size = MediaQuery.of(context).size;
     return Stack(
+      alignment: AlignmentDirectional.center,
       children: [
         Container(
+            width: size.width,
+            height: size.height,
             color: VendiColors.primaryColor,
             child: Column(
               mainAxisSize: MainAxisSize.min,
@@ -44,33 +47,35 @@ class OnboardWidget extends StatelessWidget {
                         fontWeight: FontWeight.bold,
                         color: VendiColors.masterColor,
                         fontSize: textSize)),
-                        YMargin(10.h,),
+                YMargin(
+                  10.h,
+                ),
                 Text(boardText2 ?? "",
                     textAlign: TextAlign.center,
                     style: TextStyle(
                         fontWeight: FontWeight.bold,
                         color: Colors.grey,
                         fontSize: textSize2)),
-              YMargin(20.h),
+                YMargin(20.h),
                 SizedBox(
                     height: 300.h,
                     width: 300.w,
                     child: SvgPicture.asset(boardImage!)),
               ],
             )),
-            Align( 
-              alignment:Alignment.bottomCenter, 
-              child:Container( 
-                width: MediaQuery.of(context).size.width, 
-                height:100.h, 
-                decoration:BoxDecoration( 
-                  color: VendiColors.exColor, 
-                  borderRadius: const BorderRadius.only(  
-                    topLeft:Radius.circular(80),topRight: Radius.circular(80),
-                  )
-                ),
-              ), 
-            ),
+          //  Align(
+          //         alignment: Alignment.bottomCenter,
+          //         child: Container(
+          //           width: MediaQuery.of(context).size.width,
+          //           height: 100.h,
+          //           decoration: BoxDecoration(
+          //               color: VendiColors.exColor,
+          //               borderRadius: const BorderRadius.only(
+          //                 topLeft: Radius.circular(40),
+          //                 topRight: Radius.circular(40),
+          //               )),
+          //         ),
+          //       ),
       ],
     );
   }

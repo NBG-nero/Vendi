@@ -1,3 +1,4 @@
+import 'package:auto_route/auto_route.dart';
 import 'package:dots_indicator/dots_indicator.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
@@ -6,6 +7,7 @@ import 'package:vendi/screens/onboarding/onboard_view_model.dart';
 
 import 'package:vendi/widgets/widgets.dart';
 
+import '../../routes/router.gr.dart';
 import '../../utilities/constants/constants.dart';
 import '../../utilities/margins/margins.dart';
 
@@ -30,7 +32,7 @@ class _OnboardingState extends State<Onboarding> {
               children: [
                 PageView(
                     onPageChanged: (val) {
-                      model.scrollerPosition = val.toDouble();
+                      model.setScroller(val.toDouble());
                     },
                     children: [
                       OnboardWidget(
@@ -60,6 +62,19 @@ class _OnboardingState extends State<Onboarding> {
                       ),
                     ]),
                 Align(
+                  alignment: Alignment.bottomCenter,
+                  child: Container(
+                    width: MediaQuery.of(context).size.width,
+                    height: 100.h,
+                    decoration: BoxDecoration(
+                        color: VendiColors.exColor,
+                        borderRadius: const BorderRadius.only(
+                          topLeft: Radius.circular(40),
+                          topRight: Radius.circular(40),
+                        )),
+                  ),
+                ),
+                Align(
                     alignment: Alignment.bottomCenter,
                     child: Column(
                       mainAxisSize: MainAxisSize.min,
@@ -72,13 +87,28 @@ class _OnboardingState extends State<Onboarding> {
                             color: Colors.white,
                           ),
                         ),
-                        TextButton(
-                          onPressed: () {},
-                          child: Text("SKIP TO THE APP >",
-                              style: TextStyle(
-                                  fontSize: 18.sp,
-                                  color: VendiColors.secondaryColor)),
-                        ),
+                        model.scrollerPosition == 3
+                            ? ElevatedButton(
+                                style: ButtonStyle(
+                                    shape: MaterialStateProperty.all(
+                                        const RoundedRectangleBorder(
+                                            borderRadius: BorderRadius.all(
+                                                Radius.circular(15)))),
+                                    backgroundColor: MaterialStateProperty.all(
+                                        VendiColors.colorMap[900])),
+                                onPressed: () {
+                                  AutoRouter.of(context).pushAndPopUntil(
+                                      const Homescreen(),
+                                      predicate: (route) => false);
+                                },
+                                child: const  Text("START SHOPPING"))
+                            : TextButton(
+                                onPressed: () {},
+                                child: Text("SKIP TO THE APP >",
+                                    style: TextStyle(
+                                        fontSize: 18.sp,
+                                        color: VendiColors.secondaryColor)),
+                              ),
                         YMargin(10.h)
                       ],
                     )),
