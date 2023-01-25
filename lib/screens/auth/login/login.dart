@@ -1,5 +1,6 @@
 
 import 'package:flutter/material.dart';
+import 'package:vendi/utilities/constants/colors.dart';
 
 class Loginscreen extends StatefulWidget {
   const Loginscreen({super.key});
@@ -11,6 +12,8 @@ class Loginscreen extends StatefulWidget {
 class _LoginscreenState extends State<Loginscreen> {
   @override
   Widget build(BuildContext context) {
-    return Scaffold();
+    return Scaffold(
+      backgroundColor: VendiColors.masterColor,
+    );
   }
 }

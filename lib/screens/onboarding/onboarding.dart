@@ -98,12 +98,20 @@ class _OnboardingState extends State<Onboarding> {
                                         VendiColors.colorMap[900])),
                                 onPressed: () {
                                   AutoRouter.of(context).pushAndPopUntil(
-                                      const Homescreen(),
+                                      const Loginscreen(),
                                       predicate: (route) => false);
                                 },
-                                child: const  Text("START SHOPPING"))
+                                child: const Text("START SHOPPING"))
                             : TextButton(
-                                onPressed: () {},
+                                onPressed: () {
+                                  if (model.scrollerPosition == 0 ||
+                                      model.scrollerPosition == 1 ||
+                                      model.scrollerPosition == 2) {
+                                    AutoRouter.of(context).pushAndPopUntil(
+                                        const Loginscreen(),
+                                        predicate: (route) => false);
+                                  }
+                                },
                                 child: Text("SKIP TO THE APP >",
                                     style: TextStyle(
                                         fontSize: 18.sp,

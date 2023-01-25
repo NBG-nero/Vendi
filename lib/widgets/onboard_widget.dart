@@ -63,19 +63,6 @@ class OnboardWidget extends StatelessWidget {
                     child: SvgPicture.asset(boardImage!)),
               ],
             )),
-          //  Align(
-          //         alignment: Alignment.bottomCenter,
-          //         child: Container(
-          //           width: MediaQuery.of(context).size.width,
-          //           height: 100.h,
-          //           decoration: BoxDecoration(
-          //               color: VendiColors.exColor,
-          //               borderRadius: const BorderRadius.only(
-          //                 topLeft: Radius.circular(40),
-          //                 topRight: Radius.circular(40),
-          //               )),
-          //         ),
-          //       ),
       ],
     );
   }

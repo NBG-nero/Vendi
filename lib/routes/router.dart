@@ -6,7 +6,10 @@ import '../screens/screens.dart';
   routes: <AutoRoute>[
     AutoRoute(page: Splashscreen, initial: true),
     AutoRoute(page: Homescreen),
-    AutoRoute(page: Onboarding)
+    AutoRoute(page: Onboarding),
+    AutoRoute(page: Loginscreen),
+    AutoRoute(page: SignUpscreen)
+
 
   ],
 )
