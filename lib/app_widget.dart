@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:vendi/utilities/constants/constants.dart';
 import 'routes/router.gr.dart' as gr;
 
 class Vendi extends StatelessWidget {
@@ -16,7 +17,7 @@ class Vendi extends StatelessWidget {
           return MaterialApp.router(
             routeInformationParser: appRouter.defaultRouteParser(),
             routerDelegate: appRouter.delegate(),
-            title: "Vendi",
+            title: AppConstants.appTitle,
             debugShowCheckedModeBanner: false,
             theme: ThemeData.light(),
             builder: (context, widget) {

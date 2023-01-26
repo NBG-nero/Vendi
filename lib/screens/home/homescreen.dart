@@ -1,4 +1,3 @@
-
 import 'package:flutter/material.dart';
 
 class Homescreen extends StatelessWidget {
@@ -6,6 +5,8 @@ class Homescreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return const  Scaffold();
+    return const Scaffold(
+      body: Center(child: Text("BottomNav needed")),
+    );
   }
 }

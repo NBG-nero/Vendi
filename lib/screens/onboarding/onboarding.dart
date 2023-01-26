@@ -9,7 +9,9 @@ import 'package:vendi/widgets/widgets.dart';
 
 import '../../routes/router.gr.dart';
 import '../../utilities/constants/constants.dart';
+import '../../utilities/locator.dart';
 import '../../utilities/margins/margins.dart';
+import '../base_model.dart';
 
 class Onboarding extends StatefulWidget {
   const Onboarding({super.key});
@@ -19,6 +21,8 @@ class Onboarding extends StatefulWidget {
 }
 
 class _OnboardingState extends State<Onboarding> {
+  final lo = locator<BaseModel>();
+
   @override
   Widget build(BuildContext context) {
     return ViewModelBuilder<OnboardViewModel>.reactive(
@@ -97,6 +101,9 @@ class _OnboardingState extends State<Onboarding> {
                                     backgroundColor: MaterialStateProperty.all(
                                         VendiColors.colorMap[900])),
                                 onPressed: () {
+                                  // lo.loggedIn(true);
+                                  model.authend(true);
+                                  // model.loggedIn(true);
                                   AutoRouter.of(context).pushAndPopUntil(
                                       const Loginscreen(),
                                       predicate: (route) => false);
