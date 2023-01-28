@@ -1,10 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:flutter_svg/flutter_svg.dart';
+import 'package:vendi/utilities/constants/constants.dart';
+
 
 class BottomNavItem extends StatelessWidget {
-  final String? icon;
-  final String? iconActive;
+  final Icon? icon;
+  final Icon? iconActive;
   final bool isSelected;
   final Function? onTap;
   const BottomNavItem({
@@ -24,6 +25,7 @@ class BottomNavItem extends StatelessWidget {
         child: ClipRRect(
             borderRadius: BorderRadius.circular(15),
             child: Material(
+              color: VendiColors.masterColor,
                 child: InkWell(
                     onTap: () {
                       onTap!();
@@ -37,9 +39,9 @@ class BottomNavItem extends StatelessWidget {
                                 ? SizedBox(
                                     height: 30.h,
                                     width: 30.w,
-                                    // child: SvgPicture.asset(),
-                                  )
-                                : SizedBox()
+                                    child: iconActive!)
+                                : SizedBox(
+                                    height: 30.h, width: 30.w, child: icon!)
                           ]),
                     )))));
   }

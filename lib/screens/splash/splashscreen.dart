@@ -35,7 +35,7 @@ class _SplashscreenState extends State<Splashscreen> {
             log('authenticated is $authenticated');
 
             authenticated == true
-                ? AutoRouter.of(context).pushAndPopUntil(const Homescreen(),
+                ? AutoRouter.of(context).pushAndPopUntil(const BottomNav(),
                     predicate: (route) => false)
                 : AutoRouter.of(context).pushAndPopUntil(const Onboarding(),
                     predicate: (route) => false);

@@ -1,16 +1,18 @@
+
 import 'package:flutter/material.dart';
 
 import '../../utilities/constants/constants.dart';
 
-class Homescreen extends StatelessWidget {
-  const Homescreen({super.key});
+class Accountscreen extends StatelessWidget {
+  const Accountscreen({super.key});
 
   @override
   Widget build(BuildContext context) {
     return  Scaffold(
       backgroundColor: VendiColors.primaryColor,
 
-      body: const Center(child: Text("Homescreen")),
+      body:const  Center(child: Text("Accountscreen")),
+
     );
   }
 }

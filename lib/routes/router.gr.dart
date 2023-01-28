@@ -28,10 +28,34 @@ class AppRouter extends _i2.RootStackRouter {
         child: const _i1.Splashscreen(),
       );
     },
+    BottomNav.name: (routeData) {
+      return _i2.MaterialPageX<dynamic>(
+        routeData: routeData,
+        child: const _i1.BottomNav(),
+      );
+    },
     Homescreen.name: (routeData) {
       return _i2.MaterialPageX<dynamic>(
         routeData: routeData,
         child: const _i1.Homescreen(),
+      );
+    },
+    Cartscreen.name: (routeData) {
+      return _i2.MaterialPageX<dynamic>(
+        routeData: routeData,
+        child: const _i1.Cartscreen(),
+      );
+    },
+    Messagescreen.name: (routeData) {
+      return _i2.MaterialPageX<dynamic>(
+        routeData: routeData,
+        child: const _i1.Messagescreen(),
+      );
+    },
+    Accountscreen.name: (routeData) {
+      return _i2.MaterialPageX<dynamic>(
+        routeData: routeData,
+        child: const _i1.Accountscreen(),
       );
     },
     Onboarding.name: (routeData) {
@@ -61,8 +85,24 @@ class AppRouter extends _i2.RootStackRouter {
           path: '/',
         ),
         _i2.RouteConfig(
+          BottomNav.name,
+          path: '/bottom-nav',
+        ),
+        _i2.RouteConfig(
           Homescreen.name,
           path: '/Homescreen',
+        ),
+        _i2.RouteConfig(
+          Cartscreen.name,
+          path: '/Cartscreen',
+        ),
+        _i2.RouteConfig(
+          Messagescreen.name,
+          path: '/Messagescreen',
+        ),
+        _i2.RouteConfig(
+          Accountscreen.name,
+          path: '/Accountscreen',
         ),
         _i2.RouteConfig(
           Onboarding.name,
@@ -92,6 +132,18 @@ class Splashscreen extends _i2.PageRouteInfo<void> {
 }
 
 /// generated route for
+/// [_i1.BottomNav]
+class BottomNav extends _i2.PageRouteInfo<void> {
+  const BottomNav()
+      : super(
+          BottomNav.name,
+          path: '/bottom-nav',
+        );
+
+  static const String name = 'BottomNav';
+}
+
+/// generated route for
 /// [_i1.Homescreen]
 class Homescreen extends _i2.PageRouteInfo<void> {
   const Homescreen()
@@ -101,6 +153,42 @@ class Homescreen extends _i2.PageRouteInfo<void> {
         );
 
   static const String name = 'Homescreen';
+}
+
+/// generated route for
+/// [_i1.Cartscreen]
+class Cartscreen extends _i2.PageRouteInfo<void> {
+  const Cartscreen()
+      : super(
+          Cartscreen.name,
+          path: '/Cartscreen',
+        );
+
+  static const String name = 'Cartscreen';
+}
+
+/// generated route for
+/// [_i1.Messagescreen]
+class Messagescreen extends _i2.PageRouteInfo<void> {
+  const Messagescreen()
+      : super(
+          Messagescreen.name,
+          path: '/Messagescreen',
+        );
+
+  static const String name = 'Messagescreen';
+}
+
+/// generated route for
+/// [_i1.Accountscreen]
+class Accountscreen extends _i2.PageRouteInfo<void> {
+  const Accountscreen()
+      : super(
+          Accountscreen.name,
+          path: '/Accountscreen',
+        );
+
+  static const String name = 'Accountscreen';
 }
 
 /// generated route for

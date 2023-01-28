@@ -2,15 +2,16 @@ import 'package:flutter/material.dart';
 
 import '../../utilities/constants/constants.dart';
 
-class Homescreen extends StatelessWidget {
-  const Homescreen({super.key});
+class Messagescreen extends StatelessWidget {
+  const Messagescreen({super.key});
 
   @override
   Widget build(BuildContext context) {
-    return  Scaffold(
+    return Scaffold(
       backgroundColor: VendiColors.primaryColor,
 
-      body: const Center(child: Text("Homescreen")),
+      body:const  Center(child: Text("Messagescreen")),
+
     );
   }
 }

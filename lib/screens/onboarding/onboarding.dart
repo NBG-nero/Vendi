@@ -106,6 +106,11 @@ class _OnboardingState extends State<Onboarding> {
                                   AutoRouter.of(context).pushAndPopUntil(
                                       const Loginscreen(),
                                       predicate: (route) => false);
+                                      //the whole onPressed here should normall just navigate to login.
+                                      //.then onLoggedIn will have this code
+                                      // which will then set loggedIn to true.
+                                      //.allowing splash to directly nav to bottomnav on app start
+                                      
                                 },
                                 child: const Text("START SHOPPING"))
                             : TextButton(
