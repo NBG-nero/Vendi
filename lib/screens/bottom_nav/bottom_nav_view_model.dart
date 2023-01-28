@@ -12,8 +12,8 @@ class BottomNavViewModel extends BaseModel {
 
   List<Widget> pages = [
     const Homescreen(),
-    const Cartscreen(),
     const Messagescreen(),
+    const Cartscreen(),
     const Accountscreen()
   ];
 }
