@@ -101,9 +101,8 @@ class _OnboardingState extends State<Onboarding> {
                                     backgroundColor: MaterialStateProperty.all(
                                         VendiColors.colorMap[900])),
                                 onPressed: () {
-                                  // lo.loggedIn(true);
-                                  model.authend(true);
-                                  // model.loggedIn(true);
+                                  model.loggedIn(true);
+                               
                                   AutoRouter.of(context).pushAndPopUntil(
                                       const Loginscreen(),
                                       predicate: (route) => false);

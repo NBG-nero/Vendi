@@ -1,15 +1,15 @@
+// ignore_for_file: use_build_context_synchronously
+
 import 'dart:developer';
 
 import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:stacked/stacked.dart';
-import 'package:vendi/screens/base_model.dart';
 import 'package:vendi/screens/splash/splash_view_model.dart';
 import 'package:vendi/utilities/constants/constants.dart';
 
 import '../../routes/router.gr.dart';
-import '../../utilities/locator.dart';
 
 class Splashscreen extends StatefulWidget {
   const Splashscreen({super.key});
@@ -26,14 +26,16 @@ class _SplashscreenState extends State<Splashscreen> {
         viewModelBuilder: () => SplashViewModel(),
         onModelReady: (s) {
           s.setInitialised(true);
-          Future.delayed(const Duration(seconds: 5), (() {
-            // bool? authenticated = lo.prefs?.getBool(AppConstants.logInVal);
-            bool? authenticated = s.lo?.getBool("isAuthen");
 
-            log('$authenticated');
+          Future.delayed(const Duration(seconds: 5), (() async {
+            await s.initPrefs();
+
+            final bool? authenticated = s.prefs?.getBool(AppConstants.logInVal);
+
+            log('authenticated is $authenticated');
 
             authenticated == true
-                ? AutoRouter.of(context).pushAndPopUntil(const Loginscreen(),
+                ? AutoRouter.of(context).pushAndPopUntil(const Homescreen(),
                     predicate: (route) => false)
                 : AutoRouter.of(context).pushAndPopUntil(const Onboarding(),
                     predicate: (route) => false);

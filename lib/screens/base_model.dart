@@ -11,10 +11,18 @@ class BaseModel extends BaseViewModel {
   }
 
   bool isAuthenticated = false;
-  loggedIn(val) {
+  loggedIn(val) async {
+    await initPrefs();
     isAuthenticated = val;
-    prefs?.setBool(AppConstants.logInVal, isAuthenticated);
+    await prefs?.setBool(AppConstants.logInVal, isAuthenticated);
     log('isAuthenticated is $isAuthenticated');
     notifyListeners();
+  }
+
+  loadlogggedIn() async {
+    await initPrefs();
+    bool? authend = prefs?.getBool(AppConstants.logInVal);
+    log('$authend');
+    return authend;
   }
 }
