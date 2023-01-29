@@ -101,10 +101,10 @@ class _OnboardingState extends State<Onboarding> {
                                     backgroundColor: MaterialStateProperty.all(
                                         VendiColors.colorMap[900])),
                                 onPressed: () {
-                                  model.loggedIn(true);
+                                  // model.loggedIn(true);
                                
                                   AutoRouter.of(context).pushAndPopUntil(
-                                      const Loginscreen(),
+                                      const BottomNav(),
                                       predicate: (route) => false);
                                       //the whole onPressed here should normall just navigate to login.
                                       //.then onLoggedIn will have this code
