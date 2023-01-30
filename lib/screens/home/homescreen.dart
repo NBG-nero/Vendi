@@ -26,11 +26,7 @@ class Homescreen extends StatelessWidget {
           ]),
       body: ListView(
         children: [
-          Column(
-            children: [
-              SearchField(),
-            ],
-          )
+         SearchWidget(),
         ],
       ),
     );
