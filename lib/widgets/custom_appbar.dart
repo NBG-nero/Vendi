@@ -36,18 +36,35 @@ PreferredSize vendiAppBar({
   TextStyle? toolbarTextStyle,
   TextStyle? titleTextStyle,
 }) {
+  // return PreferredSize(
+  //   preferredSize: Size.fromHeight(65.h),
+  //   child: Container(
+  //     width: double.infinity,
+  //     color: VendiColors.secondaryColor,
+  //     child: Center(
+  //       child: Padding(
+  //           padding: const EdgeInsets.only(
+  //             top: 30,
+  //             right: 10,
+  //             left: 10,
+  //           ),
+  //           child: child),
+  //     ),
+  //   ),
+  // );
+
   return PreferredSize(
-      preferredSize: Size.fromHeight(65.h),
-      child: Container(
-        width: double.infinity,
-        color: VendiColors.secondaryColor,
-        child: Center(
-            child: Padding(
-                padding: const EdgeInsets.only(
-                  top: 30,
-                  right: 10,
-                  left: 10,
-                ),
-                child: child)),
-      ));
+    preferredSize: Size.fromHeight(50.h),
+    child: 
+  AppBar( 
+    backgroundColor: backgroundColor ?? VendiColors.masterColor,
+    actions: actions,
+    leading: leading,
+    elevation: elevation,
+    title: title, 
+    centerTitle: centerTitle ?? true,
+    automaticallyImplyLeading: automaticallyImplyLeading ?? true,
+  ), 
+  
+  );
 }
