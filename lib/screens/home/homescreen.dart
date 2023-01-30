@@ -24,6 +24,8 @@ class Homescreen extends StatelessWidget {
             backgroundColor: VendiColors.primaryColor,
             appBar: vendiAppBar(
                 context: context,
+                // backgroundColor: VendiColors.primaryColor,
+                // elevation: 0,
                 title: Text(
                   "VENDI",
                   style: TextStyle(
@@ -42,9 +44,15 @@ class Homescreen extends StatelessWidget {
                 YMargin(10.h),
                 BannerWidget(
                   onPageChanged: (val) {
-                    model.setScroller(val.toDouble());
+                    model.setBannerScroller(val.toDouble());
                   },
-                  position: model.scrollPosition,
+                  position: model.bannerScrollPosition,
+                ),
+                BrandHighLights(
+                  onPageChanged: (val) {
+                    model.setBrandScroller(val.toDouble());
+                  },
+                  position: model.brandScrollPosition,
                 ),
               ],
             ),

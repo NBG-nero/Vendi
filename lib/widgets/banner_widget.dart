@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 import 'dots_indicator_widget.dart';
 
@@ -25,7 +26,7 @@ class BannerWidget extends StatelessWidget {
                 color: Colors.white,
                 child: PageView(
                   onPageChanged: onPageChanged,
-                  children: [
+                  children: const [
                     Center(child: Text("Banner 1")),
                     Center(child: Text("Banner 2")),
                     Center(child: Text("Banner 3")),
@@ -33,7 +34,8 @@ class BannerWidget extends StatelessWidget {
                 )),
           ),
         ),
-        DotsIndicatorWidget(position: position),
+        Positioned(
+            bottom: 11.h, child: DotsIndicatorWidget(position: position)),
       ],
     );
   }

@@ -40,34 +40,43 @@ class SearchWidget extends StatelessWidget {
             children: [
               Row(
                 children: [
-                  Icon(IconlyLight.infoSquare,
-                      size: 14.h, color: VendiColors.masterColor),
+               Icon(IconlyBold.infoSquare,
+                      size: 14.h,
+                      color: VendiColors.masterColor.withOpacity(0.8)),
                   Text(
                     ' 100% Genuine',
-                    style: TextStyle(
-                        color: VendiColors.masterColor, fontSize: 13.sp),
+                 style: TextStyle(
+                        fontWeight: FontWeight.bold,
+                        color: VendiColors.masterColor.withOpacity(0.8),
+                        fontSize: 13.sp),
                   ),
                 ],
               ),
               Row(
                 children: [
-                  Icon(IconlyLight.infoSquare,
-                      size: 14.h, color: VendiColors.masterColor),
+                  Icon(IconlyBold.infoSquare,
+                      size: 14.h,
+                      color: VendiColors.masterColor.withOpacity(0.8)),
                   Text(
                     ' 4 - 7 Days Return',
                     style: TextStyle(
-                        color: VendiColors.masterColor, fontSize: 13.sp),
+                        fontWeight: FontWeight.bold,
+                        color: VendiColors.masterColor.withOpacity(0.8),
+                        fontSize: 13.sp),
                   ),
                 ],
               ),
               Row(
                 children: [
-                  Icon(IconlyLight.infoSquare,
-                      size: 14.h, color: VendiColors.masterColor),
+                 Icon(IconlyBold.infoSquare,
+                      size: 14.h,
+                      color: VendiColors.masterColor.withOpacity(0.8)),
                   Text(
                     ' Trusted Brands',
-                    style: TextStyle(
-                        color: VendiColors.masterColor, fontSize: 13.sp),
+                   style: TextStyle(
+                        fontWeight: FontWeight.bold,
+                        color: VendiColors.masterColor.withOpacity(0.8),
+                        fontSize: 13.sp),
                   ),
                 ],
               ),

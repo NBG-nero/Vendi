@@ -119,7 +119,7 @@ class _OnboardingState extends State<Onboarding> {
                                       model.scrollerPosition == 1 ||
                                       model.scrollerPosition == 2) {
                                     AutoRouter.of(context).pushAndPopUntil(
-                                        const Loginscreen(),
+                                        const BottomNav(),
                                         predicate: (route) => false);
                                   }
                                 },
