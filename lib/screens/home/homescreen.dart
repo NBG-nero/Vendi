@@ -1,34 +1,54 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:stacked/stacked.dart';
+import 'package:vendi/utilities/margins/y_margin.dart';
+import 'package:vendi/widgets/banner_widget.dart';
 
 import '../../utilities/constants/constants.dart';
 import '../../widgets/widgets.dart';
+import 'home_view_model.dart';
 
 class Homescreen extends StatelessWidget {
   const Homescreen({super.key});
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      backgroundColor: VendiColors.primaryColor,
-      appBar: vendiAppBar(
-          context: context,
-          title: Text(
-            "VENDI",
-            style: TextStyle(
-                letterSpacing: 2, fontWeight: FontWeight.bold, fontSize: 22.sp),
-          ),
-          actions: [
-            IconButton(
-                onPressed: () {},
-                icon: Icon(CupertinoIcons.shopping_cart, size: 26.h))
-          ]),
-      body: ListView(
-        children: [
-         SearchWidget(),
-        ],
-      ),
-    );
+    return ViewModelBuilder<HomeViewModel>.reactive(
+        viewModelBuilder: () => HomeViewModel(),
+        onModelReady: (h) {
+          h.setInitialised(true);
+        },
+        builder: (context, model, child) {
+          return Scaffold(
+            backgroundColor: VendiColors.primaryColor,
+            appBar: vendiAppBar(
+                context: context,
+                title: Text(
+                  "VENDI",
+                  style: TextStyle(
+                      letterSpacing: 2,
+                      fontWeight: FontWeight.bold,
+                      fontSize: 22.sp),
+                ),
+                actions: [
+                  IconButton(
+                      onPressed: () {},
+                      icon: Icon(CupertinoIcons.shopping_cart, size: 26.h))
+                ]),
+            body: ListView(
+              children: [
+                const SearchWidget(),
+                YMargin(10.h),
+                BannerWidget(
+                  onPageChanged: (val) {
+                    model.setScroller(val.toDouble());
+                  },
+                  position: model.scrollPosition,
+                ),
+              ],
+            ),
+          );
+        });
   }
 }
