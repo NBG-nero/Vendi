@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 import 'package:vendi/utilities/constants/colors.dart';
+import 'package:vendi/utilities/margins/margins.dart';
 import 'package:vendi/widgets/dots_indicator_widget.dart';
 
 class BrandHighLights extends StatelessWidget {
@@ -19,6 +20,7 @@ class BrandHighLights extends StatelessWidget {
         color: Colors.white,
         child: Column(
           children: [
+            YMargin(18.h),
             Padding(
               padding: const EdgeInsets.all(8.0),
               child: Align(
@@ -44,8 +46,7 @@ class BrandHighLights extends StatelessWidget {
                         child: Column(
                           children: [
                             Padding(
-                              padding:
-                                  const EdgeInsets.fromLTRB(8, 0, 4, 8),
+                              padding: const EdgeInsets.fromLTRB(8, 0, 4, 8),
                               child: ClipRRect(
                                 borderRadius: BorderRadius.circular(4),
                                 child: Container(
@@ -144,8 +145,7 @@ class BrandHighLights extends StatelessWidget {
                         child: Column(
                           children: [
                             Padding(
-                              padding:
-                                  const EdgeInsets.fromLTRB(8, 0, 4, 8),
+                              padding: const EdgeInsets.fromLTRB(8, 0, 4, 8),
                               child: ClipRRect(
                                 borderRadius: BorderRadius.circular(4),
                                 child: Container(
@@ -244,8 +244,7 @@ class BrandHighLights extends StatelessWidget {
                         child: Column(
                           children: [
                             Padding(
-                              padding:
-                                  const EdgeInsets.fromLTRB(8, 0, 4, 8),
+                              padding: const EdgeInsets.fromLTRB(8, 0, 4, 8),
                               child: ClipRRect(
                                 borderRadius: BorderRadius.circular(4),
                                 child: Container(
@@ -340,8 +339,7 @@ class BrandHighLights extends StatelessWidget {
                 ],
               ),
             ),
-                  DotsIndicatorWidget(position: position)
-
+            DotsIndicatorWidget(position: position)
           ],
         ));
   }

@@ -12,4 +12,19 @@ class HomeViewModel extends BaseModel {
     brandScrollPosition = val;
     notifyListeners();
   }
+
+  List<String> categoryLabel = <String>[
+    '*Picked For You',
+    'Mobiles',
+    'Fashion',
+    'Groceries',
+    // 'Electronics',
+    // 'Kids',
+  ];
+
+  int index = 0;
+  setIndex(val) {
+    index = val;
+    notifyListeners();
+  }
 }

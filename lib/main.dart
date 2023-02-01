@@ -8,7 +8,7 @@ import 'utilities/locator.dart';
 void main() async {
   await ScreenUtil.ensureScreenSize();
   setUpLocator();
-  SystemChrome.setEnabledSystemUIMode(SystemUiMode.edgeToEdge, overlays: []);
+  // SystemChrome.setEnabledSystemUIMode(SystemUiMode.edgeToEdge, overlays: []);
   SystemChrome.setPreferredOrientations([DeviceOrientation.portraitUp]);
   runApp(Vendi());
 }
