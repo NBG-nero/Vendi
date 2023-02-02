@@ -1,0 +1,47 @@
+{
+  "project_info": {
+    "project_number": "678000822869",
+    "project_id": "vendi-e1c54",
+    "storage_bucket": "vendi-e1c54.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:678000822869:android:d68f28abd60e8ec1e062dc",
+        "android_client_info": {
+          "package_name": "com.nihil.vendi"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "678000822869-2ce1v3gmjem05q9lr3q3m9ed56895vms.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.nihil.vendi",
+            "certificate_hash": "f49563cfe9c7fd97641f17a7c35b86021c68bba7"
+          }
+        },
+        {
+          "client_id": "678000822869-csrqu8h1r40qkds32jj5p1nrespq299b.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBhc9qjEvaZIObNEcWiLzyeaYOaWLbXEEQ"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "678000822869-csrqu8h1r40qkds32jj5p1nrespq299b.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

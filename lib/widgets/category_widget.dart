@@ -29,13 +29,6 @@ class CategoryWidget extends StatefulWidget {
 class _CategoryWidgetState extends State<CategoryWidget> {
   final lo = locator<HomeViewModel>();
 
-  // List<String> categoryLabel = <String>[
-  //   '*Picked For You',
-  //   'Mobiles',
-  //   'Fashion',
-  //   'Groceries',
-  //   'Electronic',
-  // ];
   @override
   Widget build(BuildContext context) {
     return Container(
@@ -43,20 +36,19 @@ class _CategoryWidgetState extends State<CategoryWidget> {
       child: Column(
         children: [
           YMargin(18.h),
-                   Padding(
-              padding: const EdgeInsets.all(8.0),
-              child: Align(
-                alignment: Alignment.centerLeft,
-                child: Text("Stores For You",
-                    style: TextStyle(
-                        fontWeight: FontWeight.bold,
-                        letterSpacing: 1,
-                        fontSize: 20.sp)),
-              ),
-            ),
-
           Padding(
-            padding: const EdgeInsets.fromLTRB(8,0,8,8),
+            padding: const EdgeInsets.all(8.0),
+            child: Align(
+              alignment: Alignment.centerLeft,
+              child: Text("Stores For You",
+                  style: TextStyle(
+                      fontWeight: FontWeight.bold,
+                      letterSpacing: 1,
+                      fontSize: 20.sp)),
+            ),
+          ),
+          Padding(
+            padding: const EdgeInsets.fromLTRB(8, 0, 8, 8),
             child: SizedBox(
               height: 40.h,
               child: Row(
@@ -70,9 +62,8 @@ class _CategoryWidgetState extends State<CategoryWidget> {
                           return Padding(
                             padding: const EdgeInsets.only(right: 4.0),
                             child: ActionChip(
-                              shape: RoundedRectangleBorder( 
-                                borderRadius: BorderRadius.circular(6)
-                              ),
+                              shape: RoundedRectangleBorder(
+                                  borderRadius: BorderRadius.circular(6)),
                               backgroundColor: index == lo.index
                                   ? VendiColors.masterColor
                                   : Colors.grey.shade400,
