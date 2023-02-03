@@ -1,6 +1,7 @@
 import 'package:vendi/screens/base_model.dart';
 
 class HomeViewModel extends BaseModel {
+  FirebaseService firebaseService = FirebaseServi();
   double bannerScrollPosition = 0;
   setBannerScroller(val) {
     bannerScrollPosition = val;
@@ -26,5 +27,15 @@ class HomeViewModel extends BaseModel {
   setIndex(val) {
     index = val;
     notifyListeners();
+  }
+
+  getBanners() {
+    return firebaseService.homeBanner
+        .get()
+        .then((QuerySnapshot querySnapshot) {
+      querySnapshot.docs.forEach((doc) {
+      
+      });
+    });
   }
 }

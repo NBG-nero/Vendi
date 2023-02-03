@@ -1,7 +1,9 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 
+
 class FirebaseService {
-  // CollectionReference users = FirebaseFirestore.instance.collection('users');
+  CollectionReference homeBanner = FirebaseFirestore.instance.collection('homeBanner');
+  
   // final db = FirebaseFirestore.instance;
   // addUser(_name, _email) async {
   //   await db.collection('userData');
