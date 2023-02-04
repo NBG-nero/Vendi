@@ -17,6 +17,7 @@ class Homescreen extends StatelessWidget {
         viewModelBuilder: () => HomeViewModel(),
         onModelReady: (h) {
           h.setInitialised(true);
+          h.getBanners();
         },
         builder: (context, model, child) {
           return Scaffold(

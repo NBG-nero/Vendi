@@ -1,9 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
+import '../screens/home/home_view_model.dart';
+import '../utilities/locator.dart';
 import 'dots_indicator_widget.dart';
 
-class BannerWidget extends StatelessWidget {
+class BannerWidget extends StatefulWidget {
   final double? position;
   final void Function(int)? onPageChanged;
   const BannerWidget({
@@ -11,6 +13,13 @@ class BannerWidget extends StatelessWidget {
     this.position,
     this.onPageChanged,
   }) : super(key: key);
+
+  @override
+  State<BannerWidget> createState() => _BannerWidgetState();
+}
+
+class _BannerWidgetState extends State<BannerWidget> {
+  final lo = locator<HomeViewModel>();
 
   @override
   Widget build(BuildContext context) {
@@ -24,18 +33,19 @@ class BannerWidget extends StatelessWidget {
                 height: 140,
                 width: MediaQuery.of(context).size.width,
                 color: Colors.white,
-                child: PageView(
-                  onPageChanged: onPageChanged,
-                  children: const [
-                    Center(child: Text("Banner 1")),
-                    Center(child: Text("Banner 2")),
-                    Center(child: Text("Banner 3")),
-                  ],
+                child: PageView.builder(
+                  itemCount: lo.bannerImage.length,
+                  itemBuilder: (context, index) {
+                    String ban = lo.bannerImage[index];
+                    return Image.network(ban);
+                  },
+                  onPageChanged: widget.onPageChanged,
                 )),
           ),
         ),
         Positioned(
-            bottom: 11.h, child: DotsIndicatorWidget(position: position)),
+            bottom: 11.h,
+            child: DotsIndicatorWidget(position: widget.position)),
       ],
     );
   }
