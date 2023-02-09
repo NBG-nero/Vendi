@@ -11,6 +11,18 @@ class AuthService {
   Future getCurrentEmail() async {
     return auth.currentUser?.email;
   }
+    Future getCurrentUser() async {
+    return auth.currentUser;
+  }
+
+  Future getCurrentName() async {
+    return auth.currentUser?.displayName;
+  }
+
+  Future getCurrentUid() async {
+    return auth.currentUser?.uid;
+  }
+
 
   Future<String?> createUserWithEmailAndPassword(
       String? name, String email, String password) async {
