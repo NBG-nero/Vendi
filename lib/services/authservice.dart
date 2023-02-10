@@ -11,7 +11,8 @@ class AuthService {
   Future getCurrentEmail() async {
     return auth.currentUser?.email;
   }
-    Future getCurrentUser() async {
+
+  Future getCurrentUser() async {
     return auth.currentUser;
   }
 
@@ -23,6 +24,13 @@ class AuthService {
     return auth.currentUser?.uid;
   }
 
+  Future signOut() async {
+    return auth.signOut();
+  }
+
+  Future sendPasswordResetEmail(String email) async {
+    return auth.sendPasswordResetEmail(email: email);
+  }
 
   Future<String?> createUserWithEmailAndPassword(
       String? name, String email, String password) async {
