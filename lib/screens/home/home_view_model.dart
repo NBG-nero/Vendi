@@ -36,10 +36,10 @@ class HomeViewModel extends BaseModel {
 
   getBanners() {
     return firebaseService.homeBanner.get().then((QuerySnapshot querySnapshot) {
-      querySnapshot.docs.forEach((doc) {
+      for (var doc in querySnapshot.docs) {
         bannerImage.add(doc['image']);
         notifyListeners();
-      });
+      }
     });
   }
 }

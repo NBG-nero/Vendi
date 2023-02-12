@@ -43,6 +43,11 @@ class Homescreen extends StatelessWidget {
                 const SearchWidget(),
                 YMargin(10.h),
                 BannerWidget(
+                  itemCount: model.bannerImage.length,
+                  itemBuilder: (context, index) {
+                    String ban = model.bannerImage[index];
+                    return Image.network(ban,fit:BoxFit.cover);
+                  },
                   onPageChanged: (val) {
                     model.setBannerScroller(val.toDouble());
                   },

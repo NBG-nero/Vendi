@@ -8,10 +8,15 @@ import 'dots_indicator_widget.dart';
 class BannerWidget extends StatefulWidget {
   final double? position;
   final void Function(int)? onPageChanged;
+  final int? itemCount;
+  final NullableIndexedWidgetBuilder itemBuilder;
+
   const BannerWidget({
     Key? key,
     this.position,
     this.onPageChanged,
+    this.itemCount,
+    required this.itemBuilder,
   }) : super(key: key);
 
   @override
@@ -34,11 +39,12 @@ class _BannerWidgetState extends State<BannerWidget> {
                 width: MediaQuery.of(context).size.width,
                 color: Colors.white,
                 child: PageView.builder(
-                  itemCount: lo.bannerImage.length,
-                  itemBuilder: (context, index) {
-                    String ban = lo.bannerImage[index];
-                    return Image.network(ban);
-                  },
+                  itemCount: widget.itemCount,
+                  itemBuilder: widget.itemBuilder,
+                  // (context, index) {
+                  //   String ban = lo.bannerImage[index];
+                  //   return Image.network(ban, fit: BoxFit.cover);
+                  // },
                   onPageChanged: widget.onPageChanged,
                 )),
           ),
