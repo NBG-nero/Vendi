@@ -1,6 +1,7 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+
 import 'package:stacked/stacked.dart';
 import 'package:vendi/utilities/margins/margins.dart';
 
@@ -43,11 +44,7 @@ class Homescreen extends StatelessWidget {
                 const SearchWidget(),
                 YMargin(10.h),
                 BannerWidget(
-                  itemCount: model.bannerImage.length,
-                  itemBuilder: (context, index) {
-                    String ban = model.bannerImage[index];
-                    return Image.network(ban,fit:BoxFit.cover);
-                  },
+                  viewModel: model,
                   onPageChanged: (val) {
                     model.setBannerScroller(val.toDouble());
                   },

@@ -1,22 +1,23 @@
+// ignore_for_file: sized_box_for_whitespace
+
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:getwidget/components/shimmer/gf_shimmer.dart';
 
 import '../screens/home/home_view_model.dart';
-import '../utilities/locator.dart';
+// import '../utilities/locator.dart';
 import 'dots_indicator_widget.dart';
 
 class BannerWidget extends StatefulWidget {
   final double? position;
   final void Function(int)? onPageChanged;
-  final int? itemCount;
-  final NullableIndexedWidgetBuilder itemBuilder;
 
+  final HomeViewModel? viewModel;
   const BannerWidget({
     Key? key,
     this.position,
     this.onPageChanged,
-    this.itemCount,
-    required this.itemBuilder,
+    this.viewModel,
   }) : super(key: key);
 
   @override
@@ -24,8 +25,6 @@ class BannerWidget extends StatefulWidget {
 }
 
 class _BannerWidgetState extends State<BannerWidget> {
-  final lo = locator<HomeViewModel>();
-
   @override
   Widget build(BuildContext context) {
     return Stack(
@@ -34,19 +33,29 @@ class _BannerWidgetState extends State<BannerWidget> {
           padding: const EdgeInsets.fromLTRB(8, 0, 8, 8),
           child: ClipRRect(
             borderRadius: BorderRadius.circular(8),
-            child: Container(
-                height: 140,
-                width: MediaQuery.of(context).size.width,
-                color: Colors.white,
-                child: PageView.builder(
-                  itemCount: widget.itemCount,
-                  itemBuilder: widget.itemBuilder,
-                  // (context, index) {
-                  //   String ban = lo.bannerImage[index];
-                  //   return Image.network(ban, fit: BoxFit.cover);
-                  // },
-                  onPageChanged: widget.onPageChanged,
-                )),
+            child: widget.viewModel!.bannerImage.isEmpty
+                ? GFShimmer(
+                    showShimmerEffect: true,
+                    mainColor: Colors.grey.shade400,
+                    secondaryColor: Colors.grey.shade300,
+                    child: Container(
+                      height: 140.h,
+                      color: Colors.grey.shade200,
+                      width: MediaQuery.of(context).size.width,
+                    ),
+                  )
+                : Container(
+                    height: 140.h,
+                    width: MediaQuery.of(context).size.width,
+                    color: Colors.grey.shade100,
+                    child: PageView.builder(
+                      itemCount: widget.viewModel!.bannerImage.length,
+                      itemBuilder: (context, index) {
+                        String ban = widget.viewModel!.bannerImage[index];
+                        return Image.network(ban, fit: BoxFit.cover);
+                      },
+                      onPageChanged: widget.onPageChanged,
+                    )),
           ),
         ),
         Positioned(
