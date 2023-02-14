@@ -33,7 +33,7 @@ class _BannerWidgetState extends State<BannerWidget> {
           padding: const EdgeInsets.fromLTRB(8, 0, 8, 8),
           child: ClipRRect(
             borderRadius: BorderRadius.circular(8),
-            child: widget.viewModel!.bannerImage.isEmpty
+            child: widget.viewModel!.bannersLoading
                 ? GFShimmer(
                     showShimmerEffect: true,
                     mainColor: Colors.grey.shade400,
