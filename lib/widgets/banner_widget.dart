@@ -1,5 +1,6 @@
 // ignore_for_file: sized_box_for_whitespace
 
+import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:getwidget/components/shimmer/gf_shimmer.dart';
@@ -33,29 +34,32 @@ class _BannerWidgetState extends State<BannerWidget> {
           padding: const EdgeInsets.fromLTRB(8, 0, 8, 8),
           child: ClipRRect(
             borderRadius: BorderRadius.circular(8),
-            child: widget.viewModel!.bannersLoading
-                ? GFShimmer(
-                    showShimmerEffect: true,
-                    mainColor: Colors.grey.shade400,
-                    secondaryColor: Colors.grey.shade300,
-                    child: Container(
-                      height: 140.h,
-                      color: Colors.grey.shade200,
-                      width: MediaQuery.of(context).size.width,
-                    ),
-                  )
-                : Container(
-                    height: 140.h,
-                    width: MediaQuery.of(context).size.width,
-                    color: Colors.grey.shade100,
-                    child: PageView.builder(
-                      itemCount: widget.viewModel!.bannerImage.length,
-                      itemBuilder: (context, index) {
-                        String ban = widget.viewModel!.bannerImage[index];
-                        return Image.network(ban, fit: BoxFit.cover);
-                      },
-                      onPageChanged: widget.onPageChanged,
-                    )),
+            child: Container(
+                height: 140.h,
+                width: MediaQuery.of(context).size.width,
+                color: Colors.grey.shade100,
+                child: PageView.builder(
+                  itemCount: widget.viewModel!.bannerImage.length,
+                  itemBuilder: (context, index) {
+                    String ban = widget.viewModel!.bannerImage[index];
+
+                    return CachedNetworkImage(
+                      imageUrl: ban,
+                      fit: BoxFit.cover,
+                      placeholder: (context, url) => GFShimmer(
+                        showShimmerEffect: true,
+                        mainColor: Colors.grey.shade500,
+                        secondaryColor: Colors.grey.shade300,
+                        child: Container(
+                          height: 140.h,
+                          color: Colors.grey.shade300,
+                          width: MediaQuery.of(context).size.width,
+                        ),
+                      ),
+                    );
+                  },
+                  onPageChanged: widget.onPageChanged,
+                )),
           ),
         ),
         Positioned(

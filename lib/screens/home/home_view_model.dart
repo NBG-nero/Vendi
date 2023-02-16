@@ -7,11 +7,7 @@ class HomeViewModel extends BaseModel {
   FirebaseService firebaseService = FirebaseService();
   double bannerScrollPosition = 0;
   final List bannerImage = [];
-  bool bannersLoading = false;
-  setBannersloading(val) {
-    bannersLoading = val;
-    notifyListeners();
-  }
+
 
   setBannerScroller(val) {
     bannerScrollPosition = val;
@@ -40,13 +36,9 @@ class HomeViewModel extends BaseModel {
   }
 
   getBanners() {
-    setBannersloading(true);
     return firebaseService.homeBanner.get().then((QuerySnapshot querySnapshot) {
       for (var doc in querySnapshot.docs) {
-        setBannersloading(true);
-
         bannerImage.add(doc['image']);
-        setBannersloading(false);
         notifyListeners();
       }
     });
