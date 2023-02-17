@@ -7,7 +7,7 @@ class HomeViewModel extends BaseModel {
   FirebaseService firebaseService = FirebaseService();
   double bannerScrollPosition = 0;
   final List bannerImage = [];
-
+  final List brandAds = [];
 
   setBannerScroller(val) {
     bannerScrollPosition = val;
@@ -39,6 +39,15 @@ class HomeViewModel extends BaseModel {
     return firebaseService.homeBanner.get().then((QuerySnapshot querySnapshot) {
       for (var doc in querySnapshot.docs) {
         bannerImage.add(doc['image']);
+        notifyListeners();
+      }
+    });
+  }
+
+  getBrandAd() {
+    return firebaseService.brandAd.get().then((QuerySnapshot querySnapshot) {
+      for (var doc in querySnapshot.docs) {
+        brandAds.add(doc);
         notifyListeners();
       }
     });

@@ -58,13 +58,16 @@ class _BannerWidgetState extends State<BannerWidget> {
                       ),
                     );
                   },
-                  onPageChanged: widget.onPageChanged,
+                  onPageChanged: (val) {
+                    widget.viewModel!.setBannerScroller(val.toDouble());
+                  },
                 )),
           ),
         ),
         Positioned(
             bottom: 11.h,
-            child: DotsIndicatorWidget(position: widget.position)),
+            child: DotsIndicatorWidget(
+                position: widget.viewModel!.bannerScrollPosition)),
       ],
     );
   }

@@ -85,7 +85,7 @@ class _CategoryWidgetState extends State<CategoryWidget> {
                   ),
                   IconButton(
                     onPressed: () {},
-                    icon: Icon(IconlyLight.arrowDown),
+                    icon: const Icon(IconlyLight.arrowDown),
                   ),
                 ],
               ),

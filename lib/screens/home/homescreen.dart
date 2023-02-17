@@ -19,6 +19,7 @@ class Homescreen extends StatelessWidget {
         onModelReady: (h) {
           h.setInitialised(true);
           h.getBanners();
+          h.getBrandAd();
         },
         builder: (context, model, child) {
           return Scaffold(
