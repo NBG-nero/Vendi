@@ -45,18 +45,11 @@ class Homescreen extends StatelessWidget {
                 YMargin(10.h),
                 BannerWidget(
                   viewModel: model,
-                  onPageChanged: (val) {
-                    model.setBannerScroller(val.toDouble());
-                  },
-                  position: model.bannerScrollPosition,
                 ),
                 BrandHighLights(
-                  onPageChanged: (val) {
-                    model.setBrandScroller(val.toDouble());
-                  },
-                  position: model.brandScrollPosition,
+                  viewModel: model,
                 ),
-                CategoryWidget()
+                const CategoryWidget()
               ],
             ),
           );

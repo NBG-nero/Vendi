@@ -5,15 +5,24 @@ import 'package:vendi/utilities/constants/colors.dart';
 import 'package:vendi/utilities/margins/margins.dart';
 import 'package:vendi/widgets/dots_indicator_widget.dart';
 
-class BrandHighLights extends StatelessWidget {
+import '../screens/home/home_view_model.dart';
+
+class BrandHighLights extends StatefulWidget {
   final double? position;
   final void Function(int)? onPageChanged;
+  final HomeViewModel? viewModel;
   const BrandHighLights({
     Key? key,
     this.position,
     this.onPageChanged,
+    this.viewModel,
   }) : super(key: key);
 
+  @override
+  State<BrandHighLights> createState() => _BrandHighLightsState();
+}
+
+class _BrandHighLightsState extends State<BrandHighLights> {
   @override
   Widget build(BuildContext context) {
     return Container(
@@ -37,7 +46,9 @@ class BrandHighLights extends StatelessWidget {
               width: MediaQuery.of(context).size.width,
               color: Colors.white,
               child: PageView(
-                onPageChanged: onPageChanged,
+                onPageChanged: (val) {
+                  widget.viewModel!.setBrandScroller(val.toDouble());
+                },
                 children: [
                   Row(
                     children: [
@@ -339,7 +350,7 @@ class BrandHighLights extends StatelessWidget {
                 ],
               ),
             ),
-            DotsIndicatorWidget(position: position)
+            DotsIndicatorWidget(position: widget.viewModel!.brandScrollPosition)
           ],
         ));
   }
