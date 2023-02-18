@@ -51,6 +51,8 @@ class _BrandHighLightsState extends State<BrandHighLights> {
                 itemCount: widget.viewModel!.brandAds.length,
                 itemBuilder: (context, index) {
                   String image1 = widget.viewModel!.brandAds[index]['image1'];
+                  String image2 = widget.viewModel!.brandAds[index]['image2'];
+                  String image3 = widget.viewModel!.brandAds[index]['image3'];
                   return Row(
                     children: [
                       Expanded(
@@ -87,10 +89,15 @@ class _BrandHighLightsState extends State<BrandHighLights> {
                                     child: Container(
                                       height: 50.h,
                                       color: Colors.red,
-                                      child: Center(
-                                        child:CachedNetworkImage( 
-                                          imageUrl:image1,
-                                          placeholder: (context, url) => GFShimmer(child:Container()) ,
+                                      child: CachedNetworkImage(
+                                        imageUrl: image1,
+                                        fit: BoxFit.fill,
+                                        placeholder: (context, url) =>
+                                            GFShimmer(
+                                          child: Container(
+                                            height: 50.h,
+                                            color: Colors.grey.shade400,
+                                          ),
                                         ),
                                       ),
                                     ),
@@ -107,13 +114,15 @@ class _BrandHighLightsState extends State<BrandHighLights> {
                                     child: Container(
                                       height: 50.h,
                                       color: Colors.red,
-                                      child: Center(
-                                        child: Text(
-                                          "Ad",
-                                          textAlign: TextAlign.center,
-                                          style: TextStyle(
-                                              fontSize: 20.sp,
-                                              fontWeight: FontWeight.bold),
+                                      child: CachedNetworkImage(
+                                        imageUrl: image2,
+                                        fit: BoxFit.fill,
+                                        placeholder: (context, url) =>
+                                            GFShimmer(
+                                          child: Container(
+                                            height: 50.h,
+                                            color: Colors.grey.shade400,
+                                          ),
                                         ),
                                       ),
                                     ),
@@ -133,13 +142,14 @@ class _BrandHighLightsState extends State<BrandHighLights> {
                               child: Container(
                                 height: 160.h,
                                 color: Colors.blueAccent,
-                                child: Center(
-                                  child: Text(
-                                    "Ad",
-                                    textAlign: TextAlign.center,
-                                    style: TextStyle(
-                                        fontSize: 20.sp,
-                                        fontWeight: FontWeight.bold),
+                                child: CachedNetworkImage(
+                                  imageUrl: image3,
+                                  fit: BoxFit.fill,
+                                  placeholder: (context, url) => GFShimmer(
+                                    child: Container(
+                                      height: 50.h,
+                                      color: Colors.grey.shade400,
+                                    ),
                                   ),
                                 ),
                               ),
