@@ -64,10 +64,11 @@ class _BannerWidgetState extends State<BannerWidget> {
                 )),
           ),
         ),
+        widget.viewModel!.bannerImage.isEmpty ? Container():
         Positioned(
             bottom: 11.h,
             child: DotsIndicatorWidget(
-                position: widget.viewModel!.bannerScrollPosition)),
+                position: widget.viewModel!.bannerScrollPosition,dotscount: widget.viewModel!.bannerImage.length,)),
       ],
     );
   }

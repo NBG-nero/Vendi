@@ -8,6 +8,7 @@ import 'package:vendi/utilities/margins/margins.dart';
 import 'package:vendi/widgets/dots_indicator_widget.dart';
 
 import '../screens/home/home_view_model.dart';
+import 'package:youtube_player_flutter/youtube_player_flutter.dart';
 
 class BrandHighLights extends StatefulWidget {
   final double? position;
@@ -53,6 +54,7 @@ class _BrandHighLightsState extends State<BrandHighLights> {
                   String image1 = widget.viewModel!.brandAds[index]['image1'];
                   String image2 = widget.viewModel!.brandAds[index]['image2'];
                   String image3 = widget.viewModel!.brandAds[index]['image3'];
+                  String youtube = widget.viewModel!.brandAds[index]['youtube'];
                   return Row(
                     children: [
                       Expanded(
@@ -66,13 +68,13 @@ class _BrandHighLightsState extends State<BrandHighLights> {
                                 child: Container(
                                   height: 100.h,
                                   color: VendiColors.tertiaryColor,
-                                  child: Center(
-                                    child: Text(
-                                      "Youtube ad Video\nAbout Brand ",
-                                      textAlign: TextAlign.center,
-                                      style: TextStyle(
-                                          fontSize: 20.sp,
-                                          fontWeight: FontWeight.bold),
+                                  child: YoutubePlayer(
+                                    controller: YoutubePlayerController(
+                                      initialVideoId: youtube,
+                                      flags: const YoutubePlayerFlags(
+                                        autoPlay: true,
+                                        mute: true,
+                                      ),
                                     ),
                                   ),
                                 ),
@@ -163,7 +165,11 @@ class _BrandHighLightsState extends State<BrandHighLights> {
                 },
               ),
             ),
-            DotsIndicatorWidget(position: widget.viewModel!.brandScrollPosition)
+             widget.viewModel!.brandAds.isEmpty ? Container():
+            DotsIndicatorWidget(
+              position: widget.viewModel!.brandScrollPosition,
+              dotscount: widget.viewModel!.brandAds.length,
+            )
           ],
         ));
   }

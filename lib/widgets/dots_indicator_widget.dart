@@ -7,9 +7,11 @@ class DotsIndicatorWidget extends StatelessWidget {
   const DotsIndicatorWidget({
     Key? key,
     required this.position,
+    required this.dotscount,
   }) : super(key: key);
 
   final double? position;
+  final int dotscount;
 
   @override
   Widget build(BuildContext context) {
@@ -19,7 +21,7 @@ class DotsIndicatorWidget extends StatelessWidget {
           width: MediaQuery.of(context).size.width,
           child: DotsIndicator(
             position: position ?? 0,
-            dotsCount: 3,
+            dotsCount: dotscount,
             decorator: DotsDecorator(
               spacing: const EdgeInsets.all(2),
               size: const Size.square(6),
