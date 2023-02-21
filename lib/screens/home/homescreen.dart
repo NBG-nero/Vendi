@@ -50,7 +50,9 @@ class Homescreen extends StatelessWidget {
                 BrandHighLights(
                   viewModel: model,
                 ),
-                const CategoryWidget()
+                 CategoryWidget( 
+                  viewModel: model,
+                )
               ],
             ),
           );

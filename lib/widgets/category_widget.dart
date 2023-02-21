@@ -1,25 +1,18 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_iconly/flutter_iconly.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+
 import 'package:vendi/utilities/constants/colors.dart';
 import 'package:vendi/utilities/margins/y_margin.dart';
 
 import '../screens/home/home_view_model.dart';
-import '../utilities/locator.dart';
 
 class CategoryWidget extends StatefulWidget {
-  // final IndexedWidgetBuilder? itemBuilder;
-  // final int? itemCount;
-  // final Widget? label;
-  // final VoidCallback? onPressed;
-  // final int? index;
+  final HomeViewModel viewModel;
+
   const CategoryWidget({
     Key? key,
-    // this.itemBuilder,
-    // this.itemCount,
-    // this.label,
-    // this.onPressed,
-    // this.index,
+    required this.viewModel,
   }) : super(key: key);
 
   @override
@@ -27,8 +20,6 @@ class CategoryWidget extends StatefulWidget {
 }
 
 class _CategoryWidgetState extends State<CategoryWidget> {
-  final lo = locator<HomeViewModel>();
-
   @override
   Widget build(BuildContext context) {
     return Container(
@@ -56,28 +47,28 @@ class _CategoryWidgetState extends State<CategoryWidget> {
                   Expanded(
                     child: ListView.builder(
                         scrollDirection: Axis.horizontal,
-                        itemCount: lo.categoryLabel.length,
+                        itemCount: widget.viewModel.categoryLabel.length,
                         itemBuilder: (context, index) {
-                          String cat = lo.categoryLabel[index];
+                          String cat = widget.viewModel.categoryLabel[index];
                           return Padding(
                             padding: const EdgeInsets.only(right: 4.0),
                             child: ActionChip(
                               shape: RoundedRectangleBorder(
                                   borderRadius: BorderRadius.circular(6)),
-                              backgroundColor: index == lo.index
+                              backgroundColor: index == widget.viewModel.index
                                   ? VendiColors.masterColor
                                   : Colors.grey.shade400,
                               // disabledColor: Colors.grey.shade300,
                               label: Text(cat,
                                   style: TextStyle(
                                       fontSize: 14.h,
-                                      color: index == lo.index
+                                      color: index == widget.viewModel.index
                                           ? Colors.white
                                           : Colors.black)),
                               onPressed: () {
-                                setState(() {
-                                  lo.setIndex(index);
-                                });
+                                // setState(() {
+                                widget.viewModel.setIndex(index);
+                                // });
                               },
                             ),
                           );

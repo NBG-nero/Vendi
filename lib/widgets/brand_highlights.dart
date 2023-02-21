@@ -71,9 +71,11 @@ class _BrandHighLightsState extends State<BrandHighLights> {
                                   child: YoutubePlayer(
                                     controller: YoutubePlayerController(
                                       initialVideoId: youtube,
+                                      //  widget.viewModel!.brandAds[index]['youtube'],
                                       flags: const YoutubePlayerFlags(
                                         autoPlay: true,
                                         mute: true,
+                                        loop: true,
                                       ),
                                     ),
                                   ),
@@ -165,11 +167,12 @@ class _BrandHighLightsState extends State<BrandHighLights> {
                 },
               ),
             ),
-             widget.viewModel!.brandAds.isEmpty ? Container():
-            DotsIndicatorWidget(
-              position: widget.viewModel!.brandScrollPosition,
-              dotscount: widget.viewModel!.brandAds.length,
-            )
+            widget.viewModel!.brandAds.isEmpty
+                ? Container()
+                : DotsIndicatorWidget(
+                    position: widget.viewModel!.brandScrollPosition,
+                    dotscount: widget.viewModel!.brandAds.length,
+                  )
           ],
         ));
   }
