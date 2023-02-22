@@ -102,15 +102,14 @@ class _OnboardingState extends State<Onboarding> {
                                         VendiColors.colorMap[900])),
                                 onPressed: () {
                                   // model.loggedIn(true);
-                               
+
                                   AutoRouter.of(context).pushAndPopUntil(
-                                      const BottomNav(),
+                                      const Loginscreen(),
                                       predicate: (route) => false);
-                                      //the whole onPressed here should normall just navigate to login.
-                                      //.then onLoggedIn will have this code
-                                      // which will then set loggedIn to true.
-                                      //.allowing splash to directly nav to bottomnav on app start
-                                      
+                                  //the whole onPressed here should normall just navigate to login.
+                                  //.then onLoggedIn will have this code
+                                  // which will then set loggedIn to true.
+                                  //.allowing splash to directly nav to bottomnav on app start
                                 },
                                 child: const Text("START SHOPPING"))
                             : TextButton(
@@ -119,7 +118,7 @@ class _OnboardingState extends State<Onboarding> {
                                       model.scrollerPosition == 1 ||
                                       model.scrollerPosition == 2) {
                                     AutoRouter.of(context).pushAndPopUntil(
-                                        const BottomNav(),
+                                        const Loginscreen(),
                                         predicate: (route) => false);
                                   }
                                 },
