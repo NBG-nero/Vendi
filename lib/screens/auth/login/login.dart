@@ -1,9 +1,8 @@
 import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:vendi/utilities/constants/colors.dart';
-
 import '../../../routes/router.gr.dart';
+import '../../../utilities/constants/constants.dart';
 import '../../../utilities/margins/margins.dart';
 
 class Loginscreen extends StatefulWidget {
