@@ -33,7 +33,7 @@ class AuthService {
   }
 
   Future<String?> createUserWithEmailAndPassword(
-      String? name, String email, String password) async {
+      String? name, String email, String password,String role) async {
     final User? currentUser = (await auth.createUserWithEmailAndPassword(
             email: email, password: password))
         .user;

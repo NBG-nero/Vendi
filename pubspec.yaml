@@ -52,6 +52,8 @@ dependencies:
   getwidget: ^3.0.1
   cached_network_image: ^3.2.3
   youtube_player_flutter: ^8.1.2
+  json_serializable: ^6.6.1
+  json_annotation: ^4.8.0
 
 
 
