@@ -18,7 +18,8 @@ class FirebaseService {
     await dataBase
         .collection('userData')
         .doc(personalEmail)
-        .set({"name": name, "email": email}).catchError((e) {
+        
+        .set({"name": name, "email": email,"role":"admin"}).catchError((e) {
       log("AddUser failed");
     });
   }

@@ -5,6 +5,7 @@ import 'package:stacked/stacked.dart';
 import '../../../routes/router.gr.dart';
 import '../../../utilities/constants/constants.dart';
 import '../../../utilities/margins/margins.dart';
+import '../../../utilities/value_validators.dart';
 import '../../../widgets/widgets.dart';
 import 'login_view_model.dart';
 
@@ -31,14 +32,15 @@ class _LoginscreenState extends State<Loginscreen> {
               child: SingleChildScrollView(
                 child: Column(
                   mainAxisAlignment: MainAxisAlignment.center,
+                  
                   children: [
-                    YMargin(100.h),
+                    YMargin(180.h),
                     Text('Welcome back',
                         style: TextStyle(
                             fontSize: 26.sp, color: VendiColors.primaryColor)),
                     YMargin(20.h),
                     Form(
-                      key: model.formKey,
+                        key: model.formKey,
                         autovalidateMode: AutovalidateMode.onUserInteraction,
                         child: Padding(
                           padding: const EdgeInsets.all(10.0),
@@ -48,14 +50,36 @@ class _LoginscreenState extends State<Loginscreen> {
                                 obscureText: false,
                                 isMandatory: false,
                                 autovalidateMode:
-                                 AutovalidateMode.onUserInteraction,
-                                 labelText: 'Email', 
-                                 hintText: "name@email.com", 
-                                 controller: model.emailCtrl, 
-                                 
+                                    AutovalidateMode.onUserInteraction,
+                                labelText: 'Email',
+                                hintText: "name@email.com",
+                                controller: model.emailCtrl,
+                                validator: (val) =>
+                                    ValueValidator().validateEmail(val),
                               ),
-                              YMargin(35.h), 
-                              
+                              YMargin(35.h),
+                              VTextField(
+                                obscureText: model.hidePassword,
+                                isMandatory: false,
+                                autovalidateMode:
+                                    AutovalidateMode.onUserInteraction,
+                                labelText: 'Password',
+                                hintText: '*********',
+                                controller: model.passwordCtrl,
+                                validator: (val) =>
+                                    ValueValidator().validatePassword(val),
+                                suffix: model.hidePassword
+                                    ? Icon(Icons.visibility_off,
+                                        size: 20.h,
+                                        color: VendiColors.secondaryColor)
+                                    : Icon(Icons.visibility,
+                                        size: 20.h,
+                                        color: VendiColors.secondaryColor),
+                                onSuffixPressed: () {
+                                  model.toogleHidePassword();
+                                },
+                              ),
+                              YMargin(15.h)
                             ],
                           ),
                         )),

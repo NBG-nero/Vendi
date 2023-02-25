@@ -11,7 +11,7 @@ class BaseModel extends BaseViewModel {
   }
 
   bool isAuthenticated = false;
-  loggedIn(val) async {
+  setAuthenticated(val) async {
     await initPrefs();
     isAuthenticated = val;
     await prefs?.setBool(AppConstants.logInVal, isAuthenticated);
