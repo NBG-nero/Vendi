@@ -29,9 +29,20 @@ class VButton extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return MaterialButton( 
-      onPressed: onPressed!, 
-      color:color?? VendiColors.primaryColorswatch.shade700
-    );
+    return MaterialButton(
+        onPressed: onPressed!,
+        color: color ?? VendiColors.primaryColorswatch.shade700,
+        shape: shape ??
+            RoundedRectangleBorder(
+              borderRadius: BorderRadius.circular(10),
+              side: BorderSide(color: sideColor ?? Colors.transparent),
+            ),
+        minWidth: width ?? MediaQuery.of(context).size.width * 0.9,
+        padding: const EdgeInsets.fromLTRB(20, 15, 20, 15),
+        child: child ??
+            Text(buttontext ?? 'buttonText',
+                style: Theme.of(context).textTheme.labelMedium?.copyWith(
+                      color: buttonTextCor ?? Colors.white,
+                    )));
   }
 }

@@ -57,7 +57,7 @@ class _SignUpscreenState extends State<SignUpscreen> {
                                 validator: (val) =>
                                     ValueValidator().validateName(val),
                               ),
-                              YMargin(35.h),
+                              YMargin(30.h),
                               VTextField(
                                 obscureText: false,
                                 isMandatory: false,
@@ -69,7 +69,7 @@ class _SignUpscreenState extends State<SignUpscreen> {
                                 validator: (val) =>
                                     ValueValidator().validateEmail(val),
                               ),
-                              YMargin(35.h),
+                              YMargin(30.h),
                               VTextField(
                                 obscureText: model.hidePassword,
                                 isMandatory: false,
@@ -91,9 +91,11 @@ class _SignUpscreenState extends State<SignUpscreen> {
                                   model.toogleHidePassword();
                                 },
                               ),
-                              YMargin(15.h),
+                              YMargin(25.h),
                               VButton(
                                 onPressed: () {},
+                                width: MediaQuery.of(context).size.width * 0.7,
+                                buttontext: 'Sign up',
                               ),
                             ],
                           ),
