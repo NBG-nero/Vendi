@@ -5,6 +5,7 @@ import 'package:stacked/stacked.dart';
 import 'package:vendi/screens/auth/sign_up/sign_up_view_model.dart';
 import 'package:vendi/utilities/constants/colors.dart';
 
+import '../../../models/user.dart';
 import '../../../routes/router.gr.dart';
 import '../../../utilities/margins/margins.dart';
 import '../../../utilities/value_validators.dart';
@@ -53,6 +54,7 @@ class _SignUpscreenState extends State<SignUpscreen> {
                                     AutovalidateMode.onUserInteraction,
                                 labelText: 'Name',
                                 hintText: 'Deidre',
+                                hintColor: VendiColors.exColor.withOpacity(0.7),
                                 controller: model.nameCtrl,
                                 validator: (val) =>
                                     ValueValidator().validateName(val),
@@ -65,6 +67,7 @@ class _SignUpscreenState extends State<SignUpscreen> {
                                     AutovalidateMode.onUserInteraction,
                                 labelText: 'Email',
                                 hintText: "name@email.com",
+                                hintColor: VendiColors.exColor.withOpacity(0.7),
                                 controller: model.emailCtrl,
                                 validator: (val) =>
                                     ValueValidator().validateEmail(val),
@@ -77,6 +80,7 @@ class _SignUpscreenState extends State<SignUpscreen> {
                                     AutovalidateMode.onUserInteraction,
                                 labelText: 'Password',
                                 hintText: '*********',
+                                hintColor: VendiColors.exColor.withOpacity(0.7),
                                 controller: model.passwordCtrl,
                                 validator: (val) =>
                                     ValueValidator().validatePassword(val),
@@ -93,9 +97,31 @@ class _SignUpscreenState extends State<SignUpscreen> {
                               ),
                               YMargin(25.h),
                               VButton(
-                                onPressed: () {},
+                                onPressed: () {
+                                  if (model.formKey.currentState!.validate()) {
+                                    model.setBusy(true);
+                                    model.signUp(
+                                        model.nameCtrl.text,
+                                        model.emailCtrl.text,
+                                        model.passwordCtrl.text,
+                                        'user',
+                                        context);
+                                  } else {
+                                    AutovalidateMode.onUserInteraction;
+                                  }
+                                },
                                 width: MediaQuery.of(context).size.width * 0.7,
-                                buttontext: 'Sign up',
+                                child: model.isBusy
+                                    ? const CircularProgressIndicator.adaptive(
+                                        valueColor:
+                                            AlwaysStoppedAnimation<Color>(
+                                                Colors.white),
+                                      )
+                                    : Text('Sign up',
+                                        style: Theme.of(context)
+                                            .textTheme
+                                            .labelMedium
+                                            ?.copyWith(color: Colors.white)),
                               ),
                             ],
                           ),

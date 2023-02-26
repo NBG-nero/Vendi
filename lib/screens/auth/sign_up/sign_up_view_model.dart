@@ -8,13 +8,13 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:vendi/utilities/utils.dart';
 
+import '../../../models/models.dart';
 import '../../../routes/router.gr.dart';
 import '../../../services/authservice.dart';
 import '../../../services/firebase_service.dart';
 import '../../base_model.dart';
 
 class SignUpViewModel extends BaseModel {
- 
   final formKey = GlobalKey<FormState>();
 
   TextEditingController nameCtrl = TextEditingController();

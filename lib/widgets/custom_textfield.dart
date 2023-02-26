@@ -1,10 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+
 import 'package:vendi/utilities/constants/colors.dart';
 
 import '../utilities/margins/margins.dart';
 
 class VTextField extends StatelessWidget {
+  final Color? hintColor;
   final String? hintText;
   final String? labelText;
   final String? errorText;
@@ -19,6 +21,7 @@ class VTextField extends StatelessWidget {
   final AutovalidateMode? autovalidateMode;
   const VTextField({
     Key? key,
+    this.hintColor,
     this.hintText,
     this.labelText,
     this.errorText,
@@ -68,7 +71,7 @@ class VTextField extends StatelessWidget {
           decoration: InputDecoration(
             hintStyle: TextStyle(
                 fontSize: 14.sp,
-                color: VendiColors.primaryColor.withOpacity(0.7)),
+                color: hintColor?? VendiColors.primaryColor.withOpacity(0.7) ),
             contentPadding: const EdgeInsets.fromLTRB(20, 15, 20, 15),
             errorText: errorText,
             errorMaxLines: 3,
