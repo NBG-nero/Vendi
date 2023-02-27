@@ -32,7 +32,6 @@ class _LoginscreenState extends State<Loginscreen> {
               child: SingleChildScrollView(
                 child: Column(
                   mainAxisAlignment: MainAxisAlignment.center,
-                  
                   children: [
                     YMargin(180.h),
                     Text('Welcome back',
@@ -94,9 +93,13 @@ class _LoginscreenState extends State<Loginscreen> {
                             backgroundColor: MaterialStateProperty.all(
                                 VendiColors.colorMap[700])),
                         onPressed: () {
-                          AutoRouter.of(context).pushAndPopUntil(
-                              const BottomNav(),
-                              predicate: (route) => false);
+                          if (model.formKey.currentState!.validate()) {
+                            model.setBusy(true);
+                            model.logIn(model.emailCtrl.text,
+                                model.passwordCtrl.text, context,'user' );
+                          } else {
+                            AutovalidateMode.onUserInteraction;
+                          }
                         },
                         child: const Text('Login'),
                       ),

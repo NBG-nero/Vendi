@@ -7,6 +7,7 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:vendi/services/authservice.dart';
+import 'package:vendi/services/firebase_service.dart';
 import 'package:vendi/utilities/constants/constants.dart';
 import 'package:vendi/utilities/utils.dart';
 
@@ -15,6 +16,7 @@ import '../../base_model.dart';
 
 class LoginViewModel extends BaseModel {
   AuthService authService = AuthService();
+  FirebaseService firebaseService = FirebaseService();
   final formKey = GlobalKey<FormState>();
 
   TextEditingController emailCtrl = TextEditingController();
@@ -37,6 +39,7 @@ class LoginViewModel extends BaseModel {
         prefs?.setString(AppConstants.emailVal, email);
         log(isAuthenticated.toString());
         log('login successful');
+    
         AutoRouter.of(context)
             .pushAndPopUntil(const BottomNav(), predicate: (route) => false);
         notifyListeners();
@@ -58,7 +61,9 @@ class LoginViewModel extends BaseModel {
       showErrorToast(e.message.toString());
     } catch (e) {
       setBusy(false);
-      showErrorToast('Incorrect email or password');
+      showErrorToast(e.toString());
+
+      // showErrorToast('Incorrect email or password');
       notifyListeners();
     }
   }

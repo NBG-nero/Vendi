@@ -43,7 +43,7 @@ class SignUpViewModel extends BaseModel {
         log('user added');
         setBusy(false);
         AutoRouter.of(context)
-            .pushAndPopUntil(const SignUpscreen(), predicate: (route) => false);
+            .pushAndPopUntil(const Loginscreen(), predicate: (route) => false);
         notifyListeners();
       });
     } on PlatformException catch (e) {

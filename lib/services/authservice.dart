@@ -37,7 +37,7 @@ class AuthService {
     final User? currentUser = (await auth.createUserWithEmailAndPassword(
             email: email, password: password))
         .user;
-    log('createuser was called');
+    log('create user was called');
     var updateInfo = UserInfo({'email': email});
     name = updateInfo.displayName;
     await currentUser?.updateDisplayName(name);
