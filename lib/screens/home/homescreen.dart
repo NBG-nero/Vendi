@@ -50,8 +50,16 @@ class Homescreen extends StatelessWidget {
                 BrandHighLights(
                   viewModel: model,
                 ),
-                 CategoryWidget( 
+                CategoryWidget(
                   viewModel: model,
+                ),
+                Center(
+                  child: VButton(
+                    onPressed: () {
+                      model.signout(context);
+                    },
+                    buttontext: 'Sign Out',
+                  ),
                 )
               ],
             ),

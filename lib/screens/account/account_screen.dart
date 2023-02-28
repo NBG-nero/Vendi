@@ -1,4 +1,3 @@
-
 import 'package:flutter/material.dart';
 
 import '../../utilities/constants/constants.dart';
@@ -8,11 +7,17 @@ class Accountscreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return  Scaffold(
+    return Scaffold(
       backgroundColor: VendiColors.primaryColor,
+      body: Column(
+        mainAxisAlignment: MainAxisAlignment.center,
+        children: const [
+          Center(child: Text("Accountscreen"), 
+          ),
+         
 
-      body:const  Center(child: Text("Accountscreen")),
-
+        ],
+      ),
     );
   }
 }

@@ -6,6 +6,7 @@ import 'package:auto_route/auto_route.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+// import 'package:vendi/models/user.dart';
 import 'package:vendi/services/authservice.dart';
 import 'package:vendi/services/firebase_service.dart';
 import 'package:vendi/utilities/constants/constants.dart';
@@ -29,17 +30,25 @@ class LoginViewModel extends BaseModel {
     notifyListeners();
   }
 
-  logIn(email, password, context, role) async {
+  logIn(email, password, role, context) async {
+    // var user = UserModel();
     try {
       await initPrefs();
       log('login was called');
-      await authService.signInWithEmailAndPassword(email, password).then((val) {
+      await authService
+          .signInWithEmailAndPassword(email, password, role)
+          .then((data) {
         setBusy(true);
         setAuthenticated(true);
         prefs?.setString(AppConstants.emailVal, email);
         log(isAuthenticated.toString());
         log('login successful');
-    
+        var roleType = data[role];
+        if (roleType == 'admin') {
+          log("$roleType is admin");
+        } else {
+          log("$roleType is user");
+        }
         AutoRouter.of(context)
             .pushAndPopUntil(const BottomNav(), predicate: (route) => false);
         notifyListeners();
@@ -61,9 +70,9 @@ class LoginViewModel extends BaseModel {
       showErrorToast(e.message.toString());
     } catch (e) {
       setBusy(false);
-      showErrorToast(e.toString());
 
-      // showErrorToast('Incorrect email or password');
+      log(e.toString());
+      showErrorToast('Incorrect email or password');
       notifyListeners();
     }
   }
