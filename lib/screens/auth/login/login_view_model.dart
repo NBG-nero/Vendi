@@ -3,6 +3,7 @@ import 'dart:developer';
 import 'dart:io';
 
 import 'package:auto_route/auto_route.dart';
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
@@ -13,6 +14,7 @@ import 'package:vendi/utilities/constants/constants.dart';
 import 'package:vendi/utilities/utils.dart';
 
 import '../../../routes/router.gr.dart';
+import '../../../utilities/constants/firestore_consts.dart';
 import '../../base_model.dart';
 
 class LoginViewModel extends BaseModel {
@@ -31,7 +33,6 @@ class LoginViewModel extends BaseModel {
   }
 
   logIn(email, password, role, context) async {
-    // var user = UserModel();
     try {
       await initPrefs();
       log('login was called');
@@ -42,17 +43,30 @@ class LoginViewModel extends BaseModel {
         setAuthenticated(true);
         prefs?.setString(AppConstants.emailVal, email);
         log(isAuthenticated.toString());
-        log('login successful');
-        var roleType = data[role];
-        if (roleType == 'admin') {
-          log("$roleType is admin");
-        } else {
-          log("$roleType is user");
-        }
-        AutoRouter.of(context)
-            .pushAndPopUntil(const BottomNav(), predicate: (route) => false);
-        notifyListeners();
       });
+      final uid = await authService.getCurrentUid();
+      await prefs?.setString(FirestoreConstants.id, uid);
+      var id = prefs?.getString(FirestoreConstants.id);
+      await firebaseService.firebaseFirestore
+          .collection(FirestoreConstants.pathUserCollection)
+          .doc(id)
+          .get()
+          .then((DocumentSnapshot document) {
+        if (document.exists) {
+          if (document.get('role') == "user") {
+            log("role is user");
+            AutoRouter.of(context).pushAndPopUntil(const BottomNav(),
+                predicate: (route) => false);
+            notifyListeners();
+          } else {
+            log("role is admin");
+          }
+        } else {
+          log('doc doesnt exist');
+        }
+      });
+      log('login successful');
+      showToast('login successful');
     } on PlatformException catch (e) {
       setBusy(false);
       showErrorToast(e.message.toString());

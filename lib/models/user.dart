@@ -1,14 +1,18 @@
 import 'package:json_annotation/json_annotation.dart';
+
 part 'user.g.dart';
+
+enum Usertype { admin, user }
+
 @JsonSerializable()
- 
- enum Usertype{admin, user}
- class UserModel {
+class UserModel {
+  String? id;
   String? name;
   String? email;
   String? password;
   String? role;
   UserModel({
+    this.id,
     this.name,
     this.email,
     this.password,
@@ -17,9 +21,9 @@ part 'user.g.dart';
   factory UserModel.from(Map<String, dynamic> json) =>
       _$UserModelFromJson(json);
 
+  Map<String, dynamic> toJson() => _$UserModelToJson(this);
 
-   Map<String, dynamic> toJson() => _$UserModelToJson(this);
-
-    @override
-  String toString() => 'LoginModel(name:$name,email: $email, password: $password,role: $role )';
+  @override
+  String toString() =>
+      'LoginModel(id:$id,name:$name,email: $email, password: $password,role: $role )';
 }

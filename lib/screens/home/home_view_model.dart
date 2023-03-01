@@ -74,6 +74,7 @@ class HomeViewModel extends BaseModel {
         setAuthenticated(false);
         log(isAuthenticated.toString());
         log('sign out successful');
+        showToast('sign out successful');
         AutoRouter.of(context)
             .pushAndPopUntil(const Loginscreen(), predicate: (route) => false);
         notifyListeners();

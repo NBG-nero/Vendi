@@ -8,7 +8,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:vendi/utilities/utils.dart';
 
-import '../../../models/models.dart';
+// import '../../../models/models.dart';
 import '../../../routes/router.gr.dart';
 import '../../../services/authservice.dart';
 import '../../../services/firebase_service.dart';
@@ -42,6 +42,7 @@ class SignUpViewModel extends BaseModel {
         firebaseService.addUser(name, email, role);
         log('user added');
         setBusy(false);
+        showToast('sign up successful');
         AutoRouter.of(context)
             .pushAndPopUntil(const Loginscreen(), predicate: (route) => false);
         notifyListeners();

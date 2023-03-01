@@ -1,6 +1,8 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'dart:developer';
 
+import '../models/user.dart';
+
 class AuthService {
   final FirebaseAuth auth = FirebaseAuth.instance;
 
@@ -24,6 +26,10 @@ class AuthService {
     return auth.currentUser?.uid;
   }
 
+  Future getCurrentUserRole(UserModel user) async {
+    return user.role;
+  }
+
   Future signOut() async {
     return auth.signOut();
   }
@@ -33,7 +39,7 @@ class AuthService {
   }
 
   Future<String?> createUserWithEmailAndPassword(
-      String? name, String email, String password,String role) async {
+      String? name, String email, String password, String role) async {
     final User? currentUser = (await auth.createUserWithEmailAndPassword(
             email: email, password: password))
         .user;
@@ -46,7 +52,7 @@ class AuthService {
   }
 
   Future<String> signInWithEmailAndPassword(
-      String email, String password,String role) async {
+      String email, String password, String role) async {
     log('siginIn User was called');
     return ((await auth.signInWithEmailAndPassword(
                 email: email, password: password))

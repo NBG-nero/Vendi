@@ -5,7 +5,7 @@ import 'package:stacked/stacked.dart';
 import 'package:vendi/screens/auth/sign_up/sign_up_view_model.dart';
 import 'package:vendi/utilities/constants/colors.dart';
 
-import '../../../models/user.dart';
+// import '../../../models/user.dart';
 import '../../../routes/router.gr.dart';
 import '../../../utilities/margins/margins.dart';
 import '../../../utilities/value_validators.dart';
