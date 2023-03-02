@@ -1,8 +1,6 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'dart:developer';
 
-import '../models/user.dart';
-
 class AuthService {
   final FirebaseAuth auth = FirebaseAuth.instance;
 
@@ -24,10 +22,6 @@ class AuthService {
 
   Future getCurrentUid() async {
     return auth.currentUser?.uid;
-  }
-
-  Future getCurrentUserRole(UserModel user) async {
-    return user.role;
   }
 
   Future signOut() async {
