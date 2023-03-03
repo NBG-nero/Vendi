@@ -12,6 +12,7 @@ import 'package:vendi/utilities/utils.dart';
 import '../../../routes/router.gr.dart';
 import '../../../services/authservice.dart';
 import '../../../services/firebase_service.dart';
+import '../../../utilities/constants/firestore_consts.dart';
 import '../../base_model.dart';
 
 class SignUpViewModel extends BaseModel {
@@ -37,9 +38,11 @@ class SignUpViewModel extends BaseModel {
       log('sign up was called');
       await authService
           .createUserWithEmailAndPassword(name, email, password, role)
-          .then((data) {
+          .then((data) async {
         setBusy(true);
         firebaseService.addUser(name, email, role);
+        final uid = await authService.getCurrentUid();
+        await prefs?.setString(FirestoreConstants.id, uid);
         log('user added');
         setBusy(false);
         showToast('sign up successful');
