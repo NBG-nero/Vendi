@@ -38,7 +38,7 @@ class VButton extends StatelessWidget {
               side: BorderSide(color: sideColor ?? Colors.transparent),
             ),
         minWidth: width ?? MediaQuery.of(context).size.width * 0.9,
-        padding: const EdgeInsets.fromLTRB(20, 15, 20, 15),
+        padding: padding ?? const EdgeInsets.fromLTRB(20, 15, 20, 15),
         child: child ??
             Text(buttontext ?? 'buttonText',
                 style: Theme.of(context).textTheme.labelMedium?.copyWith(

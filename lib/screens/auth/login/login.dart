@@ -37,6 +37,12 @@ class _LoginscreenState extends State<Loginscreen> {
                     Text('Welcome back',
                         style: TextStyle(
                             fontSize: 26.sp, color: VendiColors.primaryColor)),
+                    YMargin(10.h),
+                    Text('Hello there, Sign in to continue',
+                        style: Theme.of(context)
+                            .textTheme
+                            .labelSmall
+                            ?.copyWith(color: VendiColors.primaryColor)),
                     YMargin(20.h),
                     Form(
                         key: model.formKey,
@@ -78,20 +84,24 @@ class _LoginscreenState extends State<Loginscreen> {
                                   model.toogleHidePassword();
                                 },
                               ),
-                              YMargin(15.h)
+                              YMargin(12.h),
+                              Align(
+                                alignment: Alignment.centerRight,
+                                child: Text('Forget password',
+                                    style: Theme.of(context)
+                                        .textTheme
+                                        .labelSmall
+                                        ?.copyWith(
+                                            fontStyle: FontStyle.italic,
+                                            color: VendiColors.primaryColor)),
+                              ),
+                              // YMargin(15.h),
                             ],
                           ),
                         )),
                     YMargin(20.h),
                     Center(
-                      child: ElevatedButton(
-                        style: ButtonStyle(
-                            shape: MaterialStateProperty.all(
-                                const RoundedRectangleBorder(
-                                    borderRadius:
-                                        BorderRadius.all(Radius.circular(8)))),
-                            backgroundColor: MaterialStateProperty.all(
-                                VendiColors.colorMap[700])),
+                      child: VButton(
                         onPressed: () {
                           if (model.formKey.currentState!.validate()) {
                             model.setBusy(true);
@@ -101,7 +111,17 @@ class _LoginscreenState extends State<Loginscreen> {
                             AutovalidateMode.onUserInteraction;
                           }
                         },
-                        child: const Text('Login'),
+                        width: MediaQuery.of(context).size.width * 0.8,
+                        child: model.isBusy
+                            ? const CircularProgressIndicator.adaptive(
+                                valueColor:
+                                    AlwaysStoppedAnimation<Color>(Colors.white),
+                              )
+                            : Text('Sign In',
+                                style: Theme.of(context)
+                                    .textTheme
+                                    .labelMedium
+                                    ?.copyWith(color: Colors.white)),
                       ),
                     ),
                     YMargin(20.h),
@@ -109,9 +129,29 @@ class _LoginscreenState extends State<Loginscreen> {
                       onPressed: () {
                         model.googleUserSignIn(context);
                       },
-                      buttontext: "Google SignIn",
+                      padding: const EdgeInsets.only(top: 10, bottom: 10),
+                      width: MediaQuery.of(context).size.width * 0.8,
+                      child: Row(
+                          mainAxisSize: MainAxisSize.min,
+                          // mainAxisAlignment: MainAxisAlignment.start,
+                          children: [
+                            Image.asset(
+                              'assets/images/gSignIn.png',
+                              width: 28.w,
+                            ),
+                            XMargin(20.w),
+                            Padding(
+                              padding: const EdgeInsets.all(8.0),
+                              child: Text('continue with google',
+                                  style: Theme.of(context)
+                                      .textTheme
+                                      .labelSmall
+                                      ?.copyWith(
+                                          color: VendiColors.primaryColor)),
+                            ),
+                          ]),
                     ),
-                    YMargin(20.h),
+                    YMargin(17.h),
                     TextButton(
                       onPressed: () {
                         AutoRouter.of(context).pushAndPopUntil(

@@ -22,7 +22,6 @@ import '../../base_model.dart';
 class LoginViewModel extends BaseModel {
   AuthService authService = AuthService();
   FirebaseService firebaseService = FirebaseService();
-  final GoogleSignIn googleSignIn = GoogleSignIn();
 
   final formKey = GlobalKey<FormState>();
 
@@ -109,58 +108,73 @@ class LoginViewModel extends BaseModel {
             (await authService.auth.signInWithCredential(credential)).user;
         if (firebaseUser != null) {
           setBusy(true);
-          await firebaseService.firebaseFirestore
+          final result = await firebaseService.firebaseFirestore
               .collection(FirestoreConstants.pathUserCollection)
-              .doc(firebaseUser.uid)
-              .get()
-              .then((DocumentSnapshot document) async {
-            if (document.exists) {
-              final user = UserModel(
-                  id: FirestoreConstants.id,
-                  name: FirestoreConstants.nickname,
-                  email: FirestoreConstants.email,
-                  role: FirestoreConstants.role);
-
-              firebaseService.firebaseFirestore
-                  .collection(FirestoreConstants.pathUserCollection)
-                  .doc(firebaseUser.uid)
-                  .set({
-                user.id!: firebaseUser.uid,
-                user.name!: firebaseUser.displayName,
-                user.email!: firebaseUser.email,
-                user.role!: "user",
-                'createdAt': DateTime.now().millisecondsSinceEpoch.toString(),
-              }).catchError((e) {
-                log(e.toString());
-              });
-              User? currentUser = firebaseUser;
-              await prefs?.setString(FirestoreConstants.id, currentUser.uid);
-              await prefs?.setString(
-                  FirestoreConstants.nickname, currentUser.displayName ?? "");
-              await prefs?.setString(
-                  FirestoreConstants.email, currentUser.email ?? "");
+              .where(FirestoreConstants.id, isEqualTo: firebaseUser.uid)
+              .get();
+          // .then((DocumentSnapshot document) async {
+          final List<DocumentSnapshot> document = result.docs;
+          if (document.isEmpty) {
+            final user = UserModel(
+                id: FirestoreConstants.id,
+                name: FirestoreConstants.nickname,
+                email: FirestoreConstants.email,
+                role: FirestoreConstants.role);
+            firebaseService.firebaseFirestore
+                .collection(FirestoreConstants.pathUserCollection)
+                .doc(firebaseUser.uid)
+                .set({
+              user.id!: firebaseUser.uid,
+              user.name!: firebaseUser.displayName,
+              user.email!: firebaseUser.email,
+              user.role!: "user",
+              'createdAt': DateTime.now().millisecondsSinceEpoch.toString(),
+            }).catchError((e) {
+              log(e.toString());
+            });
+            User? currentUser = firebaseUser;
+            await prefs?.setString(FirestoreConstants.id, currentUser.uid);
+            await prefs?.setString(
+                FirestoreConstants.nickname, currentUser.displayName ?? "");
+            await prefs?.setString(
+                FirestoreConstants.email, currentUser.email ?? "");
+            var id = prefs?.getString(FirestoreConstants.id);
+            await firebaseService.firebaseFirestore
+                .collection(FirestoreConstants.pathUserCollection)
+                .doc(id)
+                .get()
+                .then((DocumentSnapshot document) async {
               if (document.get('role') == "user") {
                 log("role is user");
                 await prefs?.setString(FirestoreConstants.role, user.role!);
-                // AutoRouter.of(context).pushAndPopUntil(const BottomNav(),
-                //     predicate: (route) => false);
-                // notifyListeners();
+                AutoRouter.of(context).pushAndPopUntil(const BottomNav(),
+                    predicate: (route) => false);
+                notifyListeners();
               } else {
                 log("role is admin");
                 await prefs?.setString(FirestoreConstants.role, user.role!);
                 notifyListeners();
               }
-            } else {
-              log("document is empty");
-            }
-            setBusy(false);
-            log('sign in successful');
-            showToast("sign in successful");
-            setAuthenticated(true);
-            log(isAuthenticated.toString());
-            notifyListeners();
-          });
- 
+            });
+          } else {
+            log("document is not empty");
+            DocumentSnapshot documentSnapshot = document[0];
+            UserModel userModel = UserModel.fromDocument(documentSnapshot);
+            await prefs?.setString(FirestoreConstants.id, userModel.id ?? "");
+            await prefs?.setString(
+                FirestoreConstants.nickname, userModel.name ?? "");
+            await prefs?.setString(
+                FirestoreConstants.email, userModel.email ?? "");
+            await prefs?.setString(
+                FirestoreConstants.role, userModel.role ?? "");
+          }
+          setBusy(false);
+          log('sign in successful');
+          showToast("sign in successful");
+          setAuthenticated(true);
+          log(isAuthenticated.toString());
+          notifyListeners();
+          // });
         } else {
           setBusy(false);
           showErrorToast("Sign in failed");
@@ -171,8 +185,7 @@ class LoginViewModel extends BaseModel {
         showErrorToast("Sign in canceled");
         notifyListeners();
       }
-    }
-     catch (e) {
+    } catch (e) {
       setBusy(false);
       log(e.toString());
       showErrorToast('an error occured');

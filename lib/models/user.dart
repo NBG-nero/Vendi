@@ -1,4 +1,8 @@
+import 'dart:developer';
+
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:json_annotation/json_annotation.dart';
+import 'package:vendi/utilities/constants/firestore_consts.dart';
 
 part 'user.g.dart';
 
@@ -22,6 +26,29 @@ class UserModel {
       _$UserModelFromJson(json);
 
   Map<String, dynamic> toJson() => _$UserModelToJson(this);
+
+  factory UserModel.fromDocument(DocumentSnapshot doc) {
+    String name = '';
+    String email = '';
+    String role = '';
+    try {
+      name = doc.get(FirestoreConstants.nickname);
+    } catch (e) {
+      log(e.toString());
+    }
+    try {
+      email = doc.get(FirestoreConstants.email);
+    } catch (e) {
+      log(e.toString());
+    }
+
+    try {
+      role = doc.get(FirestoreConstants.role);
+    } catch (e) {
+      log(e.toString());
+    }
+    return UserModel(id: doc.id, name: name, email: email, role: role);
+  }
 
   @override
   String toString() =>
