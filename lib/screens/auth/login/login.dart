@@ -105,12 +105,13 @@ class _LoginscreenState extends State<Loginscreen> {
                       ),
                     ),
                     YMargin(20.h),
-                  VButton( 
-                    onPressed: model.googleUserSignIn(context), 
-                    buttontext: "Google SignIn",
-                  ),
+                    VButton(
+                      onPressed: () {
+                        model.googleUserSignIn(context);
+                      },
+                      buttontext: "Google SignIn",
+                    ),
                     YMargin(20.h),
-
                     TextButton(
                       onPressed: () {
                         AutoRouter.of(context).pushAndPopUntil(
