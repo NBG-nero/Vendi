@@ -94,6 +94,16 @@ class LoginViewModel extends BaseModel {
     }
   }
 
+  resetPassword(email, context) async {
+    try {
+      await authService.sendPasswordResetEmail(email).then((value) {
+        setBusy(true);
+      });
+    } catch (e) {
+      log(e.toString());
+    }
+  }
+
   googleUserSignIn(context) async {
     try {
       await initPrefs();

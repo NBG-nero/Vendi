@@ -85,15 +85,20 @@ class _LoginscreenState extends State<Loginscreen> {
                                 },
                               ),
                               YMargin(12.h),
-                              Align(
-                                alignment: Alignment.centerRight,
-                                child: Text('Forget password',
-                                    style: Theme.of(context)
-                                        .textTheme
-                                        .labelSmall
-                                        ?.copyWith(
-                                            fontStyle: FontStyle.italic,
-                                            color: VendiColors.primaryColor)),
+                              InkWell(
+                                onTap: () {
+                                  
+                                },
+                                child: Align(
+                                  alignment: Alignment.centerRight,
+                                  child: Text('Forget password',
+                                      style: Theme.of(context)
+                                          .textTheme
+                                          .labelSmall
+                                          ?.copyWith(
+                                              fontStyle: FontStyle.italic,
+                                              color: VendiColors.primaryColor)),
+                                ),
                               ),
                               // YMargin(15.h),
                             ],
@@ -129,7 +134,7 @@ class _LoginscreenState extends State<Loginscreen> {
                       onPressed: () {
                         model.googleUserSignIn(context);
                       },
-                      padding: const EdgeInsets.only(top: 10, bottom: 10),
+                      padding: const EdgeInsets.only(top: 7, bottom: 7),
                       width: MediaQuery.of(context).size.width * 0.8,
                       child: Row(
                           mainAxisSize: MainAxisSize.min,
