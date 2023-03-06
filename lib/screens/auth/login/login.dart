@@ -85,9 +85,11 @@ class _LoginscreenState extends State<Loginscreen> {
                                 },
                               ),
                               YMargin(12.h),
-                              InkWell(
+                              GestureDetector(
                                 onTap: () {
-                                  
+                                  AutoRouter.of(context).push(
+                                    const Resetpasswordscreen(),
+                                  );
                                 },
                                 child: Align(
                                   alignment: Alignment.centerRight,

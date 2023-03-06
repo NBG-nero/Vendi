@@ -70,6 +70,12 @@ class AppRouter extends _i2.RootStackRouter {
         child: const _i1.Loginscreen(),
       );
     },
+    Resetpasswordscreen.name: (routeData) {
+      return _i2.MaterialPageX<dynamic>(
+        routeData: routeData,
+        child: const _i1.Resetpasswordscreen(),
+      );
+    },
     SignUpscreen.name: (routeData) {
       return _i2.MaterialPageX<dynamic>(
         routeData: routeData,
@@ -111,6 +117,10 @@ class AppRouter extends _i2.RootStackRouter {
         _i2.RouteConfig(
           Loginscreen.name,
           path: '/Loginscreen',
+        ),
+        _i2.RouteConfig(
+          Resetpasswordscreen.name,
+          path: '/Resetpasswordscreen',
         ),
         _i2.RouteConfig(
           SignUpscreen.name,
@@ -213,6 +223,18 @@ class Loginscreen extends _i2.PageRouteInfo<void> {
         );
 
   static const String name = 'Loginscreen';
+}
+
+/// generated route for
+/// [_i1.Resetpasswordscreen]
+class Resetpasswordscreen extends _i2.PageRouteInfo<void> {
+  const Resetpasswordscreen()
+      : super(
+          Resetpasswordscreen.name,
+          path: '/Resetpasswordscreen',
+        );
+
+  static const String name = 'Resetpasswordscreen';
 }
 
 /// generated route for

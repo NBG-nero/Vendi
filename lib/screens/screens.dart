@@ -3,6 +3,7 @@ export 'home/homescreen.dart';
 export 'bottom_nav/bottom_nav.dart';
 export 'onboarding/onboarding.dart';
 export 'auth/login/login.dart';
+export 'auth/reset_password/reset_passwrd.dart';
 export 'auth/sign_up/sign_up.dart';
 export 'message/message_screen.dart';
 export 'cart/cartscreen.dart';
