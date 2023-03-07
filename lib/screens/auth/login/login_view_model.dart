@@ -46,14 +46,16 @@ class LoginViewModel extends BaseModel {
         setAuthenticated(true);
         prefs?.setString(AppConstants.emailVal, email);
         log(isAuthenticated.toString());
-        var id = prefs?.getString(FirestoreConstants.id);
+        var id = authService.auth.currentUser?.uid;
+        // prefs?.getString(FirestoreConstants.id);
+        log('$id is id');
         await firebaseService.firebaseFirestore
             .collection(FirestoreConstants.pathUserCollection)
             .doc(id)
             .get()
             .then((DocumentSnapshot document) async {
           if (document.exists) {
-            if (document.get('role') == "user") {
+            if (document.get("role") == "user") {
               log("role is user");
               await prefs?.setString(FirestoreConstants.role, role);
               AutoRouter.of(context).pushAndPopUntil(const BottomNav(),
@@ -62,6 +64,8 @@ class LoginViewModel extends BaseModel {
             } else {
               log("role is admin");
               await prefs?.setString(FirestoreConstants.role, role);
+              AutoRouter.of(context).pushAndPopUntil(const AdminHomescreen(),
+                  predicate: (route) => false);
               notifyListeners();
             }
           } else {
@@ -148,13 +152,15 @@ class LoginViewModel extends BaseModel {
                 FirestoreConstants.nickname, currentUser.displayName ?? "");
             await prefs?.setString(
                 FirestoreConstants.email, currentUser.email ?? "");
-            var id = prefs?.getString(FirestoreConstants.id);
+            var id = firebaseUser.uid;
+            log('$id is id');
+            //  prefs?.getString(FirestoreConstants.id);
             await firebaseService.firebaseFirestore
                 .collection(FirestoreConstants.pathUserCollection)
                 .doc(id)
                 .get()
                 .then((DocumentSnapshot document) async {
-              if (document.get('role') == "user") {
+              if (document.get("role") == "user") {
                 log("role is user");
                 await prefs?.setString(FirestoreConstants.role, user.role!);
                 AutoRouter.of(context).pushAndPopUntil(const BottomNav(),
@@ -163,6 +169,8 @@ class LoginViewModel extends BaseModel {
               } else {
                 log("role is admin");
                 await prefs?.setString(FirestoreConstants.role, user.role!);
+                AutoRouter.of(context).pushAndPopUntil(const AdminHomescreen(),
+                    predicate: (route) => false);
                 notifyListeners();
               }
             });
@@ -177,6 +185,30 @@ class LoginViewModel extends BaseModel {
                 FirestoreConstants.email, userModel.email ?? "");
             await prefs?.setString(
                 FirestoreConstants.role, userModel.role ?? "");
+            var id = firebaseUser.uid;
+            log('$id is id');
+            //  prefs?.getString(FirestoreConstants.id);
+            await firebaseService.firebaseFirestore
+                .collection(FirestoreConstants.pathUserCollection)
+                .doc(id)
+                .get()
+                .then((DocumentSnapshot document) async {
+              if (document.get("role") == "user") {
+                log("role is user");
+                await prefs?.setString(
+                    FirestoreConstants.role, userModel.role!);
+                AutoRouter.of(context).pushAndPopUntil(const BottomNav(),
+                    predicate: (route) => false);
+                notifyListeners();
+              } else {
+                log("role is admin");
+                await prefs?.setString(
+                    FirestoreConstants.role, userModel.role!);
+                AutoRouter.of(context).pushAndPopUntil(const AdminHomescreen(),
+                    predicate: (route) => false);
+                notifyListeners();
+              }
+            });
           }
           setBusy(false);
           log('sign in successful');

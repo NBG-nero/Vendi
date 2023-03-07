@@ -69,18 +69,18 @@ class HomeViewModel extends BaseModel {
     try {
       await initPrefs();
       log('sign out was called');
-      await authService.signOut().then((data) async {
+      await authService.signOut().then((data) {
         setBusy(true);
-        await googleSignIn.disconnect();
-        await googleSignIn.signOut();
-        setAuthenticated(false);
-        log(isAuthenticated.toString());
-        log('sign out successful');
-        showToast('sign out successful');
-        AutoRouter.of(context)
-            .pushAndPopUntil(const Loginscreen(), predicate: (route) => false);
-        notifyListeners();
       });
+      await googleSignIn.disconnect();
+      await googleSignIn.signOut();
+      setAuthenticated(false);
+      log(isAuthenticated.toString());
+      log('sign out successful');
+      showToast('sign out successful');
+      AutoRouter.of(context)
+          .pushAndPopUntil(const Loginscreen(), predicate: (route) => false);
+      notifyListeners();
     } on PlatformException catch (e) {
       setBusy(false);
       showErrorToast(e.message.toString());

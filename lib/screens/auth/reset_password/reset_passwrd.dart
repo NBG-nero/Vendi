@@ -1,3 +1,4 @@
+import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:stacked/stacked.dart';
@@ -26,6 +27,21 @@ class _ResetpasswordscreenState extends State<Resetpasswordscreen> {
         builder: (context, model, child) {
           return Scaffold(
             backgroundColor: VendiColors.masterColor,
+            appBar: vendiAppBar(
+                context: context,
+                backgroundColor: VendiColors.exColor,
+                title: Text("Reset Password",
+                    style: Theme.of(context)
+                        .textTheme
+                        .labelLarge
+                        ?.copyWith(color: VendiColors.primaryColor,fontSize: 24.sp)),
+                centerTitle: false,
+                leading: IconButton(
+                  icon: Icon(Icons.arrow_back_ios_new, size: 24.sp),
+                  onPressed: () {
+                    AutoRouter.of(context).pop();
+                  },
+                )),
             body: Form(
               child: Padding(
                 padding: const EdgeInsets.all(20.0),
@@ -33,16 +49,17 @@ class _ResetpasswordscreenState extends State<Resetpasswordscreen> {
                   mainAxisAlignment: MainAxisAlignment.center,
                   mainAxisSize: MainAxisSize.min,
                   children: [
-                    YMargin(140.h),
-                    Align( 
+                    YMargin(60.h),
+                    Align(
                       alignment: Alignment.centerLeft,
-                      child: Text("Please Enter your email to reset your password",
+                      child: Text(
+                          "Please Enter your email to reset your password",
                           style: Theme.of(context)
                               .textTheme
                               .labelMedium
-                              ?.copyWith()),
+                              ?.copyWith(color: VendiColors.primaryColor)),
                     ),
-                    YMargin(20.h),
+                    YMargin(40.h),
                     VTextField(
                       autovalidateMode: AutovalidateMode.onUserInteraction,
                       obscureText: false,

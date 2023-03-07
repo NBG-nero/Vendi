@@ -84,7 +84,7 @@ class _LoginscreenState extends State<Loginscreen> {
                                   model.toogleHidePassword();
                                 },
                               ),
-                              YMargin(12.h),
+                              YMargin(15.h),
                               GestureDetector(
                                 onTap: () {
                                   AutoRouter.of(context).push(
@@ -136,11 +136,12 @@ class _LoginscreenState extends State<Loginscreen> {
                       onPressed: () {
                         model.googleUserSignIn(context);
                       },
-                      padding: const EdgeInsets.only(top: 7, bottom: 7),
+                      padding: const EdgeInsets.only(
+                          top: 7, bottom: 7, right: 0, left: 0),
                       width: MediaQuery.of(context).size.width * 0.8,
                       child: Row(
                           mainAxisSize: MainAxisSize.min,
-                          // mainAxisAlignment: MainAxisAlignment.start,
+                          mainAxisAlignment: MainAxisAlignment.start,
                           children: [
                             Image.asset(
                               'assets/images/gSignIn.png',
@@ -156,6 +157,7 @@ class _LoginscreenState extends State<Loginscreen> {
                                       ?.copyWith(
                                           color: VendiColors.primaryColor)),
                             ),
+                            XMargin(30.w),
                           ]),
                     ),
                     YMargin(17.h),
@@ -168,16 +170,20 @@ class _LoginscreenState extends State<Loginscreen> {
                       child: RichText(
                         text: TextSpan(
                           text: "Don't have an account ?",
-                          style: TextStyle(
-                            color: Colors.white,
-                            fontSize: 16.sp,
-                          ),
+                          style:
+                              Theme.of(context).textTheme.labelMedium?.copyWith(
+                                    color: Colors.white,
+                                    // fontSize: 16.sp,
+                                  ),
                           children: <TextSpan>[
                             TextSpan(
                                 text: " Sign Up",
-                                style: TextStyle(
-                                    color: VendiColors.secondaryColor,
-                                    fontStyle: FontStyle.italic))
+                                style: Theme.of(context)
+                                    .textTheme
+                                    .labelMedium
+                                    ?.copyWith(
+                                        color: VendiColors.secondaryColor,
+                                        fontStyle: FontStyle.italic))
                           ],
                         ),
                       ),
