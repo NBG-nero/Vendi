@@ -3,13 +3,16 @@
 import 'dart:developer';
 
 import 'package:auto_route/auto_route.dart';
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:stacked/stacked.dart';
 import 'package:vendi/screens/splash/splash_view_model.dart';
 import 'package:vendi/utilities/constants/constants.dart';
+import 'package:vendi/utilities/utils.dart';
 
 import '../../routes/router.gr.dart';
+import '../../utilities/constants/firestore_consts.dart';
 
 class Splashscreen extends StatefulWidget {
   const Splashscreen({super.key});
@@ -29,16 +32,41 @@ class _SplashscreenState extends State<Splashscreen> {
 
           Future.delayed(const Duration(seconds: 5), (() async {
             await s.initPrefs();
-
             final bool? authenticated = s.prefs?.getBool(AppConstants.logInVal);
-
             log('authenticated is $authenticated');
-
-            authenticated == true
-                ? AutoRouter.of(context).pushAndPopUntil(const BottomNav(),
-                    predicate: (route) => false)
-                : AutoRouter.of(context).pushAndPopUntil(const Onboarding(),
-                    predicate: (route) => false);
+            // authenticated == true
+            //     ? AutoRouter.of(context).pushAndPopUntil(const BottomNav(),
+            //         predicate: (route) => false)
+            //     : AutoRouter.of(context).pushAndPopUntil(const Onboarding(),
+            //         predicate: (route) => false);
+            if (authenticated == true) {
+              var id = s.authService.auth.currentUser?.uid;
+              log('$id is id');
+              await s.firebaseService.firebaseFirestore
+                  .collection(FirestoreConstants.pathUserCollection)
+                  .doc(id)
+                  .get()
+                  .then((DocumentSnapshot document) async {
+                if (document.exists) {
+                  if (document.get("role") == "user") {
+                    log("role is user");
+                    AutoRouter.of(context).pushAndPopUntil(const BottomNav(),
+                        predicate: (route) => false);
+                  } else {
+                    log("role is admin");
+                    AutoRouter.of(context).pushAndPopUntil(
+                        const AdminHomescreen(),
+                        predicate: (route) => false);
+                  }
+                } else {
+                  log('doc doesnt exist');
+                  showToast("document doesnt exist");
+                }
+              });
+            } else {
+              AutoRouter.of(context).pushAndPopUntil(const Onboarding(),
+                  predicate: (route) => false);
+            }
           }));
         },
         builder: (context, model, child) {
