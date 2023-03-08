@@ -39,6 +39,12 @@ class _SignUpscreenState extends State<SignUpscreen> {
                       Text('Welcome!',
                           style: TextStyle(
                               fontSize: 26.sp, color: VendiColors.masterColor)),
+                      YMargin(10.h),
+                      Text('Hi there, Create an account',
+                          style: Theme.of(context)
+                              .textTheme
+                              .labelSmall
+                              ?.copyWith(color: VendiColors.masterColor)),
                       YMargin(20.h),
                       Form(
                         key: model.formKey,
@@ -110,7 +116,7 @@ class _SignUpscreenState extends State<SignUpscreen> {
                                     AutovalidateMode.onUserInteraction;
                                   }
                                 },
-                                width: MediaQuery.of(context).size.width * 0.7,
+                                width: MediaQuery.of(context).size.width * 0.8,
                                 child: model.isBusy
                                     ? const CircularProgressIndicator.adaptive(
                                         valueColor:
@@ -136,16 +142,22 @@ class _SignUpscreenState extends State<SignUpscreen> {
                         child: RichText(
                           text: TextSpan(
                             text: "Already have an account ?",
-                            style: TextStyle(
-                              fontSize: 16.sp,
-                              color: VendiColors.masterColor,
-                            ),
+                            style: Theme.of(context)
+                                .textTheme
+                                .labelMedium
+                                ?.copyWith(
+                                  color: VendiColors.masterColor,
+                                  // fontSize: 16.sp,
+                                ),
                             children: <TextSpan>[
                               TextSpan(
                                   text: " Login",
-                                  style: TextStyle(
-                                      color: VendiColors.secondaryColor,
-                                      fontStyle: FontStyle.italic))
+                                  style: Theme.of(context)
+                                      .textTheme
+                                      .labelMedium
+                                      ?.copyWith(
+                                          color: VendiColors.colorMap[900],
+                                          fontStyle: FontStyle.italic))
                             ],
                           ),
                         ),

@@ -25,7 +25,11 @@ class _LoginscreenState extends State<Loginscreen> {
           l.setInitialised(true);
         },
         builder: (context, model, child) {
-          return Scaffold(
+          return
+              // model.isBusy
+              //     ? const LoadingView()
+              //     :
+              Scaffold(
             backgroundColor: VendiColors.masterColor,
             body: Padding(
               padding: const EdgeInsets.all(8.0),
@@ -119,12 +123,14 @@ class _LoginscreenState extends State<Loginscreen> {
                           }
                         },
                         width: MediaQuery.of(context).size.width * 0.8,
-                        child: model.isBusy
-                            ? const CircularProgressIndicator.adaptive(
-                                valueColor:
-                                    AlwaysStoppedAnimation<Color>(Colors.white),
-                              )
-                            : Text('Sign In',
+                        child:
+                            // model.isBusy
+                            //     ? const CircularProgressIndicator.adaptive(
+                            //         valueColor:
+                            //             AlwaysStoppedAnimation<Color>(Colors.white),
+                            //       )
+                            // :
+                            Text('Sign In',
                                 style: Theme.of(context)
                                     .textTheme
                                     .labelMedium
@@ -188,6 +194,11 @@ class _LoginscreenState extends State<Loginscreen> {
                         ),
                       ),
                     ),
+                    // Container(
+                    //   child: model.isBusy
+                    //       ? const LoadingView()
+                    //       : const SizedBox.shrink(),
+                    // ),
                   ],
                 ),
               ),

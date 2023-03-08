@@ -64,7 +64,7 @@ class LoginViewModel extends BaseModel {
             } else {
               log("role is admin");
               await prefs?.setString(FirestoreConstants.role, role);
-              AutoRouter.of(context).pushAndPopUntil(const AdminHomescreen(),
+              AutoRouter.of(context).pushAndPopUntil(const AdminAppWidget(),
                   predicate: (route) => false);
               notifyListeners();
             }
@@ -72,6 +72,7 @@ class LoginViewModel extends BaseModel {
             log('doc doesnt exist');
           }
         });
+
         log('login successful');
         showToast('login successful');
       });
@@ -129,6 +130,7 @@ class LoginViewModel extends BaseModel {
           // .then((DocumentSnapshot document) async {
           final List<DocumentSnapshot> document = result.docs;
           if (document.isEmpty) {
+            setBusy(true);
             final user = UserModel(
                 id: FirestoreConstants.id,
                 name: FirestoreConstants.nickname,
@@ -169,7 +171,7 @@ class LoginViewModel extends BaseModel {
               } else {
                 log("role is admin");
                 await prefs?.setString(FirestoreConstants.role, user.role!);
-                AutoRouter.of(context).pushAndPopUntil(const AdminHomescreen(),
+                AutoRouter.of(context).pushAndPopUntil(const AdminAppWidget(),
                     predicate: (route) => false);
                 notifyListeners();
               }
@@ -204,7 +206,7 @@ class LoginViewModel extends BaseModel {
                 log("role is admin");
                 await prefs?.setString(
                     FirestoreConstants.role, userModel.role!);
-                AutoRouter.of(context).pushAndPopUntil(const AdminHomescreen(),
+                AutoRouter.of(context).pushAndPopUntil(const AdminAppWidget(),
                     predicate: (route) => false);
                 notifyListeners();
               }

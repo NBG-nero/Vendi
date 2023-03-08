@@ -1,6 +1,6 @@
 import 'package:auto_route/annotations.dart';
+import '../Admin/admin_app_widget.dart';
 import '../screens/screens.dart';
-import '../Admin/AdminScreens/admin_screens.dart';
 
 @MaterialAutoRouter(
   replaceInRouteName: 'Page, Route',
@@ -18,7 +18,9 @@ import '../Admin/AdminScreens/admin_screens.dart';
     AutoRoute(page: Resetpasswordscreen),
     AutoRoute(page: SignUpscreen),
     
-    AutoRoute(page: AdminHomescreen),
+    AutoRoute(page: AdminAppWidget),
+
+  
   ],
 )
 class $AppRouter {}

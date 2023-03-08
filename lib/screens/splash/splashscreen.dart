@@ -34,11 +34,6 @@ class _SplashscreenState extends State<Splashscreen> {
             await s.initPrefs();
             final bool? authenticated = s.prefs?.getBool(AppConstants.logInVal);
             log('authenticated is $authenticated');
-            // authenticated == true
-            //     ? AutoRouter.of(context).pushAndPopUntil(const BottomNav(),
-            //         predicate: (route) => false)
-            //     : AutoRouter.of(context).pushAndPopUntil(const Onboarding(),
-            //         predicate: (route) => false);
             if (authenticated == true) {
               var id = s.authService.auth.currentUser?.uid;
               log('$id is id');
@@ -55,7 +50,7 @@ class _SplashscreenState extends State<Splashscreen> {
                   } else {
                     log("role is admin");
                     AutoRouter.of(context).pushAndPopUntil(
-                        const AdminHomescreen(),
+                        const AdminAppWidget(),
                         predicate: (route) => false);
                   }
                 } else {

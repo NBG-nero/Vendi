@@ -14,7 +14,7 @@
 import 'package:auto_route/auto_route.dart' as _i3;
 import 'package:flutter/material.dart' as _i4;
 
-import '../Admin/AdminScreens/admin_screens.dart' as _i2;
+import '../Admin/admin_app_widget.dart' as _i2;
 import '../screens/screens.dart' as _i1;
 
 class AppRouter extends _i3.RootStackRouter {
@@ -83,10 +83,10 @@ class AppRouter extends _i3.RootStackRouter {
         child: const _i1.SignUpscreen(),
       );
     },
-    AdminHomescreen.name: (routeData) {
+    AdminAppWidget.name: (routeData) {
       return _i3.MaterialPageX<dynamic>(
         routeData: routeData,
-        child: const _i2.AdminHomescreen(),
+        child: const _i2.AdminAppWidget(),
       );
     },
   };
@@ -134,8 +134,8 @@ class AppRouter extends _i3.RootStackRouter {
           path: '/sign-upscreen',
         ),
         _i3.RouteConfig(
-          AdminHomescreen.name,
-          path: '/admin-homescreen',
+          AdminAppWidget.name,
+          path: '/admin-app-widget',
         ),
       ];
 }
@@ -261,13 +261,13 @@ class SignUpscreen extends _i3.PageRouteInfo<void> {
 }
 
 /// generated route for
-/// [_i2.AdminHomescreen]
-class AdminHomescreen extends _i3.PageRouteInfo<void> {
-  const AdminHomescreen()
+/// [_i2.AdminAppWidget]
+class AdminAppWidget extends _i3.PageRouteInfo<void> {
+  const AdminAppWidget()
       : super(
-          AdminHomescreen.name,
-          path: '/admin-homescreen',
+          AdminAppWidget.name,
+          path: '/admin-app-widget',
         );
 
-  static const String name = 'AdminHomescreen';
+  static const String name = 'AdminAppWidget';
 }

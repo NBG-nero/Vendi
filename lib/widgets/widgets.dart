@@ -8,3 +8,4 @@ export 'dots_indicator_widget.dart';
 export 'category_widget.dart';
 export 'custom_textfield.dart';
 export 'custom_button.dart';
+export 'loading_view.dart';

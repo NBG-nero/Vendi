@@ -9,7 +9,7 @@ class LoadingView extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-        color: VendiColors.primaryColor.withOpacity(0.8),
+        color: VendiColors.primaryColor.withOpacity(0.9),
         child: Center(
           child: CircularProgressIndicator.adaptive(
             valueColor: AlwaysStoppedAnimation<Color>(VendiColors.secondaryColor),

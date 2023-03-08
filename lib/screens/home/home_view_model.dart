@@ -72,8 +72,8 @@ class HomeViewModel extends BaseModel {
       await authService.signOut().then((data) {
         setBusy(true);
       });
-      await googleSignIn.disconnect();
-      await googleSignIn.signOut();
+       googleSignIn.disconnect();
+       googleSignIn.signOut();
       setAuthenticated(false);
       log(isAuthenticated.toString());
       log('sign out successful');
