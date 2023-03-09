@@ -46,8 +46,7 @@ class LoginViewModel extends BaseModel {
         setAuthenticated(true);
         prefs?.setString(AppConstants.emailVal, email);
         log(isAuthenticated.toString());
-        var id = authService.auth.currentUser?.uid;
-        // prefs?.getString(FirestoreConstants.id);
+        var id = await authService.getCurrentUid();
         log('$id is id');
         await firebaseService.firebaseFirestore
             .collection(FirestoreConstants.pathUserCollection)
@@ -156,7 +155,6 @@ class LoginViewModel extends BaseModel {
                 FirestoreConstants.email, currentUser.email ?? "");
             var id = firebaseUser.uid;
             log('$id is id');
-            //  prefs?.getString(FirestoreConstants.id);
             await firebaseService.firebaseFirestore
                 .collection(FirestoreConstants.pathUserCollection)
                 .doc(id)
@@ -189,7 +187,6 @@ class LoginViewModel extends BaseModel {
                 FirestoreConstants.role, userModel.role ?? "");
             var id = firebaseUser.uid;
             log('$id is id');
-            //  prefs?.getString(FirestoreConstants.id);
             await firebaseService.firebaseFirestore
                 .collection(FirestoreConstants.pathUserCollection)
                 .doc(id)

@@ -26,9 +26,9 @@ class _LoginscreenState extends State<Loginscreen> {
         },
         builder: (context, model, child) {
           return
-              // model.isBusy
-              //     ? const LoadingView()
-              //     :
+              model.isBusy
+                  ? const LoadingView()
+                  :
               Scaffold(
             backgroundColor: VendiColors.masterColor,
             body: Padding(

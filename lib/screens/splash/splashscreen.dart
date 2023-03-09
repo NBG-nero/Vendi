@@ -29,13 +29,12 @@ class _SplashscreenState extends State<Splashscreen> {
         viewModelBuilder: () => SplashViewModel(),
         onModelReady: (s) {
           s.setInitialised(true);
-
           Future.delayed(const Duration(seconds: 5), (() async {
             await s.initPrefs();
             final bool? authenticated = s.prefs?.getBool(AppConstants.logInVal);
             log('authenticated is $authenticated');
             if (authenticated == true) {
-              var id = s.authService.auth.currentUser?.uid;
+              var id = await s.authService.getCurrentUid();
               log('$id is id');
               await s.firebaseService.firebaseFirestore
                   .collection(FirestoreConstants.pathUserCollection)
