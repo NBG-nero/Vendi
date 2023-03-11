@@ -118,7 +118,7 @@ class _LoginscreenState extends State<Loginscreen> {
                                 if (model.formKey.currentState!.validate()) {
                                   model.setBusy(true);
                                   model.logIn(model.emailCtrl.text,
-                                      model.passwordCtrl.text, 'user', context);
+                                      model.passwordCtrl.text, context);
                                 } else {
                                   AutovalidateMode.onUserInteraction;
                                 }

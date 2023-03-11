@@ -46,7 +46,7 @@ class AuthService {
   }
 
   Future<String> signInWithEmailAndPassword(
-      String email, String password, String role) async {
+      String email, String password,) async {
     log('siginIn User was called');
     return ((await auth.signInWithEmailAndPassword(
                 email: email, password: password))

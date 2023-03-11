@@ -35,12 +35,15 @@ class LoginViewModel extends BaseModel {
     notifyListeners();
   }
 
-  logIn(email, password, role, context) async {
+  logIn(email, password, context) async {
     try {
       await initPrefs();
       log('login was called');
       await authService
-          .signInWithEmailAndPassword(email, password, role)
+          .signInWithEmailAndPassword(
+        email,
+        password,
+      )
           .then((data) async {
         setBusy(true);
         setAuthenticated(true);
@@ -54,7 +57,10 @@ class LoginViewModel extends BaseModel {
             .get()
             .then((DocumentSnapshot document) async {
           if (document.exists) {
-            if (document.get("role") == "user") {
+            var role = document.get("role");
+            if (
+                // document.get("role") == "user"
+                role == "user") {
               log("role is user");
               await prefs?.setString(FirestoreConstants.role, role);
               AutoRouter.of(context).pushAndPopUntil(const BottomNav(),
