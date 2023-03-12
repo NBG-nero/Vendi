@@ -15,10 +15,21 @@ class AdminHomeViewModel extends HomeViewModel {
         break;
       case Categoryscreen.id:
         selectedScreen = const Categoryscreen();
+        selectedRoute = Categoryscreen.id;
+
+        notifyListeners();
+        break;
+      case MainCategoryscreen.id:
+        selectedScreen = const MainCategoryscreen();
+        selectedRoute = MainCategoryscreen.id;
+        notifyListeners();
+        break;
+      case SubCategoryscreen.id:
+        selectedScreen = const SubCategoryscreen();
+        selectedRoute = SubCategoryscreen.id;
         notifyListeners();
         break;
     }
-    
 
     notifyListeners();
   }

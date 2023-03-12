@@ -3,10 +3,22 @@
 import 'package:flutter/material.dart';
 
 class SubCategoryscreen extends StatelessWidget {
+  static const String id = "Sub-Category";
+
   const SubCategoryscreen({super.key});
 
   @override
   Widget build(BuildContext context) {
-    return const Placeholder();
+    return Container(
+      alignment: Alignment.topLeft,
+      padding: const EdgeInsets.all(10),
+      child: const Text(
+        'SubCategory',
+        style: TextStyle(
+          fontWeight: FontWeight.w700,
+          fontSize: 36,
+        ),
+      ),
+    );
   }
 }

@@ -1,8 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_admin_scaffold/admin_scaffold.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:stacked/stacked.dart';
 import 'package:vendi/Admin/AdminScreens/admin_screens.dart';
 
+import '../../../utilities/constants/constants.dart';
+import '../../../utilities/margins/margins.dart';
+import '../../../widgets/widgets.dart';
 import 'admin_home_view_model.dart';
 
 class AdminHomescreen extends StatefulWidget {
@@ -22,14 +26,23 @@ class _AdminHomescreenState extends State<AdminHomescreen> {
           ah.setInitialised(true);
         },
         builder: (context, model, child) {
-          return
-          
-           AdminScaffold(
-            backgroundColor: Colors.white,
+          return AdminScaffold(
+            backgroundColor: VendiColors.primaryColor,
             appBar: AppBar(
-              title: const Text('Sample'),
+              backgroundColor: VendiColors.masterColor,
+              centerTitle: true,
+              title: Text(
+                "VENDI ADMIN",
+                style: TextStyle(
+                    letterSpacing: 2,
+                    fontWeight: FontWeight.bold,
+                    fontSize: 22.sp),
+              ),
             ),
             sideBar: SideBar(
+              backgroundColor: VendiColors.primaryColor,
+              borderColor: VendiColors.primaryColor,
+              activeBackgroundColor: VendiColors.masterColor,
               items: const [
                 AdminMenuItem(
                   title: 'Dashboard',
@@ -45,8 +58,12 @@ class _AdminHomescreenState extends State<AdminHomescreen> {
                       route: Categoryscreen.id,
                     ),
                     AdminMenuItem(
-                      title: 'Second Level Item 2',
-                      route: '/secondLevelItem2',
+                      title: 'MainCategory',
+                      route: MainCategoryscreen.id,
+                    ),
+                    AdminMenuItem(
+                      title: 'SubCategory',
+                      route: SubCategoryscreen.id,
                     ),
                   ],
                 ),
@@ -54,13 +71,6 @@ class _AdminHomescreenState extends State<AdminHomescreen> {
               selectedRoute: model.selectedRoute ?? AdminHomescreen.id,
               onSelected: (item) {
                 model.setSelected(item, context);
-                      // if (item.route != null) {
-                // Navigator.of(context).pushNamed(item.route!);
-                // Navigator.push(
-                //   context,
-                //   MaterialPageRoute(builder: (context)=> model.selectedScreen!)
-                // );
-                // }
               },
               header: Container(
                 height: 50,
@@ -68,7 +78,7 @@ class _AdminHomescreenState extends State<AdminHomescreen> {
                 color: const Color(0xff444444),
                 child: const Center(
                   child: Text(
-                    'header',
+                    'Menu',
                     style: TextStyle(
                       color: Colors.white,
                     ),
@@ -76,43 +86,37 @@ class _AdminHomescreenState extends State<AdminHomescreen> {
                 ),
               ),
               footer: Container(
-                height: 50,
-                width: double.infinity,
-                color: const Color(0xff444444),
-                child: const Center(
-                  child: Text(
-                    'footer',
-                    style: TextStyle(
-                      color: Colors.white,
+                height: 120.h,
+                color: VendiColors.primaryColor,
+                child: Column(
+                  children: [
+                    VButton(
+                      width: MediaQuery.of(context).size.width * 0.3,
+                      onPressed: () {
+                        model.signout(context);
+                      },
+                      buttontext: "log out",
                     ),
-                  ),
+                    YMargin(10.h),
+                    Container(
+                      height: 50.h,
+                      width: double.infinity,
+                      color: const Color(0xff444444),
+                      child: const Center(
+                        child: Text(
+                          'footer',
+                          style: TextStyle(
+                            color: Colors.white,
+                          ),
+                        ),
+                      ),
+                    ),
+                  ],
                 ),
               ),
             ),
             body: SingleChildScrollView(
               child: model.selectedScreen,
-              //  Column(
-              //   children: [
-              //     Container(
-              //       alignment: Alignment.topLeft,
-              //       padding: const EdgeInsets.all(10),
-              //       child: const Text(
-              //         'Dashboard',
-              //         style: TextStyle(
-              //           fontWeight: FontWeight.w700,
-              //           fontSize: 36,
-              //         ),
-              //       ),
-              //     ),
-              //     VButton(
-              //       onPressed: () {
-              //         model.signout(context);
-              //       },
-              //       buttontext: "log out",
-              //     ),
-
-              //   ],
-              // ),
             ),
           );
         });

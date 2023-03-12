@@ -3,14 +3,14 @@ import 'package:flutter/material.dart';
 class SideMenuItem
 extends StatelessWidget
 {
-  final bool isSelected;
+  final bool? isSelected;
   final Function? onTap;
   final IconData? icon;
   final String? title;
   final List<Widget>? children;
   const SideMenuItem({
     Key? key,
-    required this.isSelected,
+     this.isSelected,
     this.onTap,
     this.icon,
     this.title,
@@ -20,8 +20,14 @@ extends StatelessWidget
 
   @override
   Widget build(BuildContext context) {
+    
     return  ListTile( 
       title:Text(title  ?? ""),
+      leading: Icon(icon),
+      selected: isSelected ?? false,
+      onTap: onTap!(),
+      
     );
+    
   }
 }
