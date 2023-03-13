@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_admin_scaffold/admin_scaffold.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:intl/intl.dart';
+import 'package:date_time_format/date_time_format.dart';
 import 'package:stacked/stacked.dart';
 import 'package:vendi/Admin/AdminScreens/admin_screens.dart';
 
@@ -42,7 +44,7 @@ class _AdminHomescreenState extends State<AdminHomescreen> {
             sideBar: SideBar(
               backgroundColor: VendiColors.primaryColor,
               borderColor: VendiColors.primaryColor,
-              activeBackgroundColor: VendiColors.masterColor,
+              activeBackgroundColor: VendiColors.primaryColor,
               items: const [
                 AdminMenuItem(
                   title: 'Dashboard',
@@ -75,14 +77,14 @@ class _AdminHomescreenState extends State<AdminHomescreen> {
               header: Container(
                 height: 50,
                 width: double.infinity,
-                color: const Color(0xff444444),
-                child: const Center(
-                  child: Text(
-                    'Menu',
-                    style: TextStyle(
-                      color: Colors.white,
-                    ),
-                  ),
+                color: VendiColors.masterColor.withOpacity(0.5),
+                child: Center(
+                  child: Text('Menu',
+                      style: Theme.of(context).textTheme.labelMedium?.copyWith(
+                          color: Colors.white,
+                          letterSpacing: 2,
+                          fontWeight: FontWeight.bold,
+                          fontSize: 18.sp)),
                 ),
               ),
               footer: Container(
@@ -91,6 +93,7 @@ class _AdminHomescreenState extends State<AdminHomescreen> {
                 child: Column(
                   children: [
                     VButton(
+                      padding: const EdgeInsets.all(4),
                       width: MediaQuery.of(context).size.width * 0.3,
                       onPressed: () {
                         model.signout(context);
@@ -98,16 +101,22 @@ class _AdminHomescreenState extends State<AdminHomescreen> {
                       buttontext: "log out",
                     ),
                     YMargin(10.h),
-                    Container(
+                    SizedBox(
                       height: 50.h,
                       width: double.infinity,
-                      color: const Color(0xff444444),
-                      child: const Center(
+                      // color: const Color(0xff444444),
+                      child: Center(
                         child: Text(
-                          'footer',
-                          style: TextStyle(
-                            color: Colors.white,
-                          ),
+                          DateTimeFormat.format(DateTime.now(),
+                              format: AmericanDateFormats.dayOfWeek),
+                          style: Theme.of(context)
+                              .textTheme
+                              .labelSmall
+                              ?.copyWith(
+                                  color: VendiColors.exColor,
+                                  letterSpacing: 2,
+                                  fontWeight: FontWeight.bold,
+                                  fontSize: 14.sp),
                         ),
                       ),
                     ),
