@@ -60,11 +60,11 @@ class _AdminHomescreenState extends State<AdminHomescreen> {
                       route: Categoryscreen.id,
                     ),
                     AdminMenuItem(
-                      title: 'MainCategory',
+                      title: 'Main Category',
                       route: MainCategoryscreen.id,
                     ),
                     AdminMenuItem(
-                      title: 'SubCategory',
+                      title: 'Sub Category',
                       route: SubCategoryscreen.id,
                     ),
                   ],
