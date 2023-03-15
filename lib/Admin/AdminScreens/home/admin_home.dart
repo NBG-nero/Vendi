@@ -49,11 +49,11 @@ class _AdminHomescreenState extends State<AdminHomescreen> {
                 AdminMenuItem(
                   title: 'Dashboard',
                   route: Dashboardscreen.id,
-                  icon: Icons.dashboard,
+                  icon: Icons.dashboard_outlined,
                 ),
                 AdminMenuItem(
                   title: 'Categories',
-                  icon: Icons.file_copy,
+                  icon: Icons.category_outlined,
                   children: [
                     AdminMenuItem(
                       title: 'Category',
