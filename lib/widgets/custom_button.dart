@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+
 import 'package:vendi/utilities/constants/colors.dart';
 
 class VButton extends StatelessWidget {
@@ -12,6 +13,8 @@ class VButton extends StatelessWidget {
   final Color? buttonTextCor;
   final Color? sideColor;
   final double? width;
+  final double? height;
+
 
   const VButton({
     Key? key,
@@ -25,6 +28,7 @@ class VButton extends StatelessWidget {
     this.buttonTextCor,
     this.sideColor,
     this.width,
+    this.height,
   }) : super(key: key);
 
   @override
@@ -34,10 +38,11 @@ class VButton extends StatelessWidget {
         color: color ?? VendiColors.primaryColorswatch.shade700,
         shape: shape ??
             RoundedRectangleBorder(
-              borderRadius: BorderRadius.circular(10),
+              borderRadius: BorderRadius.circular(8),
               side: BorderSide(color: sideColor ?? Colors.transparent),
             ),
         minWidth: width ?? MediaQuery.of(context).size.width * 0.9,
+        height: height,
         padding: padding ?? const EdgeInsets.fromLTRB(20, 15, 20, 15),
         child: child ??
             Text(buttontext ?? 'buttonText',
