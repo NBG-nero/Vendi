@@ -22,10 +22,11 @@ class Vendi extends StatelessWidget {
             theme: ThemeData.light(),
             builder: (context, widget) {
               return MediaQuery(
-                  data: MediaQuery.of(context).copyWith(textScaleFactor: 1.0),
-                  child: Builder(
-                    builder: (context) => widget!,
-                  ));
+                data: MediaQuery.of(context).copyWith(textScaleFactor: 1.0),
+                child: Builder(
+                  builder: (context) => widget!,
+                ),
+              );
             },
           );
         }));

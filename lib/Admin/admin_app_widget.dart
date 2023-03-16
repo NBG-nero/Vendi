@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_easyloading/flutter_easyloading.dart';
 
 import 'AdminScreens/home/admin_home.dart';
 
@@ -7,9 +8,10 @@ class AdminAppWidget extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return const MaterialApp(
+    return  MaterialApp(
       debugShowCheckedModeBanner: false,
-      home: AdminHomescreen(),
+      home:const  AdminHomescreen(),
+      builder:EasyLoading.init()
     );
   }
 }

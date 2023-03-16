@@ -1,8 +1,5 @@
-import 'dart:developer';
-import 'dart:io';
-
-import 'package:file_picker/file_picker.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_easyloading/flutter_easyloading.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:stacked/stacked.dart';
 import 'package:vendi/utilities/margins/margins.dart';
@@ -50,7 +47,7 @@ class _CategoryscreenState extends State<Categoryscreen> {
                     Column(
                       children: [
                         InkWell(
-                          onTap: model.getImage,
+                          onTap: model.pickImage,
                           child: Container(
                             height: 150.h,
                             width: 150.w,
@@ -60,17 +57,21 @@ class _CategoryscreenState extends State<Categoryscreen> {
                               border: Border.all(
                                   color: VendiColors.exColor.withOpacity(0.8)),
                             ),
-                            child: Center(
-                              child: model.avatarImageFile == null
-                                  ? Text(
+                            child: model.avatarImageFile == null
+                                ? Center(
+                                    child: Text(
                                       "Category Image",
                                       style: Theme.of(context)
                                           .textTheme
                                           .labelMedium
                                           ?.copyWith(),
-                                    )
-                                  : Image.file(model.avatarImageFile!,fit:BoxFit.cover),
-                            ),
+                                    ),
+                                  )
+                                : ClipRRect(
+                                    borderRadius: BorderRadius.circular(6),
+                                    child: Image.file(model.avatarImageFile!,
+                                        fit: BoxFit.cover),
+                                  ),
                           ),
                         ),
                         YMargin(10.h),
@@ -79,7 +80,7 @@ class _CategoryscreenState extends State<Categoryscreen> {
                           padding: const EdgeInsets.all(4),
                           width: MediaQuery.of(context).size.width * 0.3,
                           height: 38.h,
-                          onPressed: model.getImage,
+                          onPressed: model.pickImage,
                           child: Text(
                             'Upload Image',
                             style: Theme.of(context)
@@ -94,8 +95,9 @@ class _CategoryscreenState extends State<Categoryscreen> {
                     Column(children: [
                       SizedBox(
                         width: 180.w,
-                        child: const TextField(
-                          decoration: InputDecoration(
+                        child: TextField(
+                          controller: model.catNameCtrl,
+                          decoration: const InputDecoration(
                             label: Text('Enter Category Name'),
                             contentPadding: EdgeInsets.zero,
                           ),
@@ -106,7 +108,9 @@ class _CategoryscreenState extends State<Categoryscreen> {
                         // mainAxisAlignment: MainAxisAlignment.spaceBetween,
                         children: [
                           VButton(
-                            onPressed: () {},
+                            onPressed: () {
+                              model.clear();
+                            },
                             padding: const EdgeInsets.all(4),
                             shape: RoundedRectangleBorder(
                                 borderRadius: BorderRadius.circular(4),
@@ -126,7 +130,12 @@ class _CategoryscreenState extends State<Categoryscreen> {
                           ),
                           XMargin(40.w),
                           VButton(
-                            onPressed: () {},
+                            onPressed: () {
+                              model.uploadImage();
+                              // model.isBusy == true
+                              //     ? EasyLoading.show()
+                              //     : EasyLoading.dismiss();
+                            },
                             padding: const EdgeInsets.all(0),
                             shape: RoundedRectangleBorder(
                                 borderRadius: BorderRadius.circular(4),
