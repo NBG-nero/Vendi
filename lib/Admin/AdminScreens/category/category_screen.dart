@@ -25,6 +25,7 @@ class _CategoryscreenState extends State<Categoryscreen> {
         viewModelBuilder: () => CategoryViewModel(),
         onModelReady: (ca) {
           ca.setInitialised(true);
+          // ca.dispose();
         },
         builder: (context, model, child) {
           return Column(
@@ -143,10 +144,6 @@ class _CategoryscreenState extends State<Categoryscreen> {
                                           .validate()) {
                                         model.uploadImage();
                                       }
-
-                                      // model.isBusy == true
-                                      //     ? EasyLoading.show()
-                                      //     : EasyLoading.dismiss();
                                     },
                                     padding: const EdgeInsets.all(0),
                                     shape: RoundedRectangleBorder(

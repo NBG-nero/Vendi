@@ -5,13 +5,13 @@ import 'package:file_picker/file_picker.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_easyloading/flutter_easyloading.dart';
-import 'package:image_picker/image_picker.dart';
+
 
 import '../home/admin_home_view_model.dart';
 import 'package:vendi/utilities/utils.dart';
 
 class CategoryViewModel extends AdminHomeViewModel {
-  dynamic image;
+  // dynamic image;
   String? fileName;
   File? avatarImageFile;
   final TextEditingController catNameCtrl = TextEditingController();
@@ -19,14 +19,13 @@ class CategoryViewModel extends AdminHomeViewModel {
 
   pickImage() async {
     FilePickerResult? result = await FilePicker.platform.pickFiles(
-      type: FileType.image,
+      type: FileType.any,
       allowMultiple: false,
     );
     if (result != null) {
       avatarImageFile = File(result.files.single.path!);
-      image = result.files.first.bytes;
+      // image = result.files.first.bytes;
       fileName = result.files.first.name;
-      // fileName = result.files.single.name;
       log(fileName.toString());
       notifyListeners();
     } else {
@@ -38,7 +37,6 @@ class CategoryViewModel extends AdminHomeViewModel {
   }
 
   uploadImage() async {
-    // setBusy(true);
     EasyLoading.show();
     var ref = firebaseService.firebaseStorage.ref('categoryImage/$fileName');
     try {
@@ -71,29 +69,5 @@ class CategoryViewModel extends AdminHomeViewModel {
     catNameCtrl.clear();
     avatarImageFile = null;
     notifyListeners();
-  }
-
-
-
-  Future getImage() async {
-    ImagePicker imagePicker = ImagePicker();
-    XFile? pickedFile = await imagePicker
-        .pickImage(source: ImageSource.gallery)
-        .catchError((err) {
-      showErrorToast(err.toString());
-      return err;
-    });
-    File? image;
-    if (pickedFile != null) {
-      image = File(pickedFile.path);
-    }
-    if (image != null) {
-      avatarImageFile = image;
-      setBusy(true);
-      notifyListeners();
-    } else {
-      setBusy(false);
-      notifyListeners();
-    }
   }
 }
