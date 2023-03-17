@@ -29,6 +29,12 @@ class ValueValidator {
     return null;
   }
 
+  validateCat(String category) {
+    if (category.isEmpty) {
+      return 'Enter Category Name';
+    }
+  }
+
   String? isEmpty(value) {
     if (value.isEmpty) {
       return 'Empty field';

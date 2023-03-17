@@ -15,6 +15,7 @@ class CategoryViewModel extends AdminHomeViewModel {
   String? fileName;
   File? avatarImageFile;
   final TextEditingController catNameCtrl = TextEditingController();
+  final formKey = GlobalKey<FormState>();
 
   pickImage() async {
     FilePickerResult? result = await FilePicker.platform.pickFiles(
