@@ -183,6 +183,8 @@ class _CategoryscreenState extends State<Categoryscreen> {
                   ),
                 ),
               ),
+              YMargin(10.h), 
+              CategoryListWidget(viewModel: model,),
             ],
           );
         });

@@ -10,3 +10,4 @@ export 'login_loading_view.dart';
 export 'onboard_widget.dart';
 export 'search_field.dart';
 export 'signup_loading_view.dart';
+export 'categories_list_widget.dart';
