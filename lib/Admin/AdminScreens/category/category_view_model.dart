@@ -49,7 +49,7 @@ class CategoryViewModel extends AdminHomeViewModel {
         if (value.isNotEmpty) {
           firebaseService.saveCategory({
             'catName': catNameCtrl.text,
-            'image': "$value.png",
+            'image': value,
             'active': true,
           }).then((value) {
             clear();
