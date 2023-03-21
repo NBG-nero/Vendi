@@ -1,3 +1,4 @@
+import 'package:cached_network_image/cached_network_image.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
@@ -37,39 +38,47 @@ class CategoryListWidget extends StatelessWidget {
             shrinkWrap: true,
             physics: const NeverScrollableScrollPhysics(),
             gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
-                crossAxisCount: 4, crossAxisSpacing: 3.w, mainAxisSpacing: 3.h),
+                crossAxisCount: 3, crossAxisSpacing: 3.w, mainAxisSpacing: 3.h),
             itemCount: snapshot.data!.size,
             itemBuilder: (context, index) {
               var data = snapshot.data!.docs[index];
+              String imageUrl = data["image"];
+              String imageText = data["catName"];
               return Card(
                   color: VendiColors.masterColor.withOpacity(0.3),
                   child: Padding(
-                    padding: const EdgeInsets.all(8.0),
+                    padding: const EdgeInsets.all(6.0),
                     child: Column(
                       mainAxisSize: MainAxisSize.min,
                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
                       children: [
-                        Image.network(
-                          data["image"],
-                          fit: BoxFit.scaleDown,
-                          height: 50.h,
-                          width: 50.w,
+                        SizedBox(
+                          height: 70.h,
+                          width: 70.w,
+                          child: CachedNetworkImage(
+                              imageUrl: imageUrl,
+                              fit: BoxFit.scaleDown,
+                              placeholder: (context, url) =>
+                                  SizedBox(height:40.h,
+                                    child: CircularProgressIndicator.adaptive(
+                                        backgroundColor:
+                                            VendiColors.masterColor),
+                                  )),
                         ),
                         SizedBox(
-                          height: 30.h,
-                          child: Text(
-                            data['catName'],
-                            style: Theme.of(context)
-                                .textTheme
-                                .labelSmall
-                                ?.copyWith(
-                                    overflow: data['catName']
-                                                .toString()
-                                                .characters
-                                                .length >
-                                            22
-                                        ? TextOverflow.ellipsis
-                                        : TextOverflow.visible),
+                          height: 40.h,
+                          child: Center(
+                            child: Text(
+                              data['catName'],
+                              textAlign: TextAlign.center,
+                              style: Theme.of(context)
+                                  .textTheme
+                                  .labelMedium
+                                  ?.copyWith(
+                                      overflow: imageText.characters.length > 24
+                                          ? TextOverflow.ellipsis
+                                          : TextOverflow.visible),
+                            ),
                           ),
                         ),
                       ],
