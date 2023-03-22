@@ -58,8 +58,8 @@ class CategoryListWidget extends StatelessWidget {
                           child: CachedNetworkImage(
                               imageUrl: imageUrl,
                               fit: BoxFit.scaleDown,
-                              placeholder: (context, url) =>
-                                  SizedBox(height:40.h,
+                              placeholder: (context, url) => SizedBox(
+                                    height: 40.h,
                                     child: CircularProgressIndicator.adaptive(
                                         backgroundColor:
                                             VendiColors.masterColor),

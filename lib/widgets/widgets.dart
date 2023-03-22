@@ -11,3 +11,4 @@ export 'onboard_widget.dart';
 export 'search_field.dart';
 export 'signup_loading_view.dart';
 export 'categories_list_widget.dart';
+export'main_cat_drop_down_widget.dart';
