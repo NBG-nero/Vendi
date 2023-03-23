@@ -20,6 +20,10 @@ class FirebaseService {
   CollectionReference categories =
       FirebaseFirestore.instance.collection('categories');
 
+       CollectionReference mainCat =
+      FirebaseFirestore.instance.collection('mainCategories');
+      
+
   addUser(name, email, role) async {
     final uid = await authService.getCurrentUid();
     log("Adduser was called");
@@ -33,7 +37,7 @@ class FirebaseService {
     });
   }
 
- Future <void>saveCategory(Map<String, dynamic> data) {
-   return  categories.doc(data['catName']).set(data);
+  Future<void> saveCategory({ CollectionReference? reference,Map<String, dynamic>? data,String? docName}) {
+    return reference!.doc(docName).set(data);
   }
 }

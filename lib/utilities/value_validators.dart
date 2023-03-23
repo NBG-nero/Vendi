@@ -34,6 +34,11 @@ class ValueValidator {
       return 'Enter Category Name';
     }
   }
+   validateMainCat(String mainCat) {
+    if (mainCat.isEmpty) {
+      return 'Enter Main Category Name';
+    }
+  }
 
   String? isEmpty(value) {
     if (value.isEmpty) {

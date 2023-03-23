@@ -8,9 +8,6 @@ import 'package:firebase_storage/firebase_storage.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_easyloading/flutter_easyloading.dart';
 
-
-
-
 import '../home/admin_home_view_model.dart';
 import 'package:vendi/utilities/utils.dart';
 
@@ -47,11 +44,15 @@ class CategoryViewModel extends AdminHomeViewModel {
       await ref.putFile(avatarImageFile!);
       await ref.getDownloadURL().then((value) {
         if (value.isNotEmpty) {
-          firebaseService.saveCategory({
-            'catName': catNameCtrl.text,
-            'image': value,
-            'active': true,
-          }).then((value) {
+          firebaseService.saveCategory(
+            data: {
+              'catName': catNameCtrl.text,
+              'image': value,
+              'active': true,
+            },
+            reference: firebaseService.categories,
+            docName: catNameCtrl.text,
+          ).then((value) {
             clear();
             EasyLoading.dismiss();
           });

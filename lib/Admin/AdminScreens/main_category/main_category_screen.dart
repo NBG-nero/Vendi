@@ -1,9 +1,13 @@
-
-
 import 'package:flutter/material.dart';
+
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:stacked/stacked.dart';
 
 import '../../../utilities/constants/constants.dart';
+import '../../../utilities/margins/margins.dart';
+import '../../../utilities/value_validators.dart';
+import '../../../widgets/widgets.dart';
+import 'main_category_view_model.dart';
 
 class MainCategoryscreen extends StatelessWidget {
   static const String id = "Main-Category";
@@ -12,25 +16,111 @@ class MainCategoryscreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Column(
-      crossAxisAlignment:CrossAxisAlignment.start,
-      children: [
-        Container(
-          alignment: Alignment.topLeft,
-          padding: const EdgeInsets.all(10),
-          child: const Text(
-            'MainCategory',
-            style: TextStyle(
-              fontWeight: FontWeight.w700,
-              fontSize: 36,
+    return ViewModelBuilder<MainCategoryViewModel>.reactive(
+        viewModelBuilder: () => MainCategoryViewModel(),
+        onModelReady: (mc) {
+          mc.setInitialised(true);
+        },
+        builder: (context, model, child) {
+          return Padding(
+            padding: const EdgeInsets.all(8.0),
+            child: Form(
+              key: model.mformKey,
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  Container(
+                    alignment: Alignment.topLeft,
+                    padding: const EdgeInsets.all(10),
+                    child: const Text(
+                      'MainCategory',
+                      style: TextStyle(
+                        fontWeight: FontWeight.w700,
+                        fontSize: 36,
+                      ),
+                    ),
+                  ),
+                  Divider(thickness: 1.h, color: VendiColors.masterColor),
+                  MainCatDropDown(
+                    viewModel: model,
+                  ),
+                  YMargin(8.h),
+                  if (model.noCatSelected == true)
+                    Text(
+                      'No Category Selected',
+                      style: Theme.of(context).textTheme.labelMedium?.copyWith(
+                            color: Colors.red,
+                          ),
+                    ),
+                  SizedBox(
+                    width: 180.w,
+                    child: TextFormField(
+                      validator: (val) =>
+                          ValueValidator().validateMainCat(val!),
+                      controller: model.mainCatNameCtrl,
+                      decoration: const InputDecoration(
+                        label: Text('Enter Main Category Name'),
+                        contentPadding: EdgeInsets.zero,
+                      ),
+                    ),
+                  ),
+                  YMargin(20.h),
+                  Row(children: [
+                    VButton(
+                      onPressed: () {
+                        model.clear();
+                      },
+                      padding: const EdgeInsets.all(4),
+                      shape: RoundedRectangleBorder(
+                          borderRadius: BorderRadius.circular(4),
+                          side: BorderSide(
+                            color: VendiColors.masterColor,
+                          )),
+                      width: MediaQuery.of(context).size.width * 0.14,
+                      height: 35.h,
+                      color: VendiColors.primaryColorswatch[100],
+                      child: Text(
+                        'Cancel',
+                        style: Theme.of(context)
+                            .textTheme
+                            .labelMedium
+                            ?.copyWith(color: VendiColors.masterColor),
+                      ),
+                    ),
+                    XMargin(40.w),
+                    VButton(
+                      onPressed: () {
+                        if (model.selectedValue == null) {
+                          model.setnoCatselected(true);
+                          return;
+                        }
+                        if (model.formKey.currentState!.validate()) {
+                          model.uploadTask();
+                        }
+                      },
+                      padding: const EdgeInsets.all(0),
+                      shape: RoundedRectangleBorder(
+                          borderRadius: BorderRadius.circular(4),
+                          side: BorderSide(
+                            color: VendiColors.masterColor,
+                          )),
+                      width: MediaQuery.of(context).size.width * 0.14,
+                      height: 35.h,
+                      color: VendiColors.masterColor,
+                      child: Text(
+                        'Save',
+                        style: Theme.of(context)
+                            .textTheme
+                            .labelMedium
+                            ?.copyWith(color: VendiColors.primaryColor),
+                      ),
+                    ),
+                  ]),
+                  Divider(thickness: 1.h, color: VendiColors.masterColor),
+                ],
+              ),
             ),
-          ),
-        ),
-                Divider(thickness: 1.h, color: VendiColors.masterColor),
-                Divider(thickness: 1.h, color: VendiColors.masterColor),
-
-
-      ],
-    );
+          );
+        });
   }
 }
