@@ -33,11 +33,11 @@ class MainCategoryscreen extends StatelessWidget {
                   Container(
                     alignment: Alignment.topLeft,
                     padding: const EdgeInsets.all(10),
-                    child: const Text(
+                    child: Text(
                       'MainCategory',
                       style: TextStyle(
                         fontWeight: FontWeight.w700,
-                        fontSize: 36,
+                        fontSize: 30.sp,
                       ),
                     ),
                   ),

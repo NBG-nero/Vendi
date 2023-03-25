@@ -7,6 +7,7 @@ import 'package:vendi/utilities/utils.dart';
 
 import '../Admin/AdminScreens/main_category/main_category_view_model.dart';
 import '../utilities/margins/margins.dart';
+import 'widgets.dart';
 
 class MainCategoryList extends StatelessWidget {
   final MainCategoryViewModel? viewModel;
@@ -20,21 +21,50 @@ class MainCategoryList extends StatelessWidget {
   Widget build(BuildContext context) {
     return Column(
       children: [
-        viewModel!.qSnapshot == null ? 
-       const  Text("Loading.."):
-        DropdownButton(
-          value: viewModel!.selVal,
-          hint: const Text('Select Category'),
-          items: viewModel!.qSnapshot!.docs.map((e) {
-            return DropdownMenuItem<String>(
-              value: e['catName'],
-              child: Text(e['catName']),
-            );
-          }).toList(),
-          onChanged: (val) {
-            viewModel!.setSelVal(val);
-          },
-        ),
+        viewModel!.qSnapshot == null
+            ? const Text("Loading..")
+            : Row(
+                children: [
+                  DropdownButton(
+                    value: viewModel!.selVal,
+                    hint:  Text('Select Category', 
+                         style: Theme.of(context).textTheme.labelMedium?.copyWith(color: VendiColors.primaryColor,fontSize:16.sp),
+                    
+                    ),
+                    items: viewModel!.qSnapshot!.docs.map((e) {
+                      return DropdownMenuItem<String>(
+                        value: e['catName'],
+                        child: Text(e['catName']),
+                      );
+                    }).toList(),
+                    onChanged: (val) {
+                      viewModel!.setSelVal(val);
+                    },
+                  ),
+                  XMargin(20.w),
+                  VButton(
+                    onPressed: () {
+                      viewModel!.setSelVal(null);
+                    },
+                    padding: const EdgeInsets.all(0),
+                    shape: RoundedRectangleBorder(
+                        borderRadius: BorderRadius.circular(4),
+                        side: BorderSide(
+                          color: VendiColors.masterColor,
+                        )),
+                    width: MediaQuery.of(context).size.width * 0.2,
+                    height: 35.h,
+                    color: VendiColors.masterColor,
+                    child: Text(
+                      'Show All',
+                      style: Theme.of(context)
+                          .textTheme
+                          .labelMedium
+                          ?.copyWith(color: VendiColors.primaryColor),
+                    ),
+                  ),
+                ],
+              ),
         YMargin(10.h),
         StreamBuilder<QuerySnapshot>(
             stream: viewModel!.firebaseService.mainCat
