@@ -1,14 +1,15 @@
 export 'banner_widget.dart';
 export 'bottomnav_item.dart';
 export 'brand_highlights.dart';
+export 'categories_list_widget.dart';
 export 'category_widget.dart';
 export 'custom_appbar.dart';
 export 'custom_button.dart';
 export 'custom_textfield.dart';
 export 'dots_indicator_widget.dart';
 export 'login_loading_view.dart';
+export 'main_cat_drop_down_widget.dart';
+export 'maincat_list_widget.dart';
 export 'onboard_widget.dart';
 export 'search_field.dart';
 export 'signup_loading_view.dart';
-export 'categories_list_widget.dart';
-export'main_cat_drop_down_widget.dart';

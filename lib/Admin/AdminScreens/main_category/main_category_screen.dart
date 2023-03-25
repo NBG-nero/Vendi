@@ -41,9 +41,11 @@ class MainCategoryscreen extends StatelessWidget {
                     ),
                   ),
                   Divider(thickness: 1.h, color: VendiColors.masterColor),
-                  MainCatDropDown(
-                    viewModel: model,
-                  ),
+                  model.qSnapshot == null
+                      ? const Text("Loading...")
+                      : MainCatDropDown(
+                          viewModel: model,
+                        ),
                   YMargin(8.h),
                   if (model.noCatSelected == true)
                     Text(
@@ -117,6 +119,20 @@ class MainCategoryscreen extends StatelessWidget {
                     ),
                   ]),
                   Divider(thickness: 1.h, color: VendiColors.masterColor),
+                  Container(
+                    alignment: Alignment.topLeft,
+                    padding: const EdgeInsets.all(10),
+                    child: Text(
+                      'Main Category List',
+                      style: TextStyle(
+                        fontWeight: FontWeight.w700,
+                        fontSize: 18.sp,
+                      ),
+                    ),
+                  ),
+                  MainCategoryList(
+                    viewModel: model,
+                  ),
                 ],
               ),
             ),
