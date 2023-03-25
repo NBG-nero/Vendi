@@ -20,6 +20,7 @@ class MainCategoryscreen extends StatelessWidget {
         viewModelBuilder: () => MainCategoryViewModel(),
         onModelReady: (mc) {
           mc.setInitialised(true);
+          mc.getCatList();
         },
         builder: (context, model, child) {
           return Padding(
@@ -55,7 +56,7 @@ class MainCategoryscreen extends StatelessWidget {
                           ),
                     ),
                   SizedBox(
-                    width: 180.w,
+                    width: 210.w,
                     child: TextFormField(
                       validator: (val) =>
                           ValueValidator().validateMainCat(val!),
@@ -96,7 +97,7 @@ class MainCategoryscreen extends StatelessWidget {
                           model.setnoCatselected(true);
                           return;
                         }
-                        if (model.formKey.currentState!.validate()) {
+                        if (model.mformKey.currentState!.validate()) {
                           model.uploadTask();
                         }
                       },

@@ -69,7 +69,7 @@ class CategoryListWidget extends StatelessWidget {
                           height: 40.h,
                           child: Center(
                             child: Text(
-                              data['catName'],
+                            imageText,
                               textAlign: TextAlign.center,
                               style: Theme.of(context)
                                   .textTheme

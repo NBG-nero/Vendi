@@ -6,6 +6,7 @@ import '../category/category_view_model.dart';
 
 class MainCategoryViewModel extends CategoryViewModel {
   Object? selectedValue;
+  Object? selVal;
   TextEditingController mainCatNameCtrl = TextEditingController();
 
   final mformKey = GlobalKey<FormState>();
@@ -21,6 +22,10 @@ class MainCategoryViewModel extends CategoryViewModel {
     selectedValue = val;
     notifyListeners();
   }
+setSelVal(val) {
+    selVal = val;
+    notifyListeners();
+  }
 
   @override
   clear() {
@@ -32,6 +37,7 @@ class MainCategoryViewModel extends CategoryViewModel {
   getCatList() {
     return firebaseService.categories.get().then((QuerySnapshot querySnapshot) {
       qSnapshot = querySnapshot;
+      notifyListeners();
     });
   }
 
