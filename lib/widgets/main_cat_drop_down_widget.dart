@@ -20,7 +20,7 @@ class MainCatDropDown extends StatelessWidget {
           style: Theme.of(context)
               .textTheme
               .labelMedium
-              ?.copyWith(color: VendiColors.primaryColor, fontSize: 16.sp)),
+              ?.copyWith(color: VendiColors.masterColor, fontSize: 17.sp)),
       items: viewModel!.qSnapshot!.docs.map((e) {
         return DropdownMenuItem<String>(
           value: e['catName'],

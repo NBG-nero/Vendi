@@ -12,6 +12,7 @@ class MainCategoryViewModel extends CategoryViewModel {
   final mformKey = GlobalKey<FormState>();
   bool noCatSelected = false;
   QuerySnapshot? qSnapshot;
+  QuerySnapshot? rSnapshot;
 
   setnoCatselected(val) {
     noCatSelected = val;
@@ -22,7 +23,8 @@ class MainCategoryViewModel extends CategoryViewModel {
     selectedValue = val;
     notifyListeners();
   }
-setSelVal(val) {
+
+  setSelVal(val) {
     selVal = val;
     notifyListeners();
   }
@@ -37,6 +39,7 @@ setSelVal(val) {
   getCatList() {
     return firebaseService.categories.get().then((QuerySnapshot querySnapshot) {
       qSnapshot = querySnapshot;
+      rSnapshot = querySnapshot;
       notifyListeners();
     });
   }

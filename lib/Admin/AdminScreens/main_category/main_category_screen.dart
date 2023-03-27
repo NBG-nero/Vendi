@@ -44,7 +44,7 @@ class MainCategoryscreen extends StatelessWidget {
                   Divider(thickness: 1.h, color: VendiColors.masterColor),
                   model.qSnapshot == null
                       ? const Text("Loading...")
-                      : MainCatDropDown(
+                      :  MainCatDropDown(
                           viewModel: model,
                         ),
                   YMargin(8.h),
@@ -61,8 +61,11 @@ class MainCategoryscreen extends StatelessWidget {
                       validator: (val) =>
                           ValueValidator().validateMainCat(val!),
                       controller: model.mainCatNameCtrl,
-                      decoration: const InputDecoration(
-                        label: Text('Enter Main Category Name'),
+                      decoration:  InputDecoration(
+                        label: Text('Enter Main Category Name', 
+                        style: Theme.of(context).textTheme.labelMedium?.copyWith(
+                          color: VendiColors.masterColor, fontSize: 17.sp)
+                        ),
                         contentPadding: EdgeInsets.zero,
                       ),
                     ),
@@ -131,6 +134,7 @@ class MainCategoryscreen extends StatelessWidget {
                       ),
                     ),
                   ),
+                  YMargin(5.h),
                   MainCategoryList(
                     viewModel: model,
                   ),

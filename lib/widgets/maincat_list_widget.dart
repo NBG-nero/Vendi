@@ -1,3 +1,5 @@
+import 'dart:developer';
+
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
@@ -27,11 +29,12 @@ class MainCategoryList extends StatelessWidget {
                 children: [
                   DropdownButton(
                     value: viewModel!.selVal,
-                    hint:  Text('Select Category', 
-                         style: Theme.of(context).textTheme.labelMedium?.copyWith(color: VendiColors.primaryColor,fontSize:16.sp),
-                    
+                    hint: Text(
+                      'Select Category',
+                      style: Theme.of(context).textTheme.labelMedium?.copyWith(
+                          color: VendiColors.masterColor, fontSize: 17.sp),
                     ),
-                    items: viewModel!.qSnapshot!.docs.map((e) {
+                    items: viewModel!.rSnapshot!.docs.map((e) {
                       return DropdownMenuItem<String>(
                         value: e['catName'],
                         child: Text(e['catName']),
@@ -77,8 +80,9 @@ class MainCategoryList extends StatelessWidget {
                 return const Text('Something went wrong');
               }
               if (snapshot.connectionState == ConnectionState.waiting) {
-                showWarningToast("Loading...");
-                return const CircularProgressIndicator.adaptive();
+                log("Loading...");
+                // showWarningToast("Loading...");
+                // return const CircularProgressIndicator.adaptive();
               }
               if (snapshot.data!.size == 0) {
                 showErrorToast("No Main Categories Added");
@@ -128,3 +132,12 @@ class MainCategoryList extends StatelessWidget {
     );
   }
 }
+
+//mobiles under elect accessories 
+//laptop under elect devices
+//pendrives under elect accessories 
+//Fruits under groceries 
+//vegetables under groceries 
+//tv under home appliances 
+//washing mashine under home appliances 
+
