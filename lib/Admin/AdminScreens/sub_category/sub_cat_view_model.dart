@@ -3,34 +3,33 @@ import 'dart:io';
 
 import 'package:file_picker/file_picker.dart';
 import 'package:firebase_core/firebase_core.dart';
-// import 'package:firebase_storage/firebase_storage.dart';
-import 'package:firebase_storage/firebase_storage.dart' as firebase_storage;
-
 import 'package:flutter/material.dart';
 import 'package:flutter_easyloading/flutter_easyloading.dart';
 import 'package:mime_type/mime_type.dart';
 import 'package:path/path.dart';
+import 'package:vendi/Admin/AdminScreens/main_category/main_category_view_model.dart';
+import 'package:firebase_storage/firebase_storage.dart' as firebase_storage;
 
-import '../home/admin_home_view_model.dart';
-import 'package:vendi/utilities/utils.dart';
+import '../../../utilities/utils.dart';
 
-class CategoryViewModel extends AdminHomeViewModel {
-  // dynamic image;
-  String? fileName;
-  File? avatarImageFile;
-  final TextEditingController catNameCtrl = TextEditingController();
-  final formKey = GlobalKey<FormState>();
+class SubCategoryViewModel extends MainCategoryViewModel {
+  String? subfileName;
 
+  File? imageFile;
+  final TextEditingController subcatNameCtrl = TextEditingController();
+  final sformKey = GlobalKey<FormState>();
+
+  @override
   pickImage() async {
     FilePickerResult? result = await FilePicker.platform.pickFiles(
       type: FileType.any,
       allowMultiple: false,
     );
     if (result != null) {
-      avatarImageFile = File(result.files.single.path!);
+      imageFile = File(result.files.single.path!);
       // image = result.files.first.bytes;
-      fileName = result.files.first.name;
-      log(fileName.toString());
+      subfileName = result.files.first.name;
+      log(subfileName.toString());
       notifyListeners();
     } else {
       showErrorToast("Image select failed");
@@ -40,26 +39,28 @@ class CategoryViewModel extends AdminHomeViewModel {
     notifyListeners();
   }
 
+  @override
   uploadImage() async {
     EasyLoading.show();
-    var ref = firebaseService.firebaseStorage.ref('categoryImage/$fileName');
+    var ref =
+        firebaseService.firebaseStorage.ref('subCategoryImage/$subfileName');
     try {
       String? mimiType = mime(
-        basename(fileName!),
+        basename(subfileName!),
       );
       var metadata = firebase_storage.SettableMetadata(contentType: mimiType);
       firebase_storage.TaskSnapshot uploadSnapshot =
-          await ref.putFile(avatarImageFile!, metadata);
+          await ref.putFile(imageFile!, metadata);
       await uploadSnapshot.ref.getDownloadURL().then((value) {
         if (value.isNotEmpty) {
           firebaseService.saveCategory(
             data: {
-              'catName': catNameCtrl.text,
-              'image': value,
+              'subCatName': subcatNameCtrl.text,
+              'image': '$value.png',
               'active': true,
             },
             reference: firebaseService.categories,
-            docName: catNameCtrl.text,
+            docName: subcatNameCtrl.text,
           ).then((value) {
             clear();
             EasyLoading.dismiss();
@@ -78,9 +79,10 @@ class CategoryViewModel extends AdminHomeViewModel {
     }
   }
 
+  @override
   clear() {
-    catNameCtrl.clear();
-    avatarImageFile = null;
+    subcatNameCtrl.clear();
+    imageFile = null;
     notifyListeners();
   }
 }

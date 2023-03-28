@@ -34,7 +34,7 @@ class MainCategoryList extends StatelessWidget {
                       style: Theme.of(context).textTheme.labelMedium?.copyWith(
                           color: VendiColors.masterColor, fontSize: 17.sp),
                     ),
-                    items: viewModel!.rSnapshot!.docs.map((e) {
+                    items: viewModel!.qSnapshot!.docs.map((e) {
                       return DropdownMenuItem<String>(
                         value: e['catName'],
                         child: Text(e['catName']),
@@ -71,7 +71,7 @@ class MainCategoryList extends StatelessWidget {
         YMargin(10.h),
         StreamBuilder<QuerySnapshot>(
             stream: viewModel!.firebaseService.mainCat
-                .where('category', isEqualTo: viewModel!.selVal)
+                .where('category', isEqualTo: viewModel?.selVal)
                 .snapshots(),
             builder: (context, AsyncSnapshot<QuerySnapshot> snapshot) {
               if (snapshot.hasError) {
@@ -80,9 +80,8 @@ class MainCategoryList extends StatelessWidget {
                 return const Text('Something went wrong');
               }
               if (snapshot.connectionState == ConnectionState.waiting) {
-                log("Loading...");
-                // showWarningToast("Loading...");
-                // return const CircularProgressIndicator.adaptive();
+                showWarningToast("Loading...");
+                return const CircularProgressIndicator.adaptive();
               }
               if (snapshot.data!.size == 0) {
                 showErrorToast("No Main Categories Added");
@@ -132,12 +131,3 @@ class MainCategoryList extends StatelessWidget {
     );
   }
 }
-
-//mobiles under elect accessories 
-//laptop under elect devices
-//pendrives under elect accessories 
-//Fruits under groceries 
-//vegetables under groceries 
-//tv under home appliances 
-//washing mashine under home appliances 
-

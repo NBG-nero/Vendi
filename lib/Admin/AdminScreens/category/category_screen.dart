@@ -35,10 +35,10 @@ class _CategoryscreenState extends State<Categoryscreen> {
                   alignment: Alignment.topLeft,
                   padding: const EdgeInsets.all(10),
                   child: Text(
-                    'Category',
+                    'Categories',
                     style: TextStyle(
                       fontWeight: FontWeight.w700,
-                      fontSize: 26.sp,
+                      fontSize: 30.sp,
                     ),
                   ),
                 ),
@@ -75,7 +75,8 @@ class _CategoryscreenState extends State<Categoryscreen> {
                                       )
                                     : ClipRRect(
                                         borderRadius: BorderRadius.circular(6),
-                                        child: Image.file(model.avatarImageFile!,
+                                        child: Image.file(
+                                            model.avatarImageFile!,
                                             fit: BoxFit.cover),
                                       ),
                               ),
@@ -133,7 +134,8 @@ class _CategoryscreenState extends State<Categoryscreen> {
                                   style: Theme.of(context)
                                       .textTheme
                                       .labelMedium
-                                      ?.copyWith(color: VendiColors.masterColor),
+                                      ?.copyWith(
+                                          color: VendiColors.masterColor),
                                 ),
                               ),
                               XMargin(40.w),
@@ -148,7 +150,8 @@ class _CategoryscreenState extends State<Categoryscreen> {
                                       },
                                       padding: const EdgeInsets.all(0),
                                       shape: RoundedRectangleBorder(
-                                          borderRadius: BorderRadius.circular(4),
+                                          borderRadius:
+                                              BorderRadius.circular(4),
                                           side: BorderSide(
                                             color: VendiColors.masterColor,
                                           )),
@@ -162,7 +165,8 @@ class _CategoryscreenState extends State<Categoryscreen> {
                                             .textTheme
                                             .labelMedium
                                             ?.copyWith(
-                                                color: VendiColors.primaryColor),
+                                                color:
+                                                    VendiColors.primaryColor),
                                       ),
                                     ),
                             ],

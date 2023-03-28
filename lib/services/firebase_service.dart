@@ -1,5 +1,6 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
-import 'package:firebase_storage/firebase_storage.dart';
+// import 'package:firebase_storage/firebase_storage.dart';
+import 'package:firebase_storage/firebase_storage.dart' as firebase_storage;
 
 import 'dart:developer';
 
@@ -9,7 +10,9 @@ import 'authservice.dart';
 
 class FirebaseService {
   final firebaseFirestore = FirebaseFirestore.instance;
-  final firebaseStorage = FirebaseStorage.instance;
+  firebase_storage.FirebaseStorage firebaseStorage =
+      firebase_storage.FirebaseStorage.instance;
+  // final firebaseStorage = FirebaseStorage.instance;
   AuthService authService = AuthService();
   CollectionReference homeBanner =
       FirebaseFirestore.instance.collection('homeBanner');
@@ -20,9 +23,8 @@ class FirebaseService {
   CollectionReference categories =
       FirebaseFirestore.instance.collection('categories');
 
-       CollectionReference mainCat =
+  CollectionReference mainCat =
       FirebaseFirestore.instance.collection('mainCategories');
-      
 
   addUser(name, email, role) async {
     final uid = await authService.getCurrentUid();
@@ -37,7 +39,10 @@ class FirebaseService {
     });
   }
 
-  Future<void> saveCategory({ CollectionReference? reference,Map<String, dynamic>? data,String? docName}) {
+  Future<void> saveCategory(
+      {CollectionReference? reference,
+      Map<String, dynamic>? data,
+      String? docName}) {
     return reference!.doc(docName).set(data);
   }
 }
