@@ -1,6 +1,7 @@
 import 'dart:developer';
 import 'dart:io';
 
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:file_picker/file_picker.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
@@ -18,6 +19,23 @@ class SubCategoryViewModel extends MainCategoryViewModel {
   File? imageFile;
   final TextEditingController subcatNameCtrl = TextEditingController();
   final sformKey = GlobalKey<FormState>();
+
+  Object? selectedVal;
+
+  bool noCategorySelected = false;
+  QuerySnapshot? subSnapshot;
+
+  @override
+  setnoCatselected(val) {
+    noCategorySelected = val;
+    notifyListeners();
+  }
+
+  @override
+  setSelectedVal(val) {
+    selectedVal = val;
+    notifyListeners();
+  }
 
   @override
   pickImage() async {

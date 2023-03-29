@@ -93,7 +93,7 @@ class SubCategoryscreen extends StatelessWidget {
                         children: [
                           model.qSnapshot == null
                               ? const Text("Loading...")
-                              : MainCatDropDown(
+                              : SubCatDropDown(
                                   viewModel: model,
                                 ),
                           YMargin(8.h),

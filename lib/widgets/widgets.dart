@@ -9,6 +9,7 @@ export 'custom_textfield.dart';
 export 'dots_indicator_widget.dart';
 export 'login_loading_view.dart';
 export 'main_cat_drop_down_widget.dart';
+export 'subcat_dropdown.dart';
 export 'maincat_list_widget.dart';
 export 'onboard_widget.dart';
 export 'search_field.dart';
