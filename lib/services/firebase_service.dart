@@ -25,6 +25,8 @@ class FirebaseService {
 
   CollectionReference mainCat =
       FirebaseFirestore.instance.collection('mainCategories');
+  CollectionReference subCat =
+      FirebaseFirestore.instance.collection('subCategories');
 
   addUser(name, email, role) async {
     final uid = await authService.getCurrentUid();

@@ -39,7 +39,11 @@ class ValueValidator {
       return 'Enter Main Category Name';
     }
   }
-
+ validateSubCat(String subCat) {
+    if (subCat.isEmpty) {
+      return 'Enter Sub Category Name';
+    }
+  }
   String? isEmpty(value) {
     if (value.isEmpty) {
       return 'Empty field';

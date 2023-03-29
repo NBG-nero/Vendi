@@ -8,17 +8,19 @@ import 'package:vendi/utilities/constants/colors.dart';
 import 'package:vendi/utilities/utils.dart';
 
 class CategoryListWidget extends StatelessWidget {
+  final CollectionReference? reference;
   final CategoryViewModel? viewModel;
 
   const CategoryListWidget({
     Key? key,
+    this.reference,
     this.viewModel,
   }) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
     return StreamBuilder<QuerySnapshot>(
-        stream: viewModel?.firebaseService.categories.snapshots(),
+        stream: reference!.snapshots(),
         builder: (context, AsyncSnapshot<QuerySnapshot> snapshot) {
           if (snapshot.hasError) {
             showErrorToast(snapshot.error.toString());
@@ -43,7 +45,10 @@ class CategoryListWidget extends StatelessWidget {
             itemBuilder: (context, index) {
               var data = snapshot.data!.docs[index];
               String imageUrl = data["image"];
-              String imageText = data["catName"];
+              String imageText =
+                  (reference == viewModel!.firebaseService.categories
+                      ? data["catName"]
+                      : data["subCatName"]);
               return Card(
                   color: VendiColors.masterColor.withOpacity(0.3),
                   child: Padding(
@@ -69,7 +74,7 @@ class CategoryListWidget extends StatelessWidget {
                           height: 40.h,
                           child: Center(
                             child: Text(
-                            imageText,
+                              imageText,
                               textAlign: TextAlign.center,
                               style: Theme.of(context)
                                   .textTheme

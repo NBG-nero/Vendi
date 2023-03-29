@@ -19,6 +19,7 @@ class SubCategoryscreen extends StatelessWidget {
         viewModelBuilder: () => SubCategoryViewModel(),
         onModelReady: (sa) {
           sa.setInitialised(true);
+          sa.getMainCatList();
         },
         builder: (context, model, child) {
           return SingleChildScrollView(
@@ -38,150 +39,163 @@ class SubCategoryscreen extends StatelessWidget {
                     ),
                   ),
                   Divider(thickness: 1.h, color: VendiColors.masterColor),
-                  Row(
-                    children: [
-                      Column(
+                  Padding(
+                    padding: const EdgeInsets.all(4.0),
+                    child: Form( 
+                      key:model.sformKey,
+                      child: Row(
                         children: [
-                          InkWell(
-                            onTap: model.pickImage,
-                            child: Container(
-                              height: 150.h,
-                              width: 150.w,
-                              decoration: BoxDecoration(
-                                color: VendiColors.exColor.withOpacity(0.5),
-                                borderRadius: BorderRadius.circular(6),
-                                border: Border.all(
-                                    color:
-                                        VendiColors.exColor.withOpacity(0.8)),
+                          Column(
+                            children: [
+                              InkWell(
+                                onTap: model.pickImage,
+                                child: Container(
+                                  height: 150.h,
+                                  width: 150.w,
+                                  decoration: BoxDecoration(
+                                    color: VendiColors.exColor.withOpacity(0.5),
+                                    borderRadius: BorderRadius.circular(6),
+                                    border: Border.all(
+                                        color:
+                                            VendiColors.exColor.withOpacity(0.8)),
+                                  ),
+                                  child: model.avatarImageFile == null
+                                      ? Center(
+                                          child: Text(
+                                            "Category Image",
+                                            style: Theme.of(context)
+                                                .textTheme
+                                                .labelMedium
+                                                ?.copyWith(),
+                                          ),
+                                        )
+                                      : ClipRRect(
+                                          borderRadius: BorderRadius.circular(6),
+                                          child: Image.file(model.avatarImageFile!,
+                                              fit: BoxFit.cover),
+                                        ),
+                                ),
                               ),
-                              child: model.avatarImageFile == null
-                                  ? Center(
-                                      child: Text(
-                                        "Category Image",
+                              YMargin(10.h),
+                              VButton(
+                                color: VendiColors.masterColor,
+                                padding: const EdgeInsets.all(4),
+                                width: MediaQuery.of(context).size.width * 0.3,
+                                height: 38.h,
+                                onPressed: model.pickImage,
+                                child: Text(
+                                  'Upload Image',
+                                  style: Theme.of(context)
+                                      .textTheme
+                                      .labelMedium
+                                      ?.copyWith(color: VendiColors.primaryColor),
+                                ),
+                              ),
+                            ],
+                          ),
+                          XMargin(20.w),
+                          Column(
+                            mainAxisAlignment: MainAxisAlignment.start,
+                            crossAxisAlignment: CrossAxisAlignment.start,
+                            children: [
+                              model.subSnapshot == null
+                                  ? const Text("Loading...")
+                                  : SubCatDropDown(
+                                      viewModel: model,
+                                    ),
+                              YMargin(8.h),
+                              if (model.noCategorySelected == true)
+                                Text(
+                                  'No Main Category Selected',
+                                  style: Theme.of(context)
+                                      .textTheme
+                                      .labelMedium
+                                      ?.copyWith(
+                                        color: Colors.red,
+                                      ),
+                                ),
+                              SizedBox(
+                                width: 190.w,
+                                child: TextFormField(
+                                  validator: (val) =>
+                                      ValueValidator().validateSubCat(val!),
+                                  controller: model.subcatNameCtrl,
+                                  decoration: InputDecoration(
+                                    label: Text('Enter Sub Category Name',
                                         style: Theme.of(context)
                                             .textTheme
                                             .labelMedium
-                                            ?.copyWith(),
-                                      ),
-                                    )
-                                  : ClipRRect(
-                                      borderRadius: BorderRadius.circular(6),
-                                      child: Image.file(model.avatarImageFile!,
-                                          fit: BoxFit.cover),
-                                    ),
-                            ),
-                          ),
-                          YMargin(10.h),
-                          VButton(
-                            color: VendiColors.masterColor,
-                            padding: const EdgeInsets.all(4),
-                            width: MediaQuery.of(context).size.width * 0.3,
-                            height: 38.h,
-                            onPressed: model.pickImage,
-                            child: Text(
-                              'Upload Image',
-                              style: Theme.of(context)
-                                  .textTheme
-                                  .labelMedium
-                                  ?.copyWith(color: VendiColors.primaryColor),
-                            ),
-                          ),
-                        ],
-                      ),
-                      XMargin(5.w),
-                      Column(
-                        children: [
-                          model.qSnapshot == null
-                              ? const Text("Loading...")
-                              : SubCatDropDown(
-                                  viewModel: model,
-                                ),
-                          YMargin(8.h),
-                          if (model.noCatSelected == true)
-                            Text(
-                              'No Category Selected',
-                              style: Theme.of(context)
-                                  .textTheme
-                                  .labelMedium
-                                  ?.copyWith(
-                                    color: Colors.red,
+                                            ?.copyWith(
+                                                color: VendiColors.masterColor,
+                                                fontSize: 17.sp)),
+                                    contentPadding: EdgeInsets.zero,
                                   ),
-                            ),
-                          SizedBox(
-                            width: 210.w,
-                            child: TextFormField(
-                              validator: (val) =>
-                                  ValueValidator().validateMainCat(val!),
-                              controller: model.mainCatNameCtrl,
-                              decoration: InputDecoration(
-                                label: Text('Enter Main Category Name',
+                                ),
+                              ),
+                              YMargin(20.h),
+                              Row(children: [
+                                VButton(
+                                  onPressed: () {
+                                    model.clear();
+                                  },
+                                  padding: const EdgeInsets.all(4),
+                                  shape: RoundedRectangleBorder(
+                                      borderRadius: BorderRadius.circular(4),
+                                      side: BorderSide(
+                                        color: VendiColors.masterColor,
+                                      )),
+                                  width: MediaQuery.of(context).size.width * 0.14,
+                                  height: 35.h,
+                                  color: VendiColors.primaryColorswatch[100],
+                                  child: Text(
+                                    'Cancel',
                                     style: Theme.of(context)
                                         .textTheme
                                         .labelMedium
-                                        ?.copyWith(
-                                            color: VendiColors.masterColor,
-                                            fontSize: 17.sp)),
-                                contentPadding: EdgeInsets.zero,
-                              ),
-                            ),
+                                        ?.copyWith(color: VendiColors.masterColor),
+                                  ),
+                                ),
+                                XMargin(40.w),
+                                VButton(
+                                  onPressed: () {
+                                    if (model.selectedVal == null) {
+                                      model.setnoCatselected(true);
+                                      return;
+                                    }
+                                    if (model.sformKey.currentState!.validate()) {
+                                      model.uploadImage();
+                                    }
+                                  },
+                                  padding: const EdgeInsets.all(0),
+                                  shape: RoundedRectangleBorder(
+                                      borderRadius: BorderRadius.circular(4),
+                                      side: BorderSide(
+                                        color: VendiColors.masterColor,
+                                      )),
+                                  width: MediaQuery.of(context).size.width * 0.14,
+                                  height: 35.h,
+                                  color: VendiColors.masterColor,
+                                  child: Text(
+                                    'Save',
+                                    style: Theme.of(context)
+                                        .textTheme
+                                        .labelMedium
+                                        ?.copyWith(color: VendiColors.primaryColor),
+                                  ),
+                                ),
+                              ]),
+                            ],
                           ),
-                          YMargin(20.h),
-                          Row(children: [
-                            VButton(
-                              onPressed: () {
-                                model.clear();
-                              },
-                              padding: const EdgeInsets.all(4),
-                              shape: RoundedRectangleBorder(
-                                  borderRadius: BorderRadius.circular(4),
-                                  side: BorderSide(
-                                    color: VendiColors.masterColor,
-                                  )),
-                              width: MediaQuery.of(context).size.width * 0.14,
-                              height: 35.h,
-                              color: VendiColors.primaryColorswatch[100],
-                              child: Text(
-                                'Cancel',
-                                style: Theme.of(context)
-                                    .textTheme
-                                    .labelMedium
-                                    ?.copyWith(color: VendiColors.masterColor),
-                              ),
-                            ),
-                            XMargin(40.w),
-                            VButton(
-                              onPressed: () {
-                                if (model.selectedValue == null) {
-                                  model.setnoCatselected(true);
-                                  return;
-                                }
-                                if (model.mformKey.currentState!.validate()) {
-                                  model.uploadTask();
-                                }
-                              },
-                              padding: const EdgeInsets.all(0),
-                              shape: RoundedRectangleBorder(
-                                  borderRadius: BorderRadius.circular(4),
-                                  side: BorderSide(
-                                    color: VendiColors.masterColor,
-                                  )),
-                              width: MediaQuery.of(context).size.width * 0.14,
-                              height: 35.h,
-                              color: VendiColors.masterColor,
-                              child: Text(
-                                'Save',
-                                style: Theme.of(context)
-                                    .textTheme
-                                    .labelMedium
-                                    ?.copyWith(color: VendiColors.primaryColor),
-                              ),
-                            ),
-                          ]),
                         ],
                       ),
-                    ],
+                    ),
                   ),
                   Divider(thickness: 1.h, color: VendiColors.masterColor),
+                  YMargin(10.h), 
+                   CategoryListWidget(
+                    viewModel: model,
+                    reference: model.firebaseService.subCat,
+                  ),
                 ],
               ),
             ),

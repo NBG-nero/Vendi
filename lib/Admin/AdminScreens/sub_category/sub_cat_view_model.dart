@@ -3,7 +3,7 @@ import 'dart:io';
 
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:file_picker/file_picker.dart';
-import 'package:firebase_core/firebase_core.dart';
+
 import 'package:flutter/material.dart';
 import 'package:flutter_easyloading/flutter_easyloading.dart';
 import 'package:mime_type/mime_type.dart';
@@ -35,6 +35,13 @@ class SubCategoryViewModel extends MainCategoryViewModel {
   setSelectedVal(val) {
     selectedVal = val;
     notifyListeners();
+  }
+
+  getMainCatList() {
+    return firebaseService.mainCat.get().then((QuerySnapshot querySnapshot) {
+      subSnapshot = querySnapshot;
+      notifyListeners();
+    });
   }
 
   @override
@@ -74,10 +81,11 @@ class SubCategoryViewModel extends MainCategoryViewModel {
           firebaseService.saveCategory(
             data: {
               'subCatName': subcatNameCtrl.text,
+              'mainCategory': selectedVal,
               'image': '$value.png',
               'active': true,
             },
-            reference: firebaseService.categories,
+            reference: firebaseService.subCat,
             docName: subcatNameCtrl.text,
           ).then((value) {
             clear();

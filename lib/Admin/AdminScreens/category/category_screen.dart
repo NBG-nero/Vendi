@@ -193,6 +193,7 @@ class _CategoryscreenState extends State<Categoryscreen> {
                   padding: const EdgeInsets.all(8.0),
                   child: CategoryListWidget(
                     viewModel: model,
+                    reference: model.firebaseService.categories,
                   ),
                 ),
               ],

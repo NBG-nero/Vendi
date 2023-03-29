@@ -14,16 +14,16 @@ class SubCatDropDown extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return DropdownButton(
-      value: viewModel!.selectedValue,
-      hint: Text("Select Category",
+      value: viewModel!.selectedVal,
+      hint: Text("Select Main Category",
           style: Theme.of(context)
               .textTheme
               .labelMedium
               ?.copyWith(color: VendiColors.masterColor, fontSize: 17.sp)),
-      items: viewModel!.qSnapshot!.docs.map((e) {
+      items: viewModel!.subSnapshot!.docs.map((e) {
         return DropdownMenuItem<String>(
-          value: e['catName'],
-          child: Text(e['catName']),
+          value: e['mainCategory'],
+          child: Text(e['mainCategory']),
         );
       }).toList(),
       onChanged: (val) {
