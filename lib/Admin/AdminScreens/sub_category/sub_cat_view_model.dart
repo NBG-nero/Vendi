@@ -108,6 +108,7 @@ class SubCategoryViewModel extends MainCategoryViewModel {
   @override
   clear() {
     subcatNameCtrl.clear();
+    setSelectedVal(null);
     imageFile = null;
     notifyListeners();
   }

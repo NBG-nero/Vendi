@@ -41,8 +41,8 @@ class SubCategoryscreen extends StatelessWidget {
                   Divider(thickness: 1.h, color: VendiColors.masterColor),
                   Padding(
                     padding: const EdgeInsets.all(4.0),
-                    child: Form( 
-                      key:model.sformKey,
+                    child: Form(
+                      key: model.sformKey,
                       child: Row(
                         children: [
                           Column(
@@ -56,10 +56,10 @@ class SubCategoryscreen extends StatelessWidget {
                                     color: VendiColors.exColor.withOpacity(0.5),
                                     borderRadius: BorderRadius.circular(6),
                                     border: Border.all(
-                                        color:
-                                            VendiColors.exColor.withOpacity(0.8)),
+                                        color: VendiColors.exColor
+                                            .withOpacity(0.8)),
                                   ),
-                                  child: model.avatarImageFile == null
+                                  child: model.imageFile == null
                                       ? Center(
                                           child: Text(
                                             "Category Image",
@@ -70,8 +70,10 @@ class SubCategoryscreen extends StatelessWidget {
                                           ),
                                         )
                                       : ClipRRect(
-                                          borderRadius: BorderRadius.circular(6),
-                                          child: Image.file(model.avatarImageFile!,
+                                          borderRadius:
+                                              BorderRadius.circular(6),
+                                          child: Image.file(
+                                              model.imageFile!,
                                               fit: BoxFit.cover),
                                         ),
                                 ),
@@ -88,7 +90,8 @@ class SubCategoryscreen extends StatelessWidget {
                                   style: Theme.of(context)
                                       .textTheme
                                       .labelMedium
-                                      ?.copyWith(color: VendiColors.primaryColor),
+                                      ?.copyWith(
+                                          color: VendiColors.primaryColor),
                                 ),
                               ),
                             ],
@@ -144,7 +147,8 @@ class SubCategoryscreen extends StatelessWidget {
                                       side: BorderSide(
                                         color: VendiColors.masterColor,
                                       )),
-                                  width: MediaQuery.of(context).size.width * 0.14,
+                                  width:
+                                      MediaQuery.of(context).size.width * 0.14,
                                   height: 35.h,
                                   color: VendiColors.primaryColorswatch[100],
                                   child: Text(
@@ -152,37 +156,42 @@ class SubCategoryscreen extends StatelessWidget {
                                     style: Theme.of(context)
                                         .textTheme
                                         .labelMedium
-                                        ?.copyWith(color: VendiColors.masterColor),
+                                        ?.copyWith(
+                                            color: VendiColors.masterColor),
                                   ),
                                 ),
                                 XMargin(40.w),
-                                VButton(
-                                  onPressed: () {
-                                    if (model.selectedVal == null) {
-                                      model.setnoCatselected(true);
-                                      return;
-                                    }
-                                    if (model.sformKey.currentState!.validate()) {
-                                      model.uploadImage();
-                                    }
-                                  },
-                                  padding: const EdgeInsets.all(0),
-                                  shape: RoundedRectangleBorder(
-                                      borderRadius: BorderRadius.circular(4),
-                                      side: BorderSide(
-                                        color: VendiColors.masterColor,
-                                      )),
-                                  width: MediaQuery.of(context).size.width * 0.14,
-                                  height: 35.h,
-                                  color: VendiColors.masterColor,
-                                  child: Text(
-                                    'Save',
-                                    style: Theme.of(context)
-                                        .textTheme
-                                        .labelMedium
-                                        ?.copyWith(color: VendiColors.primaryColor),
+                                if (model.imageFile != null)
+                                  VButton(
+                                    onPressed: () {
+                                      if (model.selectedVal == null) {
+                                        model.setnoCatselected(true);
+                                        return;
+                                      }
+                                      if (model.sformKey.currentState!
+                                          .validate()) {
+                                        model.uploadImage();
+                                      }
+                                    },
+                                    padding: const EdgeInsets.all(0),
+                                    shape: RoundedRectangleBorder(
+                                        borderRadius: BorderRadius.circular(4),
+                                        side: BorderSide(
+                                          color: VendiColors.masterColor,
+                                        )),
+                                    width: MediaQuery.of(context).size.width *
+                                        0.14,
+                                    height: 35.h,
+                                    color: VendiColors.masterColor,
+                                    child: Text(
+                                      'Save',
+                                      style: Theme.of(context)
+                                          .textTheme
+                                          .labelMedium
+                                          ?.copyWith(
+                                              color: VendiColors.primaryColor),
+                                    ),
                                   ),
-                                ),
                               ]),
                             ],
                           ),
@@ -191,8 +200,8 @@ class SubCategoryscreen extends StatelessWidget {
                     ),
                   ),
                   Divider(thickness: 1.h, color: VendiColors.masterColor),
-                  YMargin(10.h), 
-                   CategoryListWidget(
+                  YMargin(10.h),
+                  CategoryListWidget(
                     viewModel: model,
                     reference: model.firebaseService.subCat,
                   ),

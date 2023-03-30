@@ -50,7 +50,12 @@ class CategoryListWidget extends StatelessWidget {
                       ? data["catName"]
                       : data["subCatName"]);
               return Card(
-                  color: VendiColors.masterColor.withOpacity(0.3),
+                  elevation: reference == viewModel!.firebaseService.categories
+                      ? 0
+                      : 10,
+                  color: reference == viewModel!.firebaseService.categories
+                      ? VendiColors.masterColor.withOpacity(0.3)
+                      : VendiColors.primaryColor,
                   child: Padding(
                     padding: const EdgeInsets.all(6.0),
                     child: Column(
@@ -62,7 +67,7 @@ class CategoryListWidget extends StatelessWidget {
                           width: 70.w,
                           child: CachedNetworkImage(
                               imageUrl: imageUrl,
-                              fit: BoxFit.scaleDown,
+                              fit: BoxFit.cover,
                               placeholder: (context, url) => SizedBox(
                                     height: 40.h,
                                     child: CircularProgressIndicator.adaptive(
