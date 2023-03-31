@@ -72,8 +72,7 @@ class SubCategoryscreen extends StatelessWidget {
                                       : ClipRRect(
                                           borderRadius:
                                               BorderRadius.circular(6),
-                                          child: Image.file(
-                                              model.imageFile!,
+                                          child: Image.file(model.imageFile!,
                                               fit: BoxFit.cover),
                                         ),
                                 ),
@@ -200,7 +199,19 @@ class SubCategoryscreen extends StatelessWidget {
                     ),
                   ),
                   Divider(thickness: 1.h, color: VendiColors.masterColor),
-                  YMargin(10.h),
+                  YMargin(5.h),
+                  Container(
+                    alignment: Alignment.topLeft,
+                    padding: const EdgeInsets.all(10),
+                    child: Text(
+                      'Sub Category List',
+                      style: TextStyle(
+                        fontWeight: FontWeight.w700,
+                        fontSize: 20.sp,
+                      ),
+                    ),
+                  ),
+                  YMargin(8.h),
                   CategoryListWidget(
                     viewModel: model,
                     reference: model.firebaseService.subCat,
