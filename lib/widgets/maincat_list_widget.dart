@@ -9,7 +9,7 @@ import '../Admin/AdminScreens/main_category/main_category_view_model.dart';
 import '../utilities/margins/margins.dart';
 import 'widgets.dart';
 
-class MainCategoryList extends StatelessWidget {
+class MainCategoryList extends StatefulWidget {
   final MainCategoryViewModel? viewModel;
 
   const MainCategoryList({
@@ -18,17 +18,22 @@ class MainCategoryList extends StatelessWidget {
   }) : super(key: key);
 
   @override
+  State<MainCategoryList> createState() => _MainCategoryListState();
+}
+
+class _MainCategoryListState extends State<MainCategoryList> {
+  @override
   Widget build(BuildContext context) {
     return Column(
       children: [
-        viewModel!.qSnapshot == null
+        widget.viewModel!.qSnapshot == null
             ? const Text("Loading..")
             : Padding(
                 padding: const EdgeInsets.only(right: 8.0, left: 8, bottom: 8),
                 child: Row(
                   children: [
                     DropdownButton(
-                      value: viewModel!.selVal,
+                      value: widget.viewModel!.selVal,
                       hint: Text(
                         'Select Category',
                         style: Theme.of(context)
@@ -38,20 +43,20 @@ class MainCategoryList extends StatelessWidget {
                                 color: VendiColors.masterColor,
                                 fontSize: 17.sp),
                       ),
-                      items: viewModel!.qSnapshot!.docs.map((e) {
+                      items: widget.viewModel!.qSnapshot!.docs.map((e) {
                         return DropdownMenuItem<String>(
                           value: e['catName'],
                           child: Text(e['catName']),
                         );
                       }).toList(),
                       onChanged: (val) {
-                        viewModel!.setSelVal(val);
+                        widget.viewModel!.setSelVal(val);
                       },
                     ),
                     XMargin(20.w),
                     VButton(
                       onPressed: () {
-                        viewModel!.setSelVal(null);
+                        widget.viewModel!.setSelVal(null);
                       },
                       padding: const EdgeInsets.all(0),
                       shape: RoundedRectangleBorder(
@@ -74,8 +79,8 @@ class MainCategoryList extends StatelessWidget {
                 ),
               ),
         StreamBuilder<QuerySnapshot>(
-            stream: viewModel!.firebaseService.mainCat
-                .where('category', isEqualTo: viewModel?.selVal)
+            stream: widget.viewModel?.firebaseService.mainCat
+                .where('category', isEqualTo: widget.viewModel?.selVal)
                 .snapshots(),
             builder: (context, AsyncSnapshot<QuerySnapshot> snapshot) {
               if (snapshot.hasError) {
