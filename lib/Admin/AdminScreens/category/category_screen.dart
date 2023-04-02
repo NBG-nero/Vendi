@@ -106,8 +106,12 @@ class _CategoryscreenState extends State<Categoryscreen> {
                               validator: (val) =>
                                   ValueValidator().validateCat(val!),
                               controller: model.catNameCtrl,
-                              decoration: const InputDecoration(
-                                label: Text('Enter Category Name'),
+                              decoration: InputDecoration(
+                                label: Text('Enter Category Name',
+                                    style: Theme.of(context)
+                                        .textTheme
+                                        .labelLarge
+                                        ?.copyWith()),
                                 contentPadding: EdgeInsets.zero,
                               ),
                             ),
@@ -192,6 +196,7 @@ class _CategoryscreenState extends State<Categoryscreen> {
                 Padding(
                   padding: const EdgeInsets.all(8.0),
                   child: CategoryListWidget(
+                    
                     viewModel: model,
                     reference: model.firebaseService.categories,
                   ),

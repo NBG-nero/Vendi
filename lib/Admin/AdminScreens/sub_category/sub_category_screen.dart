@@ -211,8 +211,9 @@ class SubCategoryscreen extends StatelessWidget {
                       ),
                     ),
                   ),
-                  YMargin(8.h),
+        
                   CategoryListWidget(
+                    subViewModel: model,
                     viewModel: model,
                     reference: model.firebaseService.subCat,
                   ),

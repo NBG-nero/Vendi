@@ -21,6 +21,7 @@ class SubCategoryViewModel extends MainCategoryViewModel {
   final sformKey = GlobalKey<FormState>();
 
   Object? selectedVal;
+  Object? catSelectedVal;
 
   bool noCategorySelected = false;
   QuerySnapshot? subSnapshot;
@@ -34,6 +35,11 @@ class SubCategoryViewModel extends MainCategoryViewModel {
   @override
   setSelectedVal(val) {
     selectedVal = val;
+    notifyListeners();
+  }
+
+  setCatSelected(val) {
+    catSelectedVal = val;
     notifyListeners();
   }
 

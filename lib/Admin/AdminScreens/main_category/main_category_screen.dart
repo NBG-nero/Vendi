@@ -144,7 +144,7 @@ class MainCategoryscreen extends StatelessWidget {
                     ),
                   ),
                 ),
-                YMargin(5.h),
+             
                 MainCategoryList(
                   viewModel: model,
                 ),
