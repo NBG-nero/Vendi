@@ -23,8 +23,8 @@ class MainCategoryViewModel extends CategoryViewModel {
     notifyListeners();
   }
 
-  setSelVal(val) {
-    selVal = val;
+  setSelVal(value) {
+    selVal = value;
     notifyListeners();
   }
 
@@ -38,7 +38,6 @@ class MainCategoryViewModel extends CategoryViewModel {
   getCatList() {
     return firebaseService.categories.get().then((QuerySnapshot querySnapshot) {
       qSnapshot = querySnapshot;
-
       notifyListeners();
     });
   }

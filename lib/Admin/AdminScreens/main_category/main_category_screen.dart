@@ -54,8 +54,8 @@ class _MainCategoryscreenState extends State<MainCategoryscreen> {
                       children: [
                         model.qSnapshot == null
                             ? const Text("Loading...")
-                            : MainCatDropDown(
-                                viewModel: model,
+                            :  const MainCatDropDown(
+                                // viewModel: model,
                               ),
                         YMargin(8.h),
                         if (model.noCatSelected == true)
