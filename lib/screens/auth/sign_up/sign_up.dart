@@ -23,7 +23,7 @@ class _SignUpscreenState extends State<SignUpscreen> {
   Widget build(BuildContext context) {
     return ViewModelBuilder<SignUpViewModel>.reactive(
         viewModelBuilder: () => SignUpViewModel(),
-        onModelReady: (si) {
+        onViewModelReady: (si) {
           si.setInitialised(true);
         },
         builder: (context, model, child) {

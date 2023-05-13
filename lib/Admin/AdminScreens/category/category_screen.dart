@@ -23,7 +23,7 @@ class _CategoryscreenState extends State<Categoryscreen> {
   Widget build(BuildContext context) {
     return ViewModelBuilder<CategoryViewModel>.reactive(
         viewModelBuilder: () => CategoryViewModel(),
-        onModelReady: (ca) {
+        onViewModelReady: (ca) {
           ca.setInitialised(true);
           // ca.dispose();
         },

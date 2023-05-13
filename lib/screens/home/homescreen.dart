@@ -16,7 +16,7 @@ class Homescreen extends StatelessWidget {
   Widget build(BuildContext context) {
     return ViewModelBuilder<HomeViewModel>.reactive(
         viewModelBuilder: () => HomeViewModel(),
-        onModelReady: (h) {
+        onViewModelReady: (h) {
           h.setInitialised(true);
           h.getBanners();
           h.getBrandAd();

@@ -27,7 +27,7 @@ class _OnboardingState extends State<Onboarding> {
   Widget build(BuildContext context) {
     return ViewModelBuilder<OnboardViewModel>.reactive(
         viewModelBuilder: () => OnboardViewModel(),
-        onModelReady: (o) {
+        onViewModelReady: (o) {
           o.setInitialised(true);
         },
         builder: (context, model, child) {
@@ -85,7 +85,7 @@ class _OnboardingState extends State<Onboarding> {
                       children: [
                         DotsIndicator(
                           dotsCount: 4,
-                          position: model.scrollerPosition,
+                          position: model.scrollerPosition.toInt(),
                           decorator: DotsDecorator(
                             activeColor: VendiColors.masterColor,
                             color: Colors.white,

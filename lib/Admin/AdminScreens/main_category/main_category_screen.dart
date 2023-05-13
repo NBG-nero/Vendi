@@ -23,7 +23,7 @@ class _MainCategoryscreenState extends State<MainCategoryscreen> {
   Widget build(BuildContext context) {
     return ViewModelBuilder<MainCategoryViewModel>.reactive(
         viewModelBuilder: () => MainCategoryViewModel(),
-        onModelReady: (mc) {
+        onViewModelReady: (mc) {
           mc.setInitialised(true);
           mc.getCatList();
         },

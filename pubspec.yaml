@@ -44,8 +44,8 @@ dependencies:
   
   auto_route: ^5.0.4
   fluttertoast: ^8.2.1
-  flutter_svg: ^1.1.6
-  dots_indicator: ^2.1.0
+  flutter_svg: ^2.0.5
+  dots_indicator: ^3.0.0
   flutter_iconly: ^1.0.2
   flutter_admin_scaffold: ^1.1.2
   
@@ -60,10 +60,10 @@ dependencies:
   cached_network_image: ^3.2.3
   youtube_player_flutter: ^8.1.2
   json_serializable: ^6.6.1
-  json_annotation: ^4.8.0
+  json_annotation: ^4.8.1
 
   flutter_datetime_picker:
-  intl: ^0.17.0
+  intl: ^0.18.1
   date_time_format: ^2.0.1 
   file_picker: ^5.2.6
   image_picker: ^0.8.7 

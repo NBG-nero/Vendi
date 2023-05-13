@@ -2,6 +2,7 @@ import 'package:auto_route/annotations.dart';
 import '../Admin/admin_app_widget.dart';
 import '../screens/screens.dart';
 
+
 @MaterialAutoRouter(
   replaceInRouteName: 'Page, Route',
   routes: <AutoRoute>[

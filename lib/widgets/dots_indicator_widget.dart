@@ -10,7 +10,8 @@ class DotsIndicatorWidget extends StatelessWidget {
     required this.dotscount,
   }) : super(key: key);
 
-  final double? position;
+  final int? position;
+  // final double? position;
   final int dotscount;
 
   @override

@@ -21,7 +21,7 @@ class _ResetpasswordscreenState extends State<Resetpasswordscreen> {
   Widget build(BuildContext context) {
     return ViewModelBuilder<ResetViewModel>.reactive(
         viewModelBuilder: () => ResetViewModel(),
-        onModelReady: (r) {
+        onViewModelReady: (r) {
           r.setInitialised(true);
         },
         builder: (context, model, child) {

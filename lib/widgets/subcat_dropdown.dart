@@ -1,10 +1,12 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 import '../Admin/AdminScreens/sub_category/sub_cat_view_model.dart';
+import '../services/firebase_service.dart';
 import '../utilities/constants/constants.dart';
 
-class SubCatDropDown extends StatelessWidget {
+class SubCatDropDown extends StatefulWidget {
   final SubCategoryViewModel? viewModel;
   const SubCatDropDown({
     Key? key,
@@ -12,23 +14,49 @@ class SubCatDropDown extends StatelessWidget {
   }) : super(key: key);
 
   @override
+  State<SubCatDropDown> createState() => _SubCatDropDownState();
+}
+
+class _SubCatDropDownState extends State<SubCatDropDown> {
+  FirebaseService firebaseService = FirebaseService();
+  QuerySnapshot? subSnapshot;
+  Object? selectedVal;
+
+  getCatList() {
+    return firebaseService.mainCat.get().then((QuerySnapshot querySnapshot) {
+      setState(() {
+        subSnapshot = querySnapshot;
+      });
+    });
+  }
+
+  @override
+  void initState() {
+    super.initState();
+    getCatList();
+  }
+
+  @override
   Widget build(BuildContext context) {
     return DropdownButton(
-      value: viewModel!.selectedVal,
+      value: selectedVal,
       hint: Text("Select Main Category",
           style: Theme.of(context)
               .textTheme
               .labelMedium
               ?.copyWith(color: VendiColors.masterColor, fontSize: 17.sp)),
-      items: viewModel!.subSnapshot!.docs.map((e) {
+      items: subSnapshot?.docs.map((e) {
         return DropdownMenuItem<String>(
           value: e['mainCategory'],
           child: Text(e['mainCategory']),
         );
       }).toList(),
       onChanged: (val) {
-        viewModel!.setSelectedVal(val);
-        viewModel!.setnoCatselected(false);
+          setState(() {
+          selectedVal = val;
+        });
+        // widget.viewModel!.setSelectedVal(val);
+        // widget.viewModel!.setnoCatselected(false);
       },
     );
   }

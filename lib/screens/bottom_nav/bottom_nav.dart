@@ -20,7 +20,7 @@ class _BottomNavState extends State<BottomNav> {
   Widget build(BuildContext context) {
     return ViewModelBuilder<BottomNavViewModel>.reactive(
         viewModelBuilder: () => BottomNavViewModel(),
-        onModelReady: (b) {
+        onViewModelReady: (b) {
           b.setInitialised(true);
         },
         builder: (context, model, child) {
