@@ -22,7 +22,7 @@ class _SubCatDropDownState extends State<SubCatDropDown> {
   QuerySnapshot? subSnapshot;
   Object? selectedVal;
 
-  getCatList() {
+  getMainCatList() {
     return firebaseService.mainCat.get().then((QuerySnapshot querySnapshot) {
       setState(() {
         subSnapshot = querySnapshot;
@@ -33,7 +33,7 @@ class _SubCatDropDownState extends State<SubCatDropDown> {
   @override
   void initState() {
     super.initState();
-    getCatList();
+    getMainCatList();
   }
 
   @override
@@ -52,7 +52,7 @@ class _SubCatDropDownState extends State<SubCatDropDown> {
         );
       }).toList(),
       onChanged: (val) {
-          setState(() {
+        setState(() {
           selectedVal = val;
         });
         // widget.viewModel!.setSelectedVal(val);
