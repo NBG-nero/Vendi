@@ -62,7 +62,7 @@ class SubCategoryscreen extends StatelessWidget {
                                   child: model.imageFile == null
                                       ? Center(
                                           child: Text(
-                                            "Category Image",
+                                            "Sub Category Image",
                                             style: Theme.of(context)
                                                 .textTheme
                                                 .labelMedium

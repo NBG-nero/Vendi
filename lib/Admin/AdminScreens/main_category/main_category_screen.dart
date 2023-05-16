@@ -48,29 +48,33 @@ class _MainCategoryscreenState extends State<MainCategoryscreen> {
                 Padding(
                   padding: const EdgeInsets.all(8.0),
                   child: Form(
+                    autovalidateMode: AutovalidateMode.onUserInteraction,
                     key: model.mformKey,
                     child: Column(
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
                         model.qSnapshot == null
                             ? const Text("Loading...")
-                            :  const MainCatDropDown(
+                            : const MainCatDropDown(
                                 // viewModel: model,
-                              ),
-                        YMargin(8.h),
-                        if (model.noCatSelected == true)
-                          Text(
-                            'No Category Selected',
-                            style: Theme.of(context)
-                                .textTheme
-                                .labelMedium
-                                ?.copyWith(
-                                  color: Colors.red,
                                 ),
-                          ),
+                        YMargin(8.h),
+                        model.noCatSelected == true
+                            ? Text(
+                                'No Category Selected',
+                                style: Theme.of(context)
+                                    .textTheme
+                                    .labelMedium
+                                    ?.copyWith(
+                                      color: Colors.red,
+                                    ),
+                              )
+                            : Container(),
                         SizedBox(
                           width: 210.w,
                           child: TextFormField(
+                            autovalidateMode:
+                                AutovalidateMode.onUserInteraction,
                             validator: (val) =>
                                 ValueValidator().validateMainCat(val!),
                             controller: model.mainCatNameCtrl,
@@ -112,12 +116,14 @@ class _MainCategoryscreenState extends State<MainCategoryscreen> {
                           XMargin(40.w),
                           VButton(
                             onPressed: () {
+                         
                               if (model.selectedValue == null) {
                                 model.setnoCatselected(true);
                                 return;
-                              }
-                              if (model.mformKey.currentState!.validate()) {
+                              }else if (model.mformKey.currentState!.validate()) {
                                 model.uploadTask();
+                              } else {
+                                AutovalidateMode.onUserInteraction;
                               }
                             },
                             padding: const EdgeInsets.all(0),
