@@ -49,12 +49,14 @@ class _MainCategoryscreenState extends State<MainCategoryscreen> {
                   padding: const EdgeInsets.all(8.0),
                   child: Form(
                     key: model.mformKey,
+                    autovalidateMode: AutovalidateMode.onUserInteraction,
                     child: Column(
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
                         model.qSnapshot == null
                             ? const Text("Loading...")
-                            :  const MainCatDropDown(
+                            : MainCatDropDown(
+                                selectedValue: model.selectedValue,
                                 // viewModel: model,
                               ),
                         YMargin(8.h),
@@ -112,10 +114,10 @@ class _MainCategoryscreenState extends State<MainCategoryscreen> {
                           XMargin(40.w),
                           VButton(
                             onPressed: () {
-                              if (model.selectedValue == null) {
-                                model.setnoCatselected(true);
-                                return;
-                              }
+                              // if (model.selectedValue == null) {
+                              //   model.setnoCatselected(true);
+                              //   return;
+                              // }
                               if (model.mformKey.currentState!.validate()) {
                                 model.uploadTask();
                               }

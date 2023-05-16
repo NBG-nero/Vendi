@@ -1,3 +1,5 @@
+// ignore_for_file: must_be_immutable
+
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
@@ -7,11 +9,13 @@ import '../services/firebase_service.dart';
 import '../utilities/constants/constants.dart';
 
 class MainCatDropDown extends StatefulWidget {
+  Object? selectedValue;
   // final MainCategoryViewModel? viewModel;
 
-  const MainCatDropDown({
+  MainCatDropDown({
     Key? key,
     // this.viewModel,
+    this.selectedValue,
   }) : super(key: key);
 
   @override
@@ -48,8 +52,8 @@ class _MainCatDropDownState extends State<MainCatDropDown> {
     //       if (snapshot.connectionState == ConnectionState.waiting) {
     //         return const Text('Loading');
     //       }
-    return DropdownButton(
-      value: selectedValue,
+    return DropdownButtonFormField(
+      value: widget.selectedValue,
       hint: Text("Select Category",
           style: Theme.of(context)
               .textTheme
@@ -61,9 +65,15 @@ class _MainCatDropDownState extends State<MainCatDropDown> {
           child: Text(e['catName']),
         );
       }).toList(),
+      validator: (value) {
+        if (value == null) {
+          return "No Category Selected";
+        }
+        return null;
+      },
       onChanged: (val) {
         setState(() {
-          selectedValue = val;
+          widget.selectedValue = val;
         });
         // widget.viewModel!.setSelectedVal(val);
         // widget.viewModel!.setnoCatselected(false);
