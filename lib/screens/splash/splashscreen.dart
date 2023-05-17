@@ -27,7 +27,7 @@ class _SplashscreenState extends State<Splashscreen> {
   Widget build(BuildContext context) {
     return ViewModelBuilder<SplashViewModel>.reactive(
         viewModelBuilder: () => SplashViewModel(),
-        onModelReady: (s) {
+        onViewModelReady: (s) {
           s.setInitialised(true);
           Future.delayed(const Duration(seconds: 5), (() async {
             await s.initPrefs();

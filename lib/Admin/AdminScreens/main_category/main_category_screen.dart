@@ -24,7 +24,7 @@ class _MainCategoryscreenState extends State<MainCategoryscreen> {
     var size = MediaQuery.of(context).size;
     return ViewModelBuilder<MainCategoryViewModel>.reactive(
         viewModelBuilder: () => MainCategoryViewModel(),
-        onModelReady: (mc) {
+        onViewModelReady: (mc) {
           mc.setInitialised(true);
           mc.getCatList();
         },
@@ -49,8 +49,9 @@ class _MainCategoryscreenState extends State<MainCategoryscreen> {
                 Padding(
                   padding: const EdgeInsets.all(8.0),
                   child: Form(
-                    key: model.mformKey,
                     autovalidateMode: AutovalidateMode.onUserInteraction,
+                    key: model.mformKey,
+                    // autovalidateMode: AutovalidateMode.onUserInteraction,
                     child: Column(
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
@@ -65,18 +66,30 @@ class _MainCategoryscreenState extends State<MainCategoryscreen> {
                               ),
                         YMargin(8.h),
                         if (model.noCatSelected == true)
-                          Text(
-                            'No Category Selected',
-                            style: Theme.of(context)
-                                .textTheme
-                                .labelMedium
-                                ?.copyWith(
-                                  color: Colors.red,
-                                ),
-                          ),
+                          Text('No Category Selected',
+                              style: Theme.of(context)
+                                  .textTheme
+                                  .labelMedium
+                                  ?.copyWith(
+                                    color: Colors.red,
+                                  )),
+                        YMargin(8.h),
+                        model.noCatSelected == true
+                            ? Text(
+                                'No Category Selected',
+                                style: Theme.of(context)
+                                    .textTheme
+                                    .labelMedium
+                                    ?.copyWith(
+                                      color: Colors.red,
+                                    ),
+                              )
+                            : Container(),
                         SizedBox(
                           width: 210.w,
                           child: TextFormField(
+                            autovalidateMode:
+                                AutovalidateMode.onUserInteraction,
                             validator: (val) =>
                                 ValueValidator().validateMainCat(val!),
                             controller: model.mainCatNameCtrl,
@@ -93,57 +106,61 @@ class _MainCategoryscreenState extends State<MainCategoryscreen> {
                           ),
                         ),
                         YMargin(20.h),
-                        Row(children: [
-                          VButton(
-                            onPressed: () {
-                              model.clear();
-                            },
-                            padding: const EdgeInsets.all(4),
-                            shape: RoundedRectangleBorder(
-                                borderRadius: BorderRadius.circular(4),
-                                side: BorderSide(
-                                  color: VendiColors.masterColor,
-                                )),
-                            width: MediaQuery.of(context).size.width * 0.14,
-                            height: 35.h,
-                            color: VendiColors.primaryColorswatch[100],
-                            child: Text(
-                              'Cancel',
-                              style: Theme.of(context)
-                                  .textTheme
-                                  .labelMedium
-                                  ?.copyWith(color: VendiColors.masterColor),
+                        Row(
+                          children: [
+                            VButton(
+                              onPressed: () {
+                                model.clear();
+                              },
+                              padding: const EdgeInsets.all(4),
+                              shape: RoundedRectangleBorder(
+                                  borderRadius: BorderRadius.circular(4),
+                                  side: BorderSide(
+                                    color: VendiColors.masterColor,
+                                  )),
+                              width: MediaQuery.of(context).size.width * 0.14,
+                              height: 35.h,
+                              color: VendiColors.primaryColorswatch[100],
+                              child: Text(
+                                'Cancel',
+                                style: Theme.of(context)
+                                    .textTheme
+                                    .labelMedium
+                                    ?.copyWith(color: VendiColors.masterColor),
+                              ),
                             ),
-                          ),
-                          XMargin(40.w),
-                          VButton(
-                            onPressed: () {
-                              // if (model.selectedValue == null) {
-                              //   model.setnoCatselected(true);
-                              //   return;
-                              // }
-                              if (model.mformKey.currentState!.validate()) {
-                                model.uploadTask();
-                              }
-                            },
-                            padding: const EdgeInsets.all(0),
-                            shape: RoundedRectangleBorder(
-                                borderRadius: BorderRadius.circular(4),
-                                side: BorderSide(
-                                  color: VendiColors.masterColor,
-                                )),
-                            width: MediaQuery.of(context).size.width * 0.14,
-                            height: 35.h,
-                            color: VendiColors.masterColor,
-                            child: Text(
-                              'Save',
-                              style: Theme.of(context)
-                                  .textTheme
-                                  .labelMedium
-                                  ?.copyWith(color: VendiColors.primaryColor),
+                            XMargin(40.w),
+                            VButton(
+                              onPressed: () {
+                                // if (model.selectedValue == null) {
+                                //   model.setnoCatselected(true);
+                                //   return;
+                                // }
+                                if (model.mformKey.currentState!.validate()) {
+                                  model.uploadTask();
+                                } else {
+                                  AutovalidateMode.onUserInteraction;
+                                }
+                              },
+                              padding: const EdgeInsets.all(0),
+                              shape: RoundedRectangleBorder(
+                                  borderRadius: BorderRadius.circular(4),
+                                  side: BorderSide(
+                                    color: VendiColors.masterColor,
+                                  )),
+                              width: MediaQuery.of(context).size.width * 0.14,
+                              height: 35.h,
+                              color: VendiColors.masterColor,
+                              child: Text(
+                                'Save',
+                                style: Theme.of(context)
+                                    .textTheme
+                                    .labelMedium
+                                    ?.copyWith(color: VendiColors.primaryColor),
+                              ),
                             ),
-                          ),
-                        ]),
+                          ],
+                        )
                       ],
                     ),
                   ),

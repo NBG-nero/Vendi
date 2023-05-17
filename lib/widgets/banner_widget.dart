@@ -68,7 +68,7 @@ class _BannerWidgetState extends State<BannerWidget> {
         Positioned(
             bottom: 11.h,
             child: DotsIndicatorWidget(
-                position: widget.viewModel!.bannerScrollPosition,dotscount: widget.viewModel!.bannerImage.length,)),
+                position: widget.viewModel!.bannerScrollPosition.toInt(),dotscount: widget.viewModel!.bannerImage.length,)),
       ],
     );
   }

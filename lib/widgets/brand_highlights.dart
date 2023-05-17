@@ -170,7 +170,7 @@ class _BrandHighLightsState extends State<BrandHighLights> {
             widget.viewModel!.brandAds.isEmpty
                 ? Container()
                 : DotsIndicatorWidget(
-                    position: widget.viewModel!.brandScrollPosition,
+                    position: widget.viewModel!.brandScrollPosition.toInt(),
                     dotscount: widget.viewModel!.brandAds.length,
                   )
           ],

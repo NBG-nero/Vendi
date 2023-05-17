@@ -17,7 +17,7 @@ class SubCategoryscreen extends StatelessWidget {
   Widget build(BuildContext context) {
     return ViewModelBuilder<SubCategoryViewModel>.reactive(
         viewModelBuilder: () => SubCategoryViewModel(),
-        onModelReady: (sa) {
+        onViewModelReady: (sa) {
           sa.setInitialised(true);
           sa.getMainCatList();
         },
@@ -62,7 +62,7 @@ class SubCategoryscreen extends StatelessWidget {
                                   child: model.imageFile == null
                                       ? Center(
                                           child: Text(
-                                            "Category Image",
+                                            "Sub Category Image",
                                             style: Theme.of(context)
                                                 .textTheme
                                                 .labelMedium
@@ -102,8 +102,8 @@ class SubCategoryscreen extends StatelessWidget {
                             children: [
                               model.subSnapshot == null
                                   ? const Text("Loading...")
-                                  : SubCatDropDown(
-                                      viewModel: model,
+                                  : const SubCatDropDown(
+                                      // viewModel: model,
                                     ),
                               YMargin(8.h),
                               if (model.noCategorySelected == true)

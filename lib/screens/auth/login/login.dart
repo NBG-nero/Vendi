@@ -21,7 +21,7 @@ class _LoginscreenState extends State<Loginscreen> {
   Widget build(BuildContext context) {
     return ViewModelBuilder<LoginViewModel>.reactive(
         viewModelBuilder: () => LoginViewModel(),
-        onModelReady: (l) {
+        onViewModelReady: (l) {
           l.setInitialised(true);
         },
         builder: (context, model, child) {

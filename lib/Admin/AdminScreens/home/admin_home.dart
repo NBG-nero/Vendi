@@ -24,7 +24,7 @@ class _AdminHomescreenState extends State<AdminHomescreen> {
   Widget build(BuildContext context) {
     return ViewModelBuilder<AdminHomeViewModel>.reactive(
         viewModelBuilder: () => AdminHomeViewModel(),
-        onModelReady: (ah) {
+        onViewModelReady: (ah) {
           ah.setInitialised(true);
         },
         builder: (context, model, child) {

@@ -9,9 +9,9 @@ class Accountscreen extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: VendiColors.primaryColor,
-      body: Column(
+      body:  const Column(
         mainAxisAlignment: MainAxisAlignment.center,
-        children: const [
+        children: [
           Center(child: Text("Accountscreen"), 
           ),
          
