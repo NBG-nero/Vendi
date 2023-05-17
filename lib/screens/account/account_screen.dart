@@ -9,13 +9,12 @@ class Accountscreen extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: VendiColors.primaryColor,
-      body:  const Column(
+      body: Column(
         mainAxisAlignment: MainAxisAlignment.center,
         children: [
-          Center(child: Text("Accountscreen"), 
+          Center(
+            child: Text("Accountscreen"),
           ),
-         
-
         ],
       ),
     );
