@@ -21,6 +21,7 @@ class MainCategoryscreen extends StatefulWidget {
 class _MainCategoryscreenState extends State<MainCategoryscreen> {
   @override
   Widget build(BuildContext context) {
+    var size = MediaQuery.of(context).size;
     return ViewModelBuilder<MainCategoryViewModel>.reactive(
         viewModelBuilder: () => MainCategoryViewModel(),
         onModelReady: (mc) {
@@ -55,9 +56,12 @@ class _MainCategoryscreenState extends State<MainCategoryscreen> {
                       children: [
                         model.qSnapshot == null
                             ? const Text("Loading...")
-                            : MainCatDropDown(
-                                selectedValue: model.selectedValue,
-                                // viewModel: model,
+                            : SizedBox(
+                                width: size.width * 0.5,
+                                child: MainCatDropDown(
+                                  selectedValue: model.selectedValue,
+                                  // viewModel: model,
+                                ),
                               ),
                         YMargin(8.h),
                         if (model.noCatSelected == true)
