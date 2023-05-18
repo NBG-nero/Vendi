@@ -58,33 +58,33 @@ class _MainCategoryscreenState extends State<MainCategoryscreen> {
                         model.qSnapshot == null
                             ? const Text("Loading...")
                             : SizedBox(
-                                width: size.width * 0.5,
+                                width: size.width * 0.55,
                                 child: MainCatDropDown(
                                   selectedValue: model.selectedValue,
                                   // viewModel: model,
                                 ),
                               ),
                         YMargin(8.h),
-                        if (model.noCatSelected == true)
-                          Text('No Category Selected',
-                              style: Theme.of(context)
-                                  .textTheme
-                                  .labelMedium
-                                  ?.copyWith(
-                                    color: Colors.red,
-                                  )),
-                        YMargin(8.h),
-                        model.noCatSelected == true
-                            ? Text(
-                                'No Category Selected',
-                                style: Theme.of(context)
-                                    .textTheme
-                                    .labelMedium
-                                    ?.copyWith(
-                                      color: Colors.red,
-                                    ),
-                              )
-                            : Container(),
+                        // if (model.noCatSelected == true)
+                        //   Text('No Category Selected',
+                        //       style: Theme.of(context)
+                        //           .textTheme
+                        //           .labelMedium
+                        //           ?.copyWith(
+                        //             color: Colors.red,
+                        //           )),
+                        // YMargin(8.h),
+                        // model.noCatSelected == true
+                        //     ? Text(
+                        //         'No Category Selected',
+                        //         style: Theme.of(context)
+                        //             .textTheme
+                        //             .labelMedium
+                        //             ?.copyWith(
+                        //               color: Colors.red,
+                        //             ),
+                        //       )
+                        //     : Container(),
                         SizedBox(
                           width: 210.w,
                           child: TextFormField(
